@@ -151,7 +151,7 @@
                 android:layout_marginTop="12dp"
                 app:cardBackgroundColor="@color/blue"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp" >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
