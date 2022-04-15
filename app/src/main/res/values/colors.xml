@@ -9,10 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#F44336</color>
     <color name="blue">#03A9F4</color>
-    <color name="yellow">#FAE42E</color>
+    <color name="yellow">#ffd31c</color>
     <color name="cyan">#00CCCC</color>
     <color name="green">#3EDF45</color>
-    <color name="orange">#ff7f2f</color>
-    <color name="dark_blue">#3352bc</color>
+    <color name="orange">#ff9900</color>
+    <color name="dark_blue">#2237AF</color>
     <color name="pink">#FF4DD2</color>
 </resources>
