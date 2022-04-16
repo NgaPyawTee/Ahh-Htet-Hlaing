@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="result">48sp</dimen>
+    <dimen name="title_text">24sp</dimen>
+    <dimen name="normal_text">16sp</dimen>
+    <dimen name="larg_text">20sp</dimen>
+
+    <dimen name="normal_padding">16dp</dimen>
+    <dimen name="larg_padding">24dp</dimen>
+
+    <dimen name="normal_margin">12dp</dimen>
+    <dimen name="large_margin">24dp</dimen>
+</resources>

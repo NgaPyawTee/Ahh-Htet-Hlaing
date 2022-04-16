@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CompanyPercentPlanActivity"
+            android:name=".calculator.MonthlyCalculator"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".level.CompanyPercentPlanActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

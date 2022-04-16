@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".calculator.MonthlyCalculator">
+
+    <TextView
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/dark_blue" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/calculator_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@+id/status_bar_space"
+        android:background="@color/dark_blue"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Date Calculator" />
+
+    <TextView
+        android:id="@+id/day_left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calculator_toolbar"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="13 days left to end this month"
+        android:textColor="@color/dark_blue"
+        android:textSize="@dimen/larg_text"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/day_left"
+        android:layout_marginTop="@dimen/large_margin"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/first_rl"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:background="@drawable/stroke_bg_2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="Today Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/larg_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="1/2/2022"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/larg_text"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/second_rl"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/first_rl"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:background="@drawable/stroke_bg_2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:text="End Month Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/larg_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:text="30/2/2022"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/larg_text"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/third_rl"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/second_rl"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:background="@drawable/stroke_bg_2"
+            android:padding="@dimen/normal_padding">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/title_text"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/start_calendar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/calculator_toolbar"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_today_calendar" />
+
+    <ImageView
+        android:id="@+id/end_calendar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/calculator_toolbar"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="160dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_calendar" />
+
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calculator_toolbar"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="274dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Amount"
+        android:textColor="@color/red"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold|italic" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/calculate"
+        android:layout_below="@+id/container"
+        android:layout_marginTop="@dimen/large_margin">
+
+        <RelativeLayout
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:background="@drawable/stroke_bg_3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="155800 Ks"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/result" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:gravity="center"
+                android:text="For"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
+                android:textSize="32dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:gravity="center"
+                android:text="13 Days"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/result"
+                 />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/calculate"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_layout_bg">
+
+        <Button
+            android:id="@+id/btn_calculate"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/card_bg_color_6"
+            android:text="calculate"
+            android:textColor="@color/white"
+            android:textSize="@dimen/larg_text"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
+
