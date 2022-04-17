@@ -22,25 +22,45 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="Date Calculator" />
 
-    <TextView
-        android:id="@+id/day_left"
+    <RelativeLayout
+        android:id="@+id/day_left_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/calculator_toolbar"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_marginBottom="12dp"
-        android:gravity="center"
-        android:text="13 days left to end this month"
-        android:textColor="@color/dark_blue"
-        android:textSize="@dimen/larg_text"
-        android:textStyle="bold" />
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/day_left_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="cc"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/larg_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/day_left_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/day_left_number"
+            android:gravity="start"
+            android:text=""
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/larg_text"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
 
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/day_left"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_below="@+id/day_left_container"
+        android:layout_marginTop="30dp"
         android:background="@color/white">
 
         <RelativeLayout
@@ -52,6 +72,7 @@
             android:background="@drawable/stroke_bg_2">
 
             <TextView
+                android:id="@+id/start_date_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -65,6 +86,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/start_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -95,13 +117,14 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/normal_margin"
-                android:text="End Month Date"
+                android:text="End Date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/dark_blue"
                 android:textSize="@dimen/larg_text"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/end_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -126,6 +149,31 @@
             android:padding="@dimen/normal_padding">
 
             <EditText
+                android:id="@+id/edt_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/title_text"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fourth_rl"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/second_rl"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_toRightOf="@+id/third_rl"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:background="@drawable/stroke_bg_2"
+            android:padding="@dimen/normal_padding">
+
+            <EditText
+                android:id="@+id/edt_percent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -144,7 +192,7 @@
         android:layout_height="40dp"
         android:layout_below="@+id/calculator_toolbar"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="62dp"
         android:background="@color/white"
         android:src="@drawable/ic_today_calendar" />
 
@@ -154,7 +202,7 @@
         android:layout_height="40dp"
         android:layout_below="@+id/calculator_toolbar"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="166dp"
         android:background="@color/white"
         android:src="@drawable/ic_calendar" />
 
@@ -164,7 +212,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/calculator_toolbar"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="274dp"
+        android:layout_marginTop="280dp"
         android:background="@color/white"
         android:gravity="center"
         android:text="Amount"
@@ -181,15 +229,17 @@
         android:layout_marginTop="@dimen/large_margin">
 
         <RelativeLayout
-            android:id="@+id/result"
+            android:id="@+id/result_layout"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
-            android:background="@drawable/stroke_bg_3">
+            android:background="@drawable/stroke_bg_3"
+            android:visibility="invisible">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/result_amount"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="@dimen/normal_margin"
@@ -200,27 +250,27 @@
                 android:textSize="@dimen/result" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:gravity="center"
                 android:text="For"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:textSize="32dp" />
 
             <TextView
+                android:id="@+id/result_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/large_margin"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:text="13 Days"
                 android:textColor="@color/dark_blue"
-                android:textSize="@dimen/result"
-                 />
+                android:textSize="@dimen/result" />
 
         </RelativeLayout>
 
@@ -235,9 +285,13 @@
 
         <Button
             android:id="@+id/btn_calculate"
-            android:layout_width="160dp"
+            android:layout_width="500dp"
             android:layout_height="160dp"
             android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/large_margin"
             android:background="@drawable/card_bg_color_6"
             android:text="calculate"
             android:textColor="@color/white"
