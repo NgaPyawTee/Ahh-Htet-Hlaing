@@ -26,20 +26,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class MonthlyCalculator extends AppCompatActivity {
+public class DailyProfitCalculator extends AppCompatActivity {
     Button btnCalculate;
     View resultLayout;
     ImageView startCalendar, endCalendar;
     DatePickerDialog.OnDateSetListener listener;
     TextView dayleftNumber, dayleftText, startDateText, startDate, endDate;
-    EditText edtAmount;
+    EditText edtAmount, edtPercent;
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/M/yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monthly_calculator);
+        setContentView(R.layout.activity_daily_profit_calculator);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
         WindowInsetsControllerCompat insetsControllerCompat = ViewCompat.getWindowInsetsController(getWindow().getDecorView());
@@ -58,6 +58,9 @@ public class MonthlyCalculator extends AppCompatActivity {
         DefaultDateShow();
 
         edtAmount = findViewById(R.id.edt_amount);
+
+        //get percent to multiply
+        edtPercent = findViewById(R.id.edt_percent);
 
         //Button calculate click
         btnCalculate = findViewById(R.id.btn_calculate);
@@ -184,23 +187,26 @@ public class MonthlyCalculator extends AppCompatActivity {
         TextView resultAmount = findViewById(R.id.result_amount);
         TextView resultDay = findViewById(R.id.result_day);
 
-        String s = dayleftNumber.getText().toString();
         String toggle = btnCalculate.getText().toString();
+        String s = dayleftNumber.getText().toString();
 
         if (toggle.equals("calculate")) {
             if (s.equals("You picked the last day of this month") || s.equals("You picked the last day of the month")) {
-                Toast.makeText(MonthlyCalculator.this, "No day left to calculate", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DailyProfitCalculator.this, "No day left to calculate", Toast.LENGTH_SHORT).show();
                 return;
             } else if (edtAmount.length() == 0) {
-                Toast.makeText(MonthlyCalculator.this, "Insert any amount to calculate", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DailyProfitCalculator.this, "Insert any amount to calculate", Toast.LENGTH_SHORT).show();
                 return;
-            } else {
+            } else if (edtPercent.length() == 0){
+                Toast.makeText(DailyProfitCalculator.this, "Which percent ???", Toast.LENGTH_SHORT).show();
+                return;
+            }else{
                 btnCalculate.setText("hide");
                 resultLayout.setVisibility(View.VISIBLE);
 
                 int amount = Integer.parseInt(edtAmount.getText().toString());
-                int dayLeft = Integer.parseInt(s);
-                Calculation(dayLeft, amount, resultAmount, resultDay);
+
+                Calculation(amount, resultAmount, resultDay);
             }
         } else {
             btnCalculate.setText("calculate");
@@ -208,16 +214,30 @@ public class MonthlyCalculator extends AppCompatActivity {
         }
     }
 
-    private void Calculation(int dayLeft, int amount, TextView resultAmount, TextView resultDay) {
-        double multiplier = 1;
-        if (amount < 2000000) {
-            multiplier = 0.05;
-        } else if (amount >= 2000000 && amount < 4000000) {
-            multiplier = 0.06;
-        } else if (amount >= 4000000 && amount < 10000000) {
-            multiplier = 0.07;
-        } else if (amount >= 10000000) {
-            multiplier = 0.08;
+    private void Calculation(int amount, TextView resultAmount, TextView resultDay) {
+        int getMultiplier = Integer.parseInt(edtPercent.getText().toString());
+        double multiplier = 0.00;
+        if(getMultiplier<5 || getMultiplier>8){
+            Toast.makeText(DailyProfitCalculator.this, "Inserted percent is out of plan", Toast.LENGTH_SHORT).show();
+            btnCalculate.setText("CalcuLate");
+            resultLayout.setVisibility(View.INVISIBLE);
+        }else{
+            switch (getMultiplier){
+                case 5 :
+                    multiplier = 0.05;
+                    break;
+                case 6:
+                    multiplier = 0.06;
+                    break;
+                case 7 :
+                    multiplier = 0.07;
+                    break;
+                case 8 :
+                    multiplier = 0.08;
+                    break;
+                default:
+                    break;
+            }
         }
 
         int dayLeftMultiplier = Integer.parseInt(dayleftNumber.getText().toString());
@@ -229,17 +249,18 @@ public class MonthlyCalculator extends AppCompatActivity {
             int lastDayMultiplier = date.getDate();
 
             //calculate daily profit
-            double oneMonthProfit = (double) (amount * multiplier);
-            double dailyProfit = (double) ((oneMonthProfit * dayLeftMultiplier) / lastDayMultiplier);
+            double oneMonthProfit = (amount * multiplier);
+            double dailyProfit = ((oneMonthProfit * dayLeftMultiplier) / lastDayMultiplier);
 
             DecimalFormat df = new DecimalFormat(".00");
             resultAmount.setText(df.format(dailyProfit) + " Ks");
+            resultDay.setText(dayLeftMultiplier + " Days");
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        resultDay.setText(dayLeftMultiplier + " Days");
+
     }
 
     private void StartDateDialog() {
@@ -248,7 +269,7 @@ public class MonthlyCalculator extends AppCompatActivity {
         int startMonth = calendar.get(Calendar.MONTH);
         int startDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dialog = new DatePickerDialog(MonthlyCalculator.this, listener, startYear, startMonth, startDay);
+        DatePickerDialog dialog = new DatePickerDialog(DailyProfitCalculator.this, listener, startYear, startMonth, startDay);
         dialog.show();
     }
 

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AHH Statistic</string>
+    <string-array name="percent_spinner_array">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
 </resources>

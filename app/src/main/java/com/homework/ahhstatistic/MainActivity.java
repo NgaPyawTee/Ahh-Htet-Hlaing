@@ -10,9 +10,9 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 
-import com.homework.ahhstatistic.calculator.MonthlyCalculator;
+import com.homework.ahhstatistic.calculator.DailyProfitCalculator;
+import com.homework.ahhstatistic.investor.InvestorCategory;
 import com.homework.ahhstatistic.level.CompanyPercentPlanActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,9 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         WindowCompat.setDecorFitsSystemWindows(getWindow(),false);
 
-        WindowInsetsControllerCompat insetsControllerCompat = ViewCompat.getWindowInsetsController(getWindow().getDecorView());
-        insetsControllerCompat.show(WindowInsetsCompat.Type.systemBars());
-
         investor = findViewById(R.id.cv_investor);
         plan = findViewById(R.id.cv_level);
         payment = findViewById(R.id.cv_payment);
@@ -35,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         investor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MainActivity.this, InvestorCategory.class));
             }
         });
 
@@ -56,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         calculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MonthlyCalculator.class));
+                startActivity(new Intent(MainActivity.this, DailyProfitCalculator.class));
             }
         });
     }

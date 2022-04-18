@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".calculator.MonthlyCalculator">
+    tools:context=".calculator.DailyProfitCalculator">
 
     <TextView
         android:id="@+id/status_bar_space"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="34dp"
         android:background="@color/dark_blue" />
 
     <androidx.appcompat.widget.Toolbar
@@ -20,7 +20,7 @@
         android:layout_below="@+id/status_bar_space"
         android:background="@color/dark_blue"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="Date Calculator" />
+        app:title="Daily Profit Calculator" />
 
     <RelativeLayout
         android:id="@+id/day_left_container"
@@ -137,89 +137,72 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/third_rl"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_below="@+id/second_rl"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:background="@drawable/stroke_bg_2"
-            android:padding="@dimen/normal_padding">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/second_rl">
 
-            <EditText
-                android:id="@+id/edt_amount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/dark_blue"
-                android:textSize="@dimen/title_text"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:id="@+id/third_rl"
+                android:layout_width="0dp"
+                android:layout_height="88dp"
+                android:layout_below="@+id/second_rl"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="9"
+                android:background="@drawable/stroke_bg_2"
+                android:padding="@dimen/normal_padding">
 
-        </RelativeLayout>
+                <EditText
+                    android:id="@+id/edt_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@color/white"
+                    android:cursorVisible="false"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/title_text"
+                    android:textStyle="bold" />
 
-        <RelativeLayout
-            android:id="@+id/fourth_rl"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_below="@+id/second_rl"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_toRightOf="@+id/third_rl"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:background="@drawable/stroke_bg_2"
-            android:padding="@dimen/normal_padding">
+            </RelativeLayout>
 
-            <EditText
-                android:id="@+id/edt_percent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/dark_blue"
-                android:textSize="@dimen/title_text"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:id="@+id/fourth_rl"
+                android:layout_width="0dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_toRightOf="@+id/third_rl"
+                android:layout_weight="3"
+                android:background="@drawable/stroke_bg_2"
+                android:padding="@dimen/normal_padding">
 
-        </RelativeLayout>
+                <EditText
+                    android:id="@+id/edt_percent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@color/white"
+                    android:cursorVisible="false"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/title_text"
+                    android:textStyle="bold" />
 
+            </RelativeLayout>
+
+        </LinearLayout>
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/start_calendar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/calculator_toolbar"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="62dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_today_calendar" />
-
-    <ImageView
-        android:id="@+id/end_calendar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/calculator_toolbar"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="166dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_calendar" />
-
-    <TextView
-        android:id="@+id/tv_amount"
-        android:layout_width="72dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/calculator_toolbar"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="280dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:text="Amount"
-        android:textColor="@color/red"
-        android:textSize="@dimen/normal_text"
-        android:textStyle="bold|italic" />
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -286,19 +269,64 @@
         <Button
             android:id="@+id/btn_calculate"
             android:layout_width="500dp"
-            android:layout_height="160dp"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/large_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/large_margin"
-            android:layout_marginBottom="@dimen/large_margin"
-            android:background="@drawable/card_bg_color_6"
+            android:background="@android:color/transparent"
             android:text="calculate"
             android:textColor="@color/white"
             android:textSize="@dimen/larg_text"
             android:textStyle="bold" />
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/start_calendar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/calculator_toolbar"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="62dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_edit_calendar" />
+
+    <ImageView
+        android:id="@+id/end_calendar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/calculator_toolbar"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="166dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_calendar" />
+
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calculator_toolbar"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="280dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Amount"
+        android:textColor="@color/red"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/tv_percent"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calculator_toolbar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="321dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="%"
+        android:textColor="@color/red"
+        android:textSize="@dimen/larg_text"
+        android:textStyle="bold|italic" />
 
 </RelativeLayout>
 
