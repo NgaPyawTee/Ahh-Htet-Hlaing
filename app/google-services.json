@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "585578712435",
+    "project_id": "ahh-statistic",
+    "storage_bucket": "ahh-statistic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585578712435:android:7f28cac909e946d170c906",
+        "android_client_info": {
+          "package_name": "com.homework.ahhstatistic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585578712435-gtvi1ia4esr147bdj6632i9arc2kmas6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN0YAIVloAbLiRgJ0ufEE6RbmrV5rTPoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585578712435-gtvi1ia4esr147bdj6632i9arc2kmas6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
