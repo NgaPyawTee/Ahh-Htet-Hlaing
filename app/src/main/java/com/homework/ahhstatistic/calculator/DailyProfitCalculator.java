@@ -249,18 +249,15 @@ public class DailyProfitCalculator extends AppCompatActivity {
             int lastDayMultiplier = date.getDate();
 
             //calculate daily profit
-            double oneMonthProfit = (amount * multiplier);
-            double dailyProfit = ((oneMonthProfit * dayLeftMultiplier) / lastDayMultiplier);
+            int oneMonthProfit = (int) (amount * multiplier);
+            int dailyProfit = ((oneMonthProfit * dayLeftMultiplier) / lastDayMultiplier);
 
-            DecimalFormat df = new DecimalFormat(".00");
-            resultAmount.setText(df.format(dailyProfit) + " Ks");
+            resultAmount.setText(dailyProfit + " Ks");
             resultDay.setText(dayLeftMultiplier + " Days");
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void StartDateDialog() {
@@ -272,6 +269,4 @@ public class DailyProfitCalculator extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(DailyProfitCalculator.this, listener, startYear, startMonth, startDay);
         dialog.show();
     }
-
-
 }

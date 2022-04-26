@@ -38,7 +38,7 @@
             android:layout_centerVertical="true"
             android:text="cc"
             android:textColor="@color/dark_blue"
-            android:textSize="@dimen/larg_text"
+            android:textSize="@dimen/large_text"
             android:textStyle="bold" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:gravity="start"
             android:text=""
             android:textColor="@color/dark_blue"
-            android:textSize="@dimen/larg_text"
+            android:textSize="@dimen/large_text"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -69,7 +69,7 @@
             android:layout_height="80dp"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
-            android:background="@drawable/stroke_bg_2">
+            android:background="@drawable/stroke_bg_red">
 
             <TextView
                 android:id="@+id/start_date_text"
@@ -82,7 +82,7 @@
                 android:text="Today Date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/dark_blue"
-                android:textSize="@dimen/larg_text"
+                android:textSize="@dimen/large_text"
                 android:textStyle="bold" />
 
             <TextView
@@ -96,7 +96,7 @@
                 android:text="1/2/2022"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/dark_blue"
-                android:textSize="@dimen/larg_text"
+                android:textSize="@dimen/large_text"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -109,7 +109,7 @@
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginTop="@dimen/large_margin"
             android:layout_marginEnd="@dimen/normal_margin"
-            android:background="@drawable/stroke_bg_2">
+            android:background="@drawable/stroke_bg_red">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
                 android:text="End Date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/dark_blue"
-                android:textSize="@dimen/larg_text"
+                android:textSize="@dimen/large_text"
                 android:textStyle="bold" />
 
             <TextView
@@ -133,7 +133,7 @@
                 android:text="30/2/2022"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/dark_blue"
-                android:textSize="@dimen/larg_text"
+                android:textSize="@dimen/large_text"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -152,7 +152,7 @@
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="9"
-                android:background="@drawable/stroke_bg_2"
+                android:background="@drawable/stroke_bg_red"
                 android:padding="@dimen/normal_padding">
 
                 <EditText
@@ -161,9 +161,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@color/white"
-                    android:cursorVisible="false"
                     android:inputType="number"
-                    android:maxLength="10"
+                    android:maxLength="9"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/title_text"
@@ -181,7 +180,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@+id/third_rl"
                 android:layout_weight="3"
-                android:background="@drawable/stroke_bg_2"
+                android:background="@drawable/stroke_bg_red"
                 android:padding="@dimen/normal_padding">
 
                 <EditText
@@ -190,7 +189,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@color/white"
-                    android:cursorVisible="false"
                     android:gravity="center"
                     android:inputType="number"
                     android:maxLength="1"
@@ -217,7 +215,7 @@
             android:layout_height="220dp"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
-            android:background="@drawable/stroke_bg_3"
+            android:background="@drawable/stroke_bg_dark_blue"
             android:visibility="invisible">
 
             <TextView
@@ -274,7 +272,7 @@
             android:background="@android:color/transparent"
             android:text="calculate"
             android:textColor="@color/white"
-            android:textSize="@dimen/larg_text"
+            android:textSize="@dimen/large_text"
             android:textStyle="bold" />
 
     </RelativeLayout>
@@ -325,7 +323,7 @@
         android:gravity="center"
         android:text="%"
         android:textColor="@color/red"
-        android:textSize="@dimen/larg_text"
+        android:textSize="@dimen/large_text"
         android:textStyle="bold|italic" />
 
 </RelativeLayout>

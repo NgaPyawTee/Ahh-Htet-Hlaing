@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="504dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/stroke_bg">
+            android:background="@drawable/stroke_bg_black">
 
             <RelativeLayout
                 android:layout_width="match_parent"
