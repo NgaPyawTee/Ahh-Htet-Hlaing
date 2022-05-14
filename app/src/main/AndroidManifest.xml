@@ -3,6 +3,8 @@
     package="com.homework.ahhstatistic">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,28 +14,57 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".investor.InvestorUpdateActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.LogReg"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".investor.detail.InvestorDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Yellow"></activity>
+        <activity
+            android:name=".investor.AddInvestorActivity"
+            android:exported="false"
+            android:parentActivityName=".investor.InvestorCategoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.LogReg" />
+
+        <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.LogReg" />
+
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".investor.InvestorDetail"
-            android:exported="false" />
-        <activity
-            android:name=".investor.InvestorCategory"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.LogReg" />
+
+        <activity
+            android:name=".investor.InvestorCategoryActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".calculator.DailyProfitCalculator"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".level.CompanyPercentPlanActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

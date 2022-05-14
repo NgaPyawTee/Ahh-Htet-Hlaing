@@ -3,10 +3,7 @@ package com.homework.ahhstatistic;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +14,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.homework.ahhstatistic.calculator.DailyProfitCalculator;
-import com.homework.ahhstatistic.investor.InvestorCategory;
+import com.homework.ahhstatistic.investor.InvestorCategoryActivity;
 import com.homework.ahhstatistic.level.CompanyPercentPlanActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         investor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, InvestorCategory.class));
+                startActivity(new Intent(MainActivity.this, InvestorCategoryActivity.class));
             }
         });
 
@@ -99,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null){
             finish();

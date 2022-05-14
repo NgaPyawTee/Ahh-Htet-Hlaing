@@ -29,7 +29,7 @@ import java.util.GregorianCalendar;
 public class DailyProfitCalculator extends AppCompatActivity {
     Button btnCalculate;
     View resultLayout;
-    ImageView startCalendar, endCalendar;
+    ImageView startCalendar;
     DatePickerDialog.OnDateSetListener listener;
     TextView dayleftNumber, dayleftText, startDateText, startDate, endDate;
     EditText edtAmount, edtPercent;
@@ -41,9 +41,6 @@ public class DailyProfitCalculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_profit_calculator);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
-        WindowInsetsControllerCompat insetsControllerCompat = ViewCompat.getWindowInsetsController(getWindow().getDecorView());
-        insetsControllerCompat.show(WindowInsetsCompat.Type.systemBars());
 
         Toolbar toolbar = findViewById(R.id.calculator_toolbar);
         setSupportActionBar(toolbar);
@@ -191,16 +188,16 @@ public class DailyProfitCalculator extends AppCompatActivity {
         String s = dayleftNumber.getText().toString();
 
         if (toggle.equals("calculate")) {
-            if (s.equals("You picked the last day of this month") || s.equals("You picked the last day of the month")) {
+            if (s.equals("You picked the last day of this month") | s.equals("You picked the last day of the month") | s.equals("Today is the last day of this month")) {
                 Toast.makeText(DailyProfitCalculator.this, "No day left to calculate", Toast.LENGTH_SHORT).show();
                 return;
             } else if (edtAmount.length() == 0) {
                 Toast.makeText(DailyProfitCalculator.this, "Insert any amount to calculate", Toast.LENGTH_SHORT).show();
                 return;
-            } else if (edtPercent.length() == 0){
-                Toast.makeText(DailyProfitCalculator.this, "Which percent ???", Toast.LENGTH_SHORT).show();
+            } else if (edtPercent.length() == 0) {
+                Toast.makeText(DailyProfitCalculator.this, "Define percent", Toast.LENGTH_SHORT).show();
                 return;
-            }else{
+            } else {
                 btnCalculate.setText("hide");
                 resultLayout.setVisibility(View.VISIBLE);
 
@@ -217,22 +214,25 @@ public class DailyProfitCalculator extends AppCompatActivity {
     private void Calculation(int amount, TextView resultAmount, TextView resultDay) {
         int getMultiplier = Integer.parseInt(edtPercent.getText().toString());
         double multiplier = 0.00;
-        if(getMultiplier<5 || getMultiplier>8){
+        if (getMultiplier < 4 | getMultiplier > 8) {
             Toast.makeText(DailyProfitCalculator.this, "Inserted percent is out of plan", Toast.LENGTH_SHORT).show();
             btnCalculate.setText("CalcuLate");
             resultLayout.setVisibility(View.INVISIBLE);
-        }else{
-            switch (getMultiplier){
-                case 5 :
+        } else {
+            switch (getMultiplier) {
+                case 4:
+                    multiplier = 0.04;
+                    break;
+                case 5:
                     multiplier = 0.05;
                     break;
                 case 6:
                     multiplier = 0.06;
                     break;
-                case 7 :
+                case 7:
                     multiplier = 0.07;
                     break;
-                case 8 :
+                case 8:
                     multiplier = 0.08;
                     break;
                 default:
@@ -253,7 +253,13 @@ public class DailyProfitCalculator extends AppCompatActivity {
             int dailyProfit = ((oneMonthProfit * dayLeftMultiplier) / lastDayMultiplier);
 
             resultAmount.setText(dailyProfit + " Ks");
-            resultDay.setText(dayLeftMultiplier + " Days");
+
+            if (dayLeftMultiplier == 1) {
+                resultDay.setText(dayLeftMultiplier + " Day");
+            } else {
+                resultDay.setText(dayLeftMultiplier + " Days");
+            }
+
 
         } catch (ParseException e) {
             e.printStackTrace();

@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#F44336</color>
-    <color name="blue">#03A9F4</color>
+    <color name="blue">#2196F3</color>
     <color name="yellow">#ffd31c</color>
     <color name="cyan">#00CCCC</color>
     <color name="green">#3EDF45</color>
@@ -19,4 +19,8 @@
     <color name="brown">#8B4513</color>
     <color name="dark_green">#247728</color>
     <color name="gray">#96979b</color>
+    <color name="pale_blue">#4460a9</color>
+    <color name="default_color">#CCCCCC</color>
+    <color name="dialog_color">#2b2b2b</color>
+    <color name="transparent">#0000FFFF</color>
 </resources>

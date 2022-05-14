@@ -102,7 +102,7 @@
                 android:layout_marginBottom="20dp"
                 android:textColorHint="@color/gray"
                 app:boxStrokeColor="@color/blue"
-                app:endIconTint="@color/red"
+                app:endIconTint="#CCCCCC"
                 android:hint="Password"
                 app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_password"

@@ -108,7 +108,7 @@
                 android:textColorHint="@color/gray"
                 app:boxStrokeColor="@color/blue"
                 app:endIconMode="password_toggle"
-                app:endIconTint="@color/red"
+                app:endIconTint="#CCCCCC"
                 app:startIconDrawable="@drawable/ic_password"
                 app:startIconTint="@color/cyan">
 
