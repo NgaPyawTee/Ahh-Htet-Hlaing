@@ -371,7 +371,6 @@ public class AddInvestorActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, listener1, year, month, day);
         dialog.show();
     }
-
     private void OpenDatePicker2() {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -381,7 +380,6 @@ public class AddInvestorActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, listener2, year, month, day);
         dialog.show();
     }
-
     private void OpenDatePicker3() {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -423,6 +421,7 @@ public class AddInvestorActivity extends AppCompatActivity {
             alertDialog.show();
         } else {
             progressDialog.show();
+            progressDialog.setCancelable(false);
             collRef.add(new Investor(strName, strCompanyID, strPhone, strNRC, strAddress,
                     str811amount, str811percent, str811date,
                     str58amount, str58percent, str58date,
@@ -470,7 +469,7 @@ public class AddInvestorActivity extends AppCompatActivity {
                             }
 
                             if (imgUri3 != null) {
-                                StorageReference fileRef = storageReference.child(strName + "/Ongoing Date/" + "Final Contract"
+                                StorageReference fileRef = storageReference.child(strName + "/Ongoing Date/" + "Third Contract"
                                         + "." + getFileExtension(imgUri3));
                                 fileRef.putFile(imgUri3).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override

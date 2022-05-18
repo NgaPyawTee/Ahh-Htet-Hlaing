@@ -33,9 +33,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.homework.ahhstatistic.R;
-import com.homework.ahhstatistic.investor.InvestorUpdateActivity;
+import com.homework.ahhstatistic.investor.UpdateInvestorActivity;
+
+import org.joda.time.Period;
+import org.joda.time.PeriodType;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HomeFragment extends Fragment {
     private String bundlePass;
@@ -43,11 +50,11 @@ public class HomeFragment extends Fragment {
     private NestedScrollView NSV;
 
     private TextView name, companyID, phone, nrc, address,
-            amount811, percent811, date811, signOne,
-            amount58, percent58, date58, signTwo,
-            amount456, percent456, date456, signThree,
+            amount811, percent811, date811,
+            amount58, percent58, date58,
+            amount456, percent456, date456,
             cashBonus;
-    private String preProfit;
+    private int preProfit, totalProfit;
     private ImageView imageView1, imageView2, imageView3, zoomPic, downImg, backImg, clrImg;
     private Uri imgUri1, imgUri2, imgUri3;
     private ProgressBar progressBar;
@@ -59,7 +66,7 @@ public class HomeFragment extends Fragment {
 
     //Total profit dialog
     private Dialog totalProfitDiaglog;
-    private TextView totalProfit;
+    private TextView tvTotalProfit;
     private Button btnTotalProfit;
 
     //Alert Dialog
@@ -67,6 +74,8 @@ public class HomeFragment extends Fragment {
     private TextView alert_title, alert_description, alert_tv_1, alert_tv_2;
 
     private NumberFormat nf = NumberFormat.getInstance();
+
+    int intAmount811, intPercent811, intCashBonus, intAmount58, intPercent58, intAmount456, intPercent456;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,7 +95,7 @@ public class HomeFragment extends Fragment {
         alert_title = alertDialog.findViewById(R.id.alert_dialog_title);
         alert_title.setText("Remove Investor");
         alert_description = alertDialog.findViewById(R.id.alert_dialog_description);
-        alert_description.setText("Are you sure you want to remove this person?");
+        alert_description.setText("Are you sure you want to remove this investor?");
         alert_tv_1 = alertDialog.findViewById(R.id.alert_dialog_tv_1);
         alert_tv_1.setText("NO");
         alert_tv_1.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +151,7 @@ public class HomeFragment extends Fragment {
         totalProfitDiaglog = new Dialog(getContext());
         totalProfitDiaglog.setContentView(R.layout.layout_total_profit_dialog);
         totalProfitDiaglog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        totalProfit = totalProfitDiaglog.findViewById(R.id.total_profit);
+        tvTotalProfit = totalProfitDiaglog.findViewById(R.id.total_profit);
         btnTotalProfit = totalProfitDiaglog.findViewById(R.id.btn_total_profit);
         btnTotalProfit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,17 +173,14 @@ public class HomeFragment extends Fragment {
         amount811 = view.findViewById(R.id.detail_plan_811_amount);
         percent811 = view.findViewById(R.id.detail_plan_811_percent);
         date811 = view.findViewById(R.id.detail_date_811);
-        signOne = view.findViewById(R.id.text_percent_one);
 
         amount58 = view.findViewById(R.id.detail_plan_58_amount);
         percent58 = view.findViewById(R.id.detail_plan_58_percent);
         date58 = view.findViewById(R.id.detail_date_58);
-        signTwo = view.findViewById(R.id.text_percent_two);
 
         amount456 = view.findViewById(R.id.detail_plan_456_amount);
         percent456 = view.findViewById(R.id.detail_plan_456_percent);
         date456 = view.findViewById(R.id.detail_date_456);
-        signThree = view.findViewById(R.id.text_percent_three);
 
         cashBonus = view.findViewById(R.id.cash_bonus);
 
@@ -212,8 +218,8 @@ public class HomeFragment extends Fragment {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), InvestorUpdateActivity.class);
-                intent.putExtra(InvestorUpdateActivity.ID_PASS, id);
+                Intent intent = new Intent(getActivity(), UpdateInvestorActivity.class);
+                intent.putExtra(UpdateInvestorActivity.ID_PASS, id);
                 startActivity(intent);
             }
         });
@@ -228,15 +234,13 @@ public class HomeFragment extends Fragment {
         totalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CalculateTotalProfit();
                 totalProfitDiaglog.show();
-                int i = 50000;
-                totalProfit.setText(nf.format(i) + " Ks");
             }
         });
 
         Bundle data = getArguments();
         bundlePass = data.getString(InvestorDetailActivity.BUNDLE_PASS);
-
 
         return view;
     }
@@ -328,7 +332,7 @@ public class HomeFragment extends Fragment {
         request.setDescription("Download Completed");
         request.allowScanningByMediaScanner();
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Invescog/1st Contract.png");
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Invescog/Ongoing/1st Contract.png");
         request.setMimeType("*/*");
         downloadManager.enqueue(request);
     }
@@ -342,7 +346,7 @@ public class HomeFragment extends Fragment {
         request.setDescription("Download Completed");
         request.allowScanningByMediaScanner();
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Invescog/2nd Contract.png");
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Invescog/Ongoing/2nd Contract.png");
         request.setMimeType("*/*");
         downloadManager.enqueue(request);
     }
@@ -356,7 +360,7 @@ public class HomeFragment extends Fragment {
         request.setDescription("Download Completed");
         request.allowScanningByMediaScanner();
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Invescog/3rd Contract.png");
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "/Invescog/Ongoing/3rd Contract.png");
         request.setMimeType("*/*");
         downloadManager.enqueue(request);
     }
@@ -382,12 +386,12 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-        FirebaseFirestore.getInstance().collection("Investors/" + id + "/Final Date").get()
+        FirebaseFirestore.getInstance().collection("Investors/" + id + "/Third Date").get()
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot qs : task.getResult()) {
-                            FirebaseFirestore.getInstance().collection("Investors/" + id + "/Final Date").document(qs.getId()).delete();
+                            FirebaseFirestore.getInstance().collection("Investors/" + id + "/Third Date").document(qs.getId()).delete();
                         }
                     }
                 });
@@ -395,6 +399,102 @@ public class HomeFragment extends Fragment {
 
     private void DeleteCollection() {
         collRef.document(id).delete();
+    }
+
+    private void CalculateTotalProfit() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int dateDiff1 = 0, dateDiff2 = 0, dateDiff3 = 0;
+        int monthly1 = 0, monthly2 = 0, monthly3 = 0;
+
+        Calendar c = Calendar.getInstance();
+        String strcurrentDate = sdf.format(c.getTime());
+
+        try {
+            if (date811.getText().equals("Unavaliable")) {
+                dateDiff1 = 0;
+            } else {
+                Date currentDate = sdf.parse(strcurrentDate);
+                Date date = sdf.parse(date811.getText().toString());
+
+                long currentLong = currentDate.getTime();
+                long long1 = date.getTime();
+
+                int currentYear = currentDate.getYear();
+                int year = date.getYear();
+
+                if (currentYear == year){
+                    dateDiff1 = Calendar.getInstance().get(Calendar.MONTH) - date.getMonth();
+                }else{
+                    Period period = new Period(long1, currentLong, PeriodType.yearMonthDay());
+                    dateDiff1 = period.getMonths();
+                }
+
+                if (dateDiff1 >= 4) {
+                    monthly1 = (int) (intAmount811 * intPercent811 * 0.01 * 4) + (intCashBonus * 4);
+                } else {
+                    monthly1 = (int) (intAmount811 * intPercent811 * 0.01 * dateDiff1) + (intCashBonus * dateDiff1);
+                }
+            }
+
+            if (date58.getText().equals("Unavaliable")) {
+                dateDiff2 = 0;
+            } else {
+                Date currentDate = sdf.parse(strcurrentDate);
+                Date date = sdf.parse(date58.getText().toString());
+
+                long currentLong = currentDate.getTime();
+                long long1= date.getTime();
+
+                int currentYear = currentDate.getYear();
+                int year = date.getYear();
+
+                if (currentYear == year){
+                    dateDiff2 = Calendar.getInstance().get(Calendar.MONTH) - date.getMonth();
+                }else{
+                    Period period = new Period(long1, currentLong, PeriodType.yearMonthDay());
+                    dateDiff2 = period.getMonths();
+                }
+
+                if (dateDiff2 >= 4) {
+                    monthly2 = (int) (intAmount58 * intPercent58 * 0.01 * 4);
+                } else {
+                    monthly2 = (int) (intAmount58 * intPercent58 * 0.01 * dateDiff2);
+                }
+            }
+
+            if (date456.getText().equals("Unavaliable")) {
+                dateDiff3 = 0;
+            } else {
+                Date currentDate = sdf.parse(strcurrentDate);
+                Date date = sdf.parse(date456.getText().toString());
+
+                long currentLong = currentDate.getTime();
+                long long1 = date.getTime();
+
+                int currentYear = currentDate.getYear();
+                int year = date.getYear();
+
+                if (currentYear == year){
+                    dateDiff3 = Calendar.getInstance().get(Calendar.MONTH) - date.getMonth();
+                }else{
+                    Period period = new Period(long1, currentLong, PeriodType.yearMonthDay());
+                    dateDiff3 = period.getMonths();
+                }
+
+                if (dateDiff3 >= 4) {
+                    monthly3 = (int) (intAmount456 * intPercent456 * 0.01 * 4);
+                } else {
+                    monthly3 = (int) (intAmount456 * intPercent456 * 0.01 * dateDiff3);
+                }
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        totalProfit = preProfit + monthly1 + monthly2 + monthly3;
+
+        tvTotalProfit.setText(nf.format(totalProfit) + " Ks");
     }
 
     @Override
@@ -408,9 +508,6 @@ public class HomeFragment extends Fragment {
                 .get().addOnSuccessListener(getActivity(), new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                NSV.setVisibility(View.VISIBLE);
-
                 id = documentSnapshot.getId();
 
                 name.setText(documentSnapshot.getString("name"));
@@ -422,37 +519,54 @@ public class HomeFragment extends Fragment {
                 if (documentSnapshot.getString("amount811").equals("0") && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
                     amount811.setText("Unavaliable");
                     percent811.setText("Unavaliable");
-                    signOne.setVisibility(View.INVISIBLE);
                     date811.setText("Unavaliable");
+
+                    intAmount811 = 0;
+                    intPercent811 = 0;
                 } else {
                     amount811.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount811"))));
-                    percent811.setText(documentSnapshot.getString("percent811"));
+                    percent811.setText(documentSnapshot.getString("percent811") + "%");
                     date811.setText(documentSnapshot.getString("date811"));
+
+                    intAmount811 = Integer.parseInt(documentSnapshot.getString("amount811"));
+                    intPercent811 = Integer.parseInt(documentSnapshot.getString("percent811"));
                 }
 
                 if (documentSnapshot.getString("amount58").equals("0") && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
                     amount58.setText("Unavaliable");
                     percent58.setText("Unavaliable");
-                    signTwo.setVisibility(View.INVISIBLE);
                     date58.setText("Unavaliable");
+
+                    intAmount58 = 0;
+                    intPercent58 = 0;
                 } else {
                     amount58.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount58"))));
-                    percent58.setText(documentSnapshot.getString("percent58"));
+                    percent58.setText(documentSnapshot.getString("percent58") + "%");
                     date58.setText(documentSnapshot.getString("date58"));
+
+                    intAmount58 = Integer.parseInt(documentSnapshot.getString("amount58"));
+                    intPercent58 = Integer.parseInt(documentSnapshot.getString("percent58"));
                 }
 
                 if (documentSnapshot.getString("amount456").equals("0") && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
                     amount456.setText("Unavaliable");
                     percent456.setText("Unavaliable");
-                    signThree.setVisibility(View.INVISIBLE);
                     date456.setText("Unavaliable");
+
+                    intAmount456 = 0;
+                    intPercent456 = 0;
                 } else {
                     amount456.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount456"))));
-                    percent456.setText(documentSnapshot.getString("percent456"));
+                    percent456.setText(documentSnapshot.getString("percent456") + "%");
                     date456.setText(documentSnapshot.getString("date456"));
+
+                    intAmount456 = Integer.parseInt(documentSnapshot.getString("amount456"));
+                    intPercent456 = Integer.parseInt(documentSnapshot.getString("percent456"));
                 }
 
-                cashBonus.setText(documentSnapshot.getString("cashAmount"));
+                cashBonus.setText(nf.format(Integer.parseInt(documentSnapshot.getString("cashBonus"))));
+                intCashBonus = Integer.parseInt(documentSnapshot.getString("cashBonus"));
+                preProfit = Integer.parseInt(documentSnapshot.getString("preProfit"));
 
                 if (!documentSnapshot.getString("imgUrlOne").isEmpty()) {
                     imgUri1 = Uri.parse(documentSnapshot.getString("imgUrlOne"));
@@ -471,7 +585,12 @@ public class HomeFragment extends Fragment {
                     imageView3.setBackgroundResource(android.R.color.transparent);
                     Glide.with(getContext()).load(imgUri3).into(imageView3);
                 }
+
+                progressBar.setVisibility(View.GONE);
+                NSV.setVisibility(View.VISIBLE);
             }
         });
     }
+
+
 }

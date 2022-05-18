@@ -73,7 +73,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_investor_add.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_investor_category.xml" value="0.23355899419729206" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_investor_detail.xml" value="0.2515625" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_investor_update.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_investor_update.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_login.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_main.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_monthly_calculator.xml" value="0.264" />
@@ -89,6 +89,8 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_alert_dialog.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_image_dialog.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_progress_dialog.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_progress_dialog_2.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_progress_dialog_3.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_total_profit_dialog.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/menu/menu_item.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14427083333333332" />

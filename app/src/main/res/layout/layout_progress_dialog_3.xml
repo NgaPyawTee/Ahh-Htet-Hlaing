@@ -14,15 +14,15 @@
         android:padding="24dp">
 
         <com.github.ybq.android.spinkit.SpinKitView
-            style="@style/SpinKitView.Large.Wave"
+            style="@style/SpinKitView.Large.CubeGrid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             app:SpinKit_Color="@color/blue" />
 
         <TextView
-            android:id="@+id/progress_dialog_tv"
-            android:layout_marginTop="8dp"
+            android:id="@+id/progress_dialog_tv_3"
+            android:layout_marginTop="@dimen/medium_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +8,17 @@
     android:orientation="vertical"
     tools:context=".investor.AddInvestorActivity">
 
+    <ProgressBar
+        android:id="@+id/update_progress_bar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/update_toolbar"
         android:layout_width="match_parent"
@@ -15,8 +26,10 @@
         android:background="@color/blue" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/update_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -182,10 +195,10 @@
                 android:id="@+id/btn_update_investor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Update personal infomation"
-                android:textColor="@color/white"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                android:layout_marginEnd="20dp"
+                android:text="Update personal infomation"
+                android:textColor="@color/white" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -197,11 +210,12 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="350dp"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/stroke_bg_cyan">
 
                     <RelativeLayout
+                        android:id="@+id/three_line_container"
                         android:layout_width="200dp"
                         android:layout_height="150dp"
                         android:layout_above="@id/btn_container_1"
@@ -293,8 +307,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/normal_margin"
-                                android:text="Date"
                                 android:textColor="@color/cyan"
+                                android:textColorHint="@color/cyan"
                                 android:textSize="@dimen/large_text" />
                         </LinearLayout>
                     </RelativeLayout>
@@ -309,21 +323,23 @@
 
                         <Button
                             android:id="@+id/save_expired_1st"
-                            android:layout_width="wrap_content"
+                            android:layout_width="154dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:layout_marginStart="@dimen/large_margin"
+                            android:layout_marginStart="20dp"
                             android:backgroundTint="@color/cyan"
+                            android:gravity="center"
                             android:text="Save Expired"
                             android:textColor="@color/white" />
 
                         <Button
                             android:id="@+id/upload_new_1st"
-                            android:layout_width="wrap_content"
+                            android:layout_width="154dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="@dimen/large_margin"
+                            android:layout_marginEnd="20dp"
                             android:backgroundTint="@color/cyan"
+                            android:gravity="center"
                             android:text="Upload New"
                             android:textColor="@color/white" />
 
@@ -423,7 +439,6 @@
                             android:id="@+id/edit_new_rl_1"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="12dp"
                             android:layout_weight="3"
                             android:background="@color/white">
 
@@ -444,7 +459,20 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal">
+
+                            <ImageView
+                                android:visibility="invisible"
+                                android:id="@+id/delete_1st"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="40dp"
+                                android:src="@drawable/ic_delete"
+                                android:tint="@color/red"
+                                tools:ignore="UseAppTint" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -462,7 +490,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="350dp"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/stroke_bg_blue">
 
@@ -528,8 +556,8 @@
                                 android:layout_marginStart="@dimen/normal_margin"
                                 android:background="@color/white"
                                 android:hint="Percent"
-                                android:maxLength="1"
                                 android:inputType="number"
+                                android:maxLength="1"
                                 android:textColor="@color/blue"
                                 android:textColorHint="@color/blue"
                                 android:textSize="@dimen/large_text" />
@@ -558,7 +586,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/normal_margin"
-                                android:text="Date"
+                                android:textColorHint="@color/blue"
                                 android:textColor="@color/blue"
                                 android:textSize="@dimen/large_text" />
                         </LinearLayout>
@@ -574,22 +602,24 @@
 
                         <Button
                             android:id="@+id/save_expired_2nd"
-                            android:layout_width="wrap_content"
+                            android:layout_width="154dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:layout_marginStart="@dimen/large_margin"
+                            android:layout_marginStart="20dp"
                             android:backgroundTint="@color/blue"
+                            android:gravity="center"
                             android:text="Save Expired"
                             android:textColor="@color/white" />
 
                         <Button
                             android:id="@+id/upload_new_2nd"
-                            android:layout_width="wrap_content"
+                            android:layout_width="154dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="@dimen/large_margin"
+                            android:layout_marginEnd="20dp"
                             android:backgroundTint="@color/blue"
                             android:text="Upload New"
+                            android:gravity="center"
                             android:textColor="@color/white" />
 
                     </RelativeLayout>
@@ -688,7 +718,6 @@
                             android:id="@+id/edit_new_rl_2"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="12dp"
                             android:layout_weight="3"
                             android:background="@color/white">
 
@@ -709,7 +738,20 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal">
+
+                            <ImageView
+                                android:visibility="invisible"
+                                android:id="@+id/delete_2nd"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="40dp"
+                                android:src="@drawable/ic_delete"
+                                android:tint="@color/red"
+                                tools:ignore="UseAppTint" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -727,7 +769,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="350dp"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/stroke_bg_pale_blue">
 
@@ -793,8 +835,8 @@
                                 android:layout_marginStart="@dimen/normal_margin"
                                 android:background="@color/white"
                                 android:hint="Percent"
-                                android:maxLength="1"
                                 android:inputType="number"
+                                android:maxLength="1"
                                 android:textColor="@color/pale_blue"
                                 android:textColorHint="@color/pale_blue"
                                 android:textSize="@dimen/large_text" />
@@ -823,7 +865,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/normal_margin"
-                                android:text="Date"
+                                android:textColorHint="@color/pale_blue"
                                 android:textColor="@color/pale_blue"
                                 android:textSize="@dimen/large_text" />
                         </LinearLayout>
@@ -839,21 +881,23 @@
 
                         <Button
                             android:id="@+id/save_expired_3rd"
-                            android:layout_width="wrap_content"
+                            android:layout_width="154dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:layout_marginStart="@dimen/large_margin"
+                            android:layout_marginStart="20dp"
                             android:backgroundTint="@color/pale_blue"
+                            android:gravity="center"
                             android:text="Save Expired"
                             android:textColor="@color/white" />
 
                         <Button
                             android:id="@+id/upload_new_3rd"
-                            android:layout_width="wrap_content"
+                            android:layout_width="154dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="@dimen/large_margin"
+                            android:layout_marginEnd="20dp"
                             android:backgroundTint="@color/pale_blue"
+                            android:gravity="center"
                             android:text="Upload New"
                             android:textColor="@color/white" />
 
@@ -953,7 +997,6 @@
                             android:id="@+id/edit_new_rl_3"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="12dp"
                             android:layout_weight="3"
                             android:background="@color/white">
 
@@ -974,17 +1017,30 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal">
+
+                            <ImageView
+                                android:visibility="invisible"
+                                android:id="@+id/delete_3rd"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="40dp"
+                                android:src="@drawable/ic_delete"
+                                android:tint="@color/red"
+                                tools:ignore="UseAppTint" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
                 </LinearLayout>
-
 
             </RelativeLayout>
 
         </LinearLayout>
 
-
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

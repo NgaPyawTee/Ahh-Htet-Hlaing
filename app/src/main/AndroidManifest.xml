@@ -14,16 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".investor.InvestorUpdateActivity"
+            android:name=".investor.UpdateInvestorActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.LogReg"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.LogReg" />
 
         <activity
             android:name=".investor.detail.InvestorDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Yellow"></activity>
+            android:theme="@style/AppTheme.Yellow" />
         <activity
             android:name=".investor.AddInvestorActivity"
             android:exported="false"

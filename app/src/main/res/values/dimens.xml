@@ -9,5 +9,6 @@
     <dimen name="larg_padding">24dp</dimen>
 
     <dimen name="normal_margin">12dp</dimen>
+    <dimen name="medium_margin">20dp</dimen>
     <dimen name="large_margin">24dp</dimen>
 </resources>

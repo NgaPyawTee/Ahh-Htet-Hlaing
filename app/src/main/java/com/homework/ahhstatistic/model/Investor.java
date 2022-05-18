@@ -146,7 +146,7 @@ public class Investor {
         return date456;
     }
 
-    public String getCashAmount() {
+    public String getCashBonus() {
         return cashBonus;
     }
 
