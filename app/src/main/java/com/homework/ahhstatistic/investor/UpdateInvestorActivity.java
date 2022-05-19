@@ -953,8 +953,12 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             int monthly = (int) (intAmount811 * intPercent811 * 0.01 * 4) + (intCashBonus * 4);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else{
+        }else if (dateDiff < 4 && dateDiff > 0){
             int monthly = (int) (intAmount811 * intPercent811 * 0.01 * dateDiff) + (intCashBonus * dateDiff);
+            int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
+            preProfit.setText(String.valueOf(profit));
+        }else{
+            int monthly = 0;
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
         }
@@ -997,8 +1001,12 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             int monthly = (int) (intAmount58 * intPercent58 * 0.01 * 4);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else{
+        }else if (dateDiff < 4 && dateDiff >0){
             int monthly = (int) (intAmount58 * intPercent58 * 0.01 * dateDiff);
+            int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
+            preProfit.setText(String.valueOf(profit));
+        }else{
+            int monthly = 0;
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
         }
@@ -1042,12 +1050,15 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             int monthly = (int) (intAmount456 * intPercent456 * 0.01 * 4);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else{
+        }else if (dateDiff < 4 && dateDiff > 0){
             int monthly = (int) (intAmount456 * intPercent456 * 0.01 * dateDiff);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
+        }else{
+            int monthly = 0;
+            int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
+            preProfit.setText(String.valueOf(profit));
         }
-
 
         progressDialog.setCancelable(false);
     }
@@ -1161,9 +1172,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(cR.getType(uri));
     }
-
     ;
-
 
     private void OpenFileChooser1() {
         Intent intent = new Intent();

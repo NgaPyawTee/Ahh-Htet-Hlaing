@@ -96,7 +96,7 @@ public class InvestorDetailActivity extends AppCompatActivity {
                     String secondPlan = "2nd";
                     return secondPlan;
                 case 3:
-                    String finalPlan = "Final";
+                    String finalPlan = "3rd";
                     return finalPlan;
             }
             return null;

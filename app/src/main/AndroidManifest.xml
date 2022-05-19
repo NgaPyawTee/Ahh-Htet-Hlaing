@@ -14,11 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".payment.ProfitDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".payment.MonthlyPaymentActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".investor.UpdateInvestorActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.LogReg" />
-
         <activity
             android:name=".investor.detail.InvestorDetailActivity"
             android:exported="false"
@@ -27,44 +34,36 @@
         <activity
             android:name=".investor.AddInvestorActivity"
             android:exported="false"
-            android:parentActivityName=".investor.InvestorCategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.LogReg" />
-
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.LogReg" />
-
         <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.LogReg" />
-
         <activity
             android:name=".investor.InvestorCategoryActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".calculator.DailyProfitCalculator"
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name=".level.CompanyPercentPlanActivity"
+            android:name=".Revenue.MyRevenue"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

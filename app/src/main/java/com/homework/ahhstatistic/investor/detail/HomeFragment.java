@@ -191,25 +191,23 @@ public class HomeFragment extends Fragment {
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (imgUri1 != null) {
+                if (imgUri1 != null && !amount811.getText().toString().equals("Unavaliable")) {
                     OpenImageDialog1();
                 }
             }
         });
-
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (imgUri2 != null) {
+                if (imgUri2 != null && !amount58.getText().toString().equals("Unavaliable")) {
                     OpenImageDialog2();
                 }
             }
         });
-
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (imgUri3 != null) {
+                if (imgUri3 != null && !amount456.getText().toString().equals("Unavaliable")) {
                     OpenImageDialog3();
                 }
             }
@@ -223,14 +221,12 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertDialog.show();
             }
         });
-
         totalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -270,7 +266,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
     private void OpenImageDialog2() {
         Glide.with(getContext()).load(imgUri2).into(zoomPic);
         imageDialog.show();
@@ -296,7 +291,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
     private void OpenImageDialog3() {
         Glide.with(getContext()).load(imgUri3).into(zoomPic);
         imageDialog.show();
@@ -336,7 +330,6 @@ public class HomeFragment extends Fragment {
         request.setMimeType("*/*");
         downloadManager.enqueue(request);
     }
-
     private void DownloadFirstImage2() {
         DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(imgUri2);
@@ -350,7 +343,6 @@ public class HomeFragment extends Fragment {
         request.setMimeType("*/*");
         downloadManager.enqueue(request);
     }
-
     private void DownloadFirstImage3() {
         DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(imgUri3);
@@ -396,7 +388,6 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
-
     private void DeleteCollection() {
         collRef.document(id).delete();
     }
@@ -422,17 +413,19 @@ public class HomeFragment extends Fragment {
                 int currentYear = currentDate.getYear();
                 int year = date.getYear();
 
-                if (currentYear == year){
+                if (currentYear == year) {
                     dateDiff1 = Calendar.getInstance().get(Calendar.MONTH) - date.getMonth();
-                }else{
+                } else {
                     Period period = new Period(long1, currentLong, PeriodType.yearMonthDay());
                     dateDiff1 = period.getMonths();
                 }
 
                 if (dateDiff1 >= 4) {
                     monthly1 = (int) (intAmount811 * intPercent811 * 0.01 * 4) + (intCashBonus * 4);
-                } else {
+                } else if (dateDiff1 < 4 && dateDiff1 > 0) {
                     monthly1 = (int) (intAmount811 * intPercent811 * 0.01 * dateDiff1) + (intCashBonus * dateDiff1);
+                } else {
+                    monthly1 = 0;
                 }
             }
 
@@ -443,22 +436,24 @@ public class HomeFragment extends Fragment {
                 Date date = sdf.parse(date58.getText().toString());
 
                 long currentLong = currentDate.getTime();
-                long long1= date.getTime();
+                long long1 = date.getTime();
 
                 int currentYear = currentDate.getYear();
                 int year = date.getYear();
 
-                if (currentYear == year){
+                if (currentYear == year) {
                     dateDiff2 = Calendar.getInstance().get(Calendar.MONTH) - date.getMonth();
-                }else{
+                } else {
                     Period period = new Period(long1, currentLong, PeriodType.yearMonthDay());
                     dateDiff2 = period.getMonths();
                 }
 
                 if (dateDiff2 >= 4) {
                     monthly2 = (int) (intAmount58 * intPercent58 * 0.01 * 4);
-                } else {
+                } else if (dateDiff2 < 4 && dateDiff2 > 0) {
                     monthly2 = (int) (intAmount58 * intPercent58 * 0.01 * dateDiff2);
+                } else {
+                    monthly2 = 0;
                 }
             }
 
@@ -474,17 +469,19 @@ public class HomeFragment extends Fragment {
                 int currentYear = currentDate.getYear();
                 int year = date.getYear();
 
-                if (currentYear == year){
+                if (currentYear == year) {
                     dateDiff3 = Calendar.getInstance().get(Calendar.MONTH) - date.getMonth();
-                }else{
+                } else {
                     Period period = new Period(long1, currentLong, PeriodType.yearMonthDay());
                     dateDiff3 = period.getMonths();
                 }
 
                 if (dateDiff3 >= 4) {
                     monthly3 = (int) (intAmount456 * intPercent456 * 0.01 * 4);
-                } else {
+                } else if (dateDiff3 < 4 && dateDiff3 > 0) {
                     monthly3 = (int) (intAmount456 * intPercent456 * 0.01 * dateDiff3);
+                } else {
+                    monthly3 = 0;
                 }
             }
 

@@ -9,18 +9,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.homework.ahhstatistic.calculator.DailyProfitCalculator;
 import com.homework.ahhstatistic.investor.InvestorCategoryActivity;
-import com.homework.ahhstatistic.level.CompanyPercentPlanActivity;
+import com.homework.ahhstatistic.Revenue.MyRevenue;
+import com.homework.ahhstatistic.payment.MonthlyPaymentActivity;
 
 public class MainActivity extends AppCompatActivity {
-    CardView investor, plan, payment, calculator;
+    CardView investor, revenue, payment, calculator, sign_out;
     FirebaseAuth mAuth;
-    Button btnSignout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
         WindowCompat.setDecorFitsSystemWindows(getWindow(),false);
 
         investor = findViewById(R.id.cv_investor);
-        plan = findViewById(R.id.cv_level);
+        revenue = findViewById(R.id.cv_revenue);
         payment = findViewById(R.id.cv_payment);
         calculator = findViewById(R.id.cv_calculator);
-        btnSignout = findViewById(R.id.btn_sign_out);
+        sign_out = findViewById(R.id.btn_sign_out);
 
-        btnSignout.setOnClickListener(new View.OnClickListener() {
+        sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SignOutFirebase();
@@ -50,17 +49,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        plan.setOnClickListener(new View.OnClickListener() {
+        revenue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, CompanyPercentPlanActivity.class));
+                startActivity(new Intent(MainActivity.this, MyRevenue.class));
             }
         });
 
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MainActivity.this, MonthlyPaymentActivity.class));
             }
         });
 
