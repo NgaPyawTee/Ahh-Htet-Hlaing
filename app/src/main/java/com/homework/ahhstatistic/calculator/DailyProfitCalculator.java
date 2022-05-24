@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.homework.ahhstatistic.R;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,6 +36,7 @@ public class DailyProfitCalculator extends AppCompatActivity {
     EditText edtAmount, edtPercent;
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/M/yyyy");
+    NumberFormat nf = NumberFormat.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,7 +254,7 @@ public class DailyProfitCalculator extends AppCompatActivity {
             int oneMonthProfit = (int) (amount * multiplier);
             int dailyProfit = ((oneMonthProfit * dayLeftMultiplier) / lastDayMultiplier);
 
-            resultAmount.setText(dailyProfit + " Ks");
+            resultAmount.setText(nf.format(dailyProfit) + " Ks");
 
             if (dayLeftMultiplier == 1) {
                 resultDay.setText(dayLeftMultiplier + " Day");

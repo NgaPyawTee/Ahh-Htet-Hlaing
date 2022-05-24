@@ -169,7 +169,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:gravity="center_horizontal">
+                        android:layout_marginStart="@dimen/large_margin">
 
                         <ImageView
                             android:id="@+id/icon_amount"
@@ -295,7 +295,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:gravity="center_horizontal">
+                        android:layout_marginStart="@dimen/large_margin">
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -388,7 +388,7 @@
                 android:layout_marginTop="@dimen/large_margin"
                 android:layout_marginBottom="@dimen/large_margin"
                 android:background="@drawable/card_bg_color_7"
-                android:backgroundTint="@color/pale_blue">
+                android:backgroundTint="@color/bright_blue">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -402,7 +402,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:gravity="center_horizontal">
+                        android:layout_marginStart="@dimen/large_margin">
 
                         <RelativeLayout
                             android:layout_width="wrap_content"

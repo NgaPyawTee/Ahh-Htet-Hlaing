@@ -12,13 +12,13 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.homework.ahhstatistic.Income.MyIncomeHomeActivity;
 import com.homework.ahhstatistic.calculator.DailyProfitCalculator;
 import com.homework.ahhstatistic.investor.InvestorCategoryActivity;
-import com.homework.ahhstatistic.Revenue.MyRevenue;
-import com.homework.ahhstatistic.payment.MonthlyPaymentActivity;
+import com.homework.ahhstatistic.profit.MonthlyProfitActivity;
 
 public class MainActivity extends AppCompatActivity {
-    CardView investor, revenue, payment, calculator, sign_out;
+    CardView investor, income, payment, calculator, sign_out;
     FirebaseAuth mAuth;
 
     @Override
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         WindowCompat.setDecorFitsSystemWindows(getWindow(),false);
 
         investor = findViewById(R.id.cv_investor);
-        revenue = findViewById(R.id.cv_revenue);
+        income = findViewById(R.id.cv_revenue);
         payment = findViewById(R.id.cv_payment);
         calculator = findViewById(R.id.cv_calculator);
         sign_out = findViewById(R.id.btn_sign_out);
@@ -49,17 +49,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        revenue.setOnClickListener(new View.OnClickListener() {
+        income.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MyRevenue.class));
+                startActivity(new Intent(MainActivity.this, MyIncomeHomeActivity.class));
             }
         });
 
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MonthlyPaymentActivity.class));
+                startActivity(new Intent(MainActivity.this, MonthlyProfitActivity.class));
             }
         });
 

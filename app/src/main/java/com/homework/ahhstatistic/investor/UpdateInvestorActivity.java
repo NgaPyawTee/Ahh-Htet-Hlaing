@@ -3,11 +3,9 @@ package com.homework.ahhstatistic.investor;
 import static com.homework.ahhstatistic.R.layout.layout_alert_dialog;
 import static com.homework.ahhstatistic.R.layout.layout_progress_dialog;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 
@@ -31,10 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -471,9 +466,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         btnEx1st.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intAmount811 != 0){
+                if (intAmount811 != 0) {
                     savedEx1st();
-                }else{
+                } else {
                     Toast.makeText(UpdateInvestorActivity.this, "No data to save as expired", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -481,9 +476,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         btnEx2nd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intAmount58 != 0){
+                if (intAmount58 != 0) {
                     savedEx2nd();
-                }else{
+                } else {
                     Toast.makeText(UpdateInvestorActivity.this, "No data to save as expired", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -491,9 +486,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         btnEx3rd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intAmount456 != 0){
+                if (intAmount456 != 0) {
                     savedEx3rd();
-                }else{
+                } else {
                     Toast.makeText(UpdateInvestorActivity.this, "No data to save as expired", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -567,6 +562,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String date = date811.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
         String imageUrl = "";
+        String color = "Cyan";
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
             alert_title.setText("Insufficient Data");
@@ -583,7 +579,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         } else {
             CalculateProfit1();
 
-            collRef.document(id).collection("First Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl))
+            collRef.document(id).collection("First Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl, color))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
@@ -631,12 +627,14 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     });
         }
     }
+
     private void savedEx2nd() {
         String amount = amount58.getText().toString();
         String percent = percent58.getText().toString();
         String date = date58.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
         String imageUrl = "";
+        String color = "Blue";
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
             alert_title.setText("Insufficient Data");
@@ -653,7 +651,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         } else {
             CalculateProfit2();
 
-            collRef.document(id).collection("Second Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl))
+            collRef.document(id).collection("Second Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl, color))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
@@ -701,12 +699,14 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     });
         }
     }
+
     private void savedEx3rd() {
         String amount = amount456.getText().toString();
         String percent = percent456.getText().toString();
         String date = date456.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
         String imageUrl = "";
+        String color = "Pale Blue";
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
             alert_title.setText("Insufficient Data");
@@ -723,7 +723,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         } else {
             CalculateProfit3();
 
-            collRef.document(id).collection("Third Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl))
+            collRef.document(id).collection("Third Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl, color))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
@@ -771,6 +771,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     });
         }
     }
+
     private void UploadNew1st() {
         String amount = amount811.getText().toString();
         String percent = percent811.getText().toString();
@@ -788,7 +789,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 }
             });
             alertDialog.show();
-        }else{
+        } else {
             progressDialog.setContentView(R.layout.layout_progress_dialog_3);
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             tv = progressDialog.findViewById(R.id.progress_dialog_tv_3);
@@ -819,6 +820,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             });
         }
     }
+
     private void UploadNew2nd() {
         String amount = amount58.getText().toString();
         String percent = percent58.getText().toString();
@@ -836,7 +838,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 }
             });
             alertDialog.show();
-        }else{
+        } else {
             progressDialog.setContentView(R.layout.layout_progress_dialog_3);
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             tv = progressDialog.findViewById(R.id.progress_dialog_tv_3);
@@ -867,6 +869,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             });
         }
     }
+
     private void UploadNew3rd() {
         String amount = amount456.getText().toString();
         String percent = percent456.getText().toString();
@@ -884,7 +887,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 }
             });
             alertDialog.show();
-        }else{
+        } else {
             progressDialog.setContentView(R.layout.layout_progress_dialog_3);
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             tv = progressDialog.findViewById(R.id.progress_dialog_tv_3);
@@ -938,9 +941,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             Date d = sdf.parse(date811.getText().toString());
             int year = d.getYear();
 
-            if (currentYear == year){
+            if (currentYear == year) {
                 dateDiff = c.get(Calendar.MONTH) - d.getMonth();
-            }else{
+            } else {
                 Period period = new Period(date1, currentLong, PeriodType.yearMonthDay());
                 dateDiff = period.getMonths();
             }
@@ -949,15 +952,15 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (dateDiff >= 4){
+        if (dateDiff >= 4) {
             int monthly = (int) (intAmount811 * intPercent811 * 0.01 * 4) + (intCashBonus * 4);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else if (dateDiff < 4 && dateDiff > 0){
+        } else if (dateDiff < 4 && dateDiff > 0) {
             int monthly = (int) (intAmount811 * intPercent811 * 0.01 * dateDiff) + (intCashBonus * dateDiff);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else{
+        } else {
             int monthly = 0;
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
@@ -965,6 +968,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
         progressDialog.setCancelable(false);
     }
+
     private void CalculateProfit2() {
         progressDialog.setContentView(R.layout.layout_progress_dialog_2);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -987,9 +991,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             Date d = sdf.parse(date58.getText().toString());
             int year = d.getYear();
 
-            if (currentYear == year){
+            if (currentYear == year) {
                 dateDiff = c.get(Calendar.MONTH) - d.getMonth();
-            }else{
+            } else {
                 Period period = new Period(date1, currentLong, PeriodType.yearMonthDay());
                 dateDiff = period.getMonths();
             }
@@ -997,15 +1001,15 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (dateDiff >= 4){
+        if (dateDiff >= 4) {
             int monthly = (int) (intAmount58 * intPercent58 * 0.01 * 4);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else if (dateDiff < 4 && dateDiff >0){
+        } else if (dateDiff < 4 && dateDiff > 0) {
             int monthly = (int) (intAmount58 * intPercent58 * 0.01 * dateDiff);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else{
+        } else {
             int monthly = 0;
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
@@ -1013,6 +1017,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
         progressDialog.setCancelable(false);
     }
+
     private void CalculateProfit3() {
         progressDialog.setContentView(R.layout.layout_progress_dialog_2);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -1035,9 +1040,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             Date d = sdf.parse(date456.getText().toString());
             int year = d.getYear();
 
-            if (currentYear == year){
+            if (currentYear == year) {
                 dateDiff = c.get(Calendar.MONTH) - d.getMonth();
-            }else{
+            } else {
                 Period period = new Period(date1, currentLong, PeriodType.yearMonthDay());
                 dateDiff = period.getMonths();
             }
@@ -1046,15 +1051,15 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (dateDiff >= 4){
+        if (dateDiff >= 4) {
             int monthly = (int) (intAmount456 * intPercent456 * 0.01 * 4);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else if (dateDiff < 4 && dateDiff > 0){
+        } else if (dateDiff < 4 && dateDiff > 0) {
             int monthly = (int) (intAmount456 * intPercent456 * 0.01 * dateDiff);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
-        }else{
+        } else {
             int monthly = 0;
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
@@ -1120,6 +1125,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         alert_tv_1 = alertDialog.findViewById(R.id.alert_dialog_tv_1);
         alert_tv_2 = alertDialog.findViewById(R.id.alert_dialog_tv_2);
     }
+
     private void ImageDialog() {
         imageDialog = new Dialog(this);
         imageDialog.setContentView(R.layout.layout_image_dialog);
@@ -1148,6 +1154,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, listener1, year, month, day);
         dialog.show();
     }
+
     private void OpenDatePicker2() {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -1157,6 +1164,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, listener2, year, month, day);
         dialog.show();
     }
+
     private void OpenDatePicker3() {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -1172,6 +1180,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(cR.getType(uri));
     }
+
     ;
 
     private void OpenFileChooser1() {
@@ -1180,30 +1189,35 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 1);
     }
+
     private void OpenFileChooser2() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 2);
     }
+
     private void OpenFileChooser3() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 3);
     }
+
     private void OpenFileChooser4() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 4);
     }
+
     private void OpenFileChooser5() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 5);
     }
+
     private void OpenFileChooser6() {
         Intent intent = new Intent();
         intent.setType("image/*");

@@ -106,26 +106,23 @@ public class HomeFragment extends Fragment {
         });
         alert_tv_2 = alertDialog.findViewById(R.id.alert_dialog_tv_2);
         alert_tv_2.setText("YES");
-        alert_tv_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alert_title.setText("Removing...");
-                alert_description.setText("Please wait a few seconds");
-                alert_tv_1.setText("");
-                alert_tv_2.setText("");
-                DeleteSubCollection();
-                DeleteCollection();
+        alert_tv_2.setOnClickListener(view1 -> {
+            alert_title.setText("Removing...");
+            alert_description.setText("Please wait a few seconds");
+            alert_tv_1.setText("");
+            alert_tv_2.setText("");
+            DeleteSubCollection();
+            DeleteCollection();
 
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        alertDialog.dismiss();
-                        Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
-                        getActivity().finish();
-                    }
-                }, 3000);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    alertDialog.dismiss();
+                    Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                    getActivity().finish();
+                }
+            }, 3000);
         });
 
 
@@ -140,12 +137,7 @@ public class HomeFragment extends Fragment {
         clrImg.setVisibility(View.INVISIBLE);
         downImg = imageDialog.findViewById(R.id.down_img);
         backImg = imageDialog.findViewById(R.id.back_img);
-        backImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageDialog.dismiss();
-            }
-        });
+        backImg.setOnClickListener(view12 -> imageDialog.dismiss());
 
         //Total Profit Dialog
         totalProfitDiaglog = new Dialog(getContext());
@@ -153,12 +145,7 @@ public class HomeFragment extends Fragment {
         totalProfitDiaglog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tvTotalProfit = totalProfitDiaglog.findViewById(R.id.total_profit);
         btnTotalProfit = totalProfitDiaglog.findViewById(R.id.btn_total_profit);
-        btnTotalProfit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                totalProfitDiaglog.dismiss();
-            }
-        });
+        btnTotalProfit.setOnClickListener(view13 -> totalProfitDiaglog.dismiss());
 
         name = view.findViewById(R.id.detail_name);
         companyID = view.findViewById(R.id.detail_company_id);
@@ -188,51 +175,31 @@ public class HomeFragment extends Fragment {
         btnEdit = view.findViewById(R.id.detail_edit_btn);
         btnDelete = view.findViewById(R.id.detail_delete_btn);
 
-        imageView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgUri1 != null && !amount811.getText().toString().equals("Unavaliable")) {
-                    OpenImageDialog1();
-                }
+        imageView1.setOnClickListener(view14 -> {
+            if (imgUri1 != null && !amount811.getText().toString().equals("Unavaliable")) {
+                OpenImageDialog1();
             }
         });
-        imageView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgUri2 != null && !amount58.getText().toString().equals("Unavaliable")) {
-                    OpenImageDialog2();
-                }
+        imageView2.setOnClickListener(view15 -> {
+            if (imgUri2 != null && !amount58.getText().toString().equals("Unavaliable")) {
+                OpenImageDialog2();
             }
         });
-        imageView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgUri3 != null && !amount456.getText().toString().equals("Unavaliable")) {
-                    OpenImageDialog3();
-                }
+        imageView3.setOnClickListener(view16 -> {
+            if (imgUri3 != null && !amount456.getText().toString().equals("Unavaliable")) {
+                OpenImageDialog3();
             }
         });
 
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UpdateInvestorActivity.class);
-                intent.putExtra(UpdateInvestorActivity.ID_PASS, id);
-                startActivity(intent);
-            }
+        btnEdit.setOnClickListener(view17 -> {
+            Intent intent = new Intent(getActivity(), UpdateInvestorActivity.class);
+            intent.putExtra(UpdateInvestorActivity.ID_PASS, id);
+            startActivity(intent);
         });
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alertDialog.show();
-            }
-        });
-        totalBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CalculateTotalProfit();
-                totalProfitDiaglog.show();
-            }
+        btnDelete.setOnClickListener(view18 -> alertDialog.show());
+        totalBtn.setOnClickListener(view19 -> {
+            CalculateTotalProfit();
+            totalProfitDiaglog.show();
         });
 
         Bundle data = getArguments();
@@ -521,7 +488,7 @@ public class HomeFragment extends Fragment {
                     intAmount811 = 0;
                     intPercent811 = 0;
                 } else {
-                    amount811.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount811"))));
+                    amount811.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount811"))) + " Ks");
                     percent811.setText(documentSnapshot.getString("percent811") + "%");
                     date811.setText(documentSnapshot.getString("date811"));
 
@@ -537,7 +504,7 @@ public class HomeFragment extends Fragment {
                     intAmount58 = 0;
                     intPercent58 = 0;
                 } else {
-                    amount58.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount58"))));
+                    amount58.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount58"))) + " Ks");
                     percent58.setText(documentSnapshot.getString("percent58") + "%");
                     date58.setText(documentSnapshot.getString("date58"));
 
@@ -553,7 +520,7 @@ public class HomeFragment extends Fragment {
                     intAmount456 = 0;
                     intPercent456 = 0;
                 } else {
-                    amount456.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount456"))));
+                    amount456.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount456"))) + " Ks");
                     percent456.setText(documentSnapshot.getString("percent456") + "%");
                     date456.setText(documentSnapshot.getString("date456"));
 
@@ -561,7 +528,7 @@ public class HomeFragment extends Fragment {
                     intPercent456 = Integer.parseInt(documentSnapshot.getString("percent456"));
                 }
 
-                cashBonus.setText(nf.format(Integer.parseInt(documentSnapshot.getString("cashBonus"))));
+                cashBonus.setText(nf.format(Integer.parseInt(documentSnapshot.getString("cashBonus"))) + " Ks");
                 intCashBonus = Integer.parseInt(documentSnapshot.getString("cashBonus"));
                 preProfit = Integer.parseInt(documentSnapshot.getString("preProfit"));
 

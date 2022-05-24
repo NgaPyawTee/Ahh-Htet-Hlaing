@@ -204,8 +204,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/calculate"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/container"
         android:layout_marginTop="@dimen/large_margin">
 
@@ -257,25 +256,22 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/calculate"
+    <Button
+        android:id="@+id/btn_calculate"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/bottom_layout_bg">
-
-        <Button
-            android:id="@+id/btn_calculate"
-            android:layout_width="500dp"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:background="@android:color/transparent"
-            android:text="calculate"
-            android:textColor="@color/white"
-            android:textSize="@dimen/large_text"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="calculate"
+        android:textColor="@color/white"
+        android:background="@drawable/card_bg_color_4"
+        android:textSize="@dimen/normal_text"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/start_calendar"

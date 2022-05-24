@@ -1,18 +1,19 @@
 package com.homework.ahhstatistic.model;
 
 public class ExpiredDate {
-    String amount, percent, date, currentTime, imageUrl, id;
+    String amount, percent, date, currentTime, imageUrl, id, color;
 
     public ExpiredDate() {
 
     }
 
-    public ExpiredDate(String amount, String percent, String date, String currentTime, String imageUrl) {
+    public ExpiredDate(String amount, String percent, String date, String currentTime, String imageUrl,String color) {
 
         this.amount = amount;
         this.percent = percent;
         this.date = date;
         this.currentTime = currentTime;
+        this.color = color;
 
         if (imageUrl.trim().equals("")){
             this.imageUrl = "";
@@ -39,6 +40,10 @@ public class ExpiredDate {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getColor() {
+        return color;
     }
 
     public String getId() {

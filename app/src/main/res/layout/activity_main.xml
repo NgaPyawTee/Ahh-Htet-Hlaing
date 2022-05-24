@@ -128,7 +128,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginStart="16dp"
                         android:layout_toRightOf="@+id/id_level"
-                        android:text="My Revenue"
+                        android:text="My Income"
                         android:textColor="@color/white"
                         android:textSize="16dp"
                         android:textStyle="bold" />

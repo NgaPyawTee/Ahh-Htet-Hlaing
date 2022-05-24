@@ -1,12 +1,14 @@
 package com.homework.ahhstatistic.investor.detail;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -20,12 +22,10 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
     Context context;
     List<ExpiredDate> list;
     Listener listener;
-    String contract;
 
-    public ContractAdapter(Context con, List<ExpiredDate> list, String contract) {
+    public ContractAdapter(Context con, List<ExpiredDate> list) {
         this.context = con;
         this.list = list;
-        this.contract = contract;
     }
 
     public interface Listener{
@@ -39,17 +39,8 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (contract == "1st"){
-            View v = LayoutInflater.from(context).inflate(R.layout.cyan_contract_card_view_layout,parent,false);
+            View v = LayoutInflater.from(context).inflate(R.layout.contract_cardview_layout,parent,false);
             return new ViewHolder(v);
-        }else  if (contract == "2nd"){
-            View v = LayoutInflater.from(context).inflate(R.layout.blue_contract_card_view_layout,parent,false);
-            return new ViewHolder(v);
-        }else  if (contract == "3rd"){
-            View v = LayoutInflater.from(context).inflate(R.layout.pale_blue_contract_card_view_layout,parent,false);
-            return new ViewHolder(v);
-        }
-        return null;
     }
 
     @Override
@@ -60,6 +51,14 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
         holder.amount.setText(numberFormat.format(Integer.parseInt(item.getAmount())));
         holder.percent.setText(item.getPercent());
         holder.date.setText(item.getDate());
+
+        if (item.getColor().equals("Cyan")){
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#00CCCC"));
+        }else  if (item.getColor().equals("Blue")){
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#2196F3"));
+        }else  if (item.getColor().equals("Pale Blue")){
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#4460a9"));
+        }
     }
 
     @Override
@@ -69,10 +68,12 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView amount, percent, date;
+        CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            cardView = itemView.findViewById(R.id.contract_cardview);
             amount = itemView.findViewById(R.id.contract_amount);
             percent = itemView.findViewById(R.id.contract_percent);
             date = itemView.findViewById(R.id.contract_date);

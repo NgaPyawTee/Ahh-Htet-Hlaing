@@ -33,7 +33,6 @@ import java.util.List;
 
 public class FirstContractFragment extends Fragment {
     private String bundlePass;
-    private static final String contract = "1st";
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -75,7 +74,7 @@ public class FirstContractFragment extends Fragment {
 
         progressBar = v.findViewById(R.id.contract_progress_bar);
         recyclerView = v.findViewById(R.id.contract_recycler_view);
-        adapter = new ContractAdapter(getActivity(), list, contract);
+        adapter = new ContractAdapter(getActivity(), list);
 
         adapter.setListener(new ContractAdapter.Listener() {
             @Override

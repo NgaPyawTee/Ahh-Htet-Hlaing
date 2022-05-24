@@ -793,7 +793,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="8dp"
                                 android:src="@drawable/ic_money"
-                                android:tint="@color/pale_blue"
+                                android:tint="@color/bright_blue"
                                 tools:ignore="UseAppTint" />
 
                             <EditText
@@ -805,8 +805,8 @@
                                 android:background="@color/white"
                                 android:hint="Amount"
                                 android:inputType="number"
-                                android:textColor="@color/pale_blue"
-                                android:textColorHint="@color/pale_blue"
+                                android:textColor="@color/bright_blue"
+                                android:textColorHint="@color/bright_blue"
                                 android:textSize="@dimen/large_text" />
                         </LinearLayout>
 
@@ -824,7 +824,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="8dp"
                                 android:src="@drawable/ic_level"
-                                android:tint="@color/pale_blue"
+                                android:tint="@color/bright_blue"
                                 tools:ignore="UseAppTint" />
 
                             <EditText
@@ -837,8 +837,8 @@
                                 android:hint="Percent"
                                 android:inputType="number"
                                 android:maxLength="1"
-                                android:textColor="@color/pale_blue"
-                                android:textColorHint="@color/pale_blue"
+                                android:textColor="@color/bright_blue"
+                                android:textColorHint="@color/bright_blue"
                                 android:textSize="@dimen/large_text" />
                         </LinearLayout>
 
@@ -856,7 +856,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="8dp"
                                 android:src="@drawable/ic_calendar"
-                                android:tint="@color/pale_blue"
+                                android:tint="@color/bright_blue"
                                 tools:ignore="UseAppTint" />
 
                             <TextView
@@ -865,8 +865,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/normal_margin"
-                                android:textColorHint="@color/pale_blue"
-                                android:textColor="@color/pale_blue"
+                                android:textColorHint="@color/bright_blue"
+                                android:textColor="@color/bright_blue"
                                 android:textSize="@dimen/large_text" />
                         </LinearLayout>
                     </RelativeLayout>
@@ -885,7 +885,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_marginStart="20dp"
-                            android:backgroundTint="@color/pale_blue"
+                            android:backgroundTint="@color/bright_blue"
                             android:gravity="center"
                             android:text="Save Expired"
                             android:textColor="@color/white" />
@@ -896,7 +896,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="20dp"
-                            android:backgroundTint="@color/pale_blue"
+                            android:backgroundTint="@color/bright_blue"
                             android:gravity="center"
                             android:text="Upload New"
                             android:textColor="@color/white" />
@@ -934,7 +934,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:text="Expired"
-                                android:textColor="@color/pale_blue"
+                                android:textColor="@color/bright_blue"
                                 android:textSize="@dimen/normal_text" />
                         </LinearLayout>
 
@@ -950,7 +950,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:text="Ongoing"
-                                android:textColor="@color/pale_blue"
+                                android:textColor="@color/bright_blue"
                                 android:textSize="@dimen/normal_text" />
                         </LinearLayout>
 

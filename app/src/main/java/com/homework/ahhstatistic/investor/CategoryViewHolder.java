@@ -13,7 +13,7 @@ import java.text.NumberFormat;
 import java.util.List;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
-    TextView name, amount, companyID;
+    TextView name, amount, companyID, count;
     int amount1, amount2, amount3;
 
     public CategoryViewHolder(@NonNull View itemView) {
@@ -22,6 +22,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         name = itemView.findViewById(R.id.investor_name);
         amount = itemView.findViewById(R.id.investor_total_amount);
         companyID = itemView.findViewById(R.id.investor_company_id);
+        count = itemView.findViewById(R.id.investor_count);
     }
 
     public void bind(List<Investor> list, int position, CategoryRecyclerAdapter.Listener listener) {
@@ -36,6 +37,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
+        count.setText(String.valueOf(position+1));
         name.setText(item.getName());
         companyID.setText(item.getCompanyID());
 
@@ -54,6 +56,6 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         int amountTotal = a + b + c;
 
         NumberFormat numberFormat = NumberFormat.getInstance();
-        amount.setText(numberFormat.format(amountTotal));
+        amount.setText(numberFormat.format(amountTotal) + " Ks");
     }
 }

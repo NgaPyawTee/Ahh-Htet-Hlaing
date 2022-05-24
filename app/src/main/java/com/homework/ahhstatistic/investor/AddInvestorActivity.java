@@ -55,10 +55,11 @@ public class AddInvestorActivity extends AppCompatActivity {
 
     //Progress Dialog && Alert Dialog
     private Dialog progressDialog, alertDialog;
-    private TextView tv,alert_title, alert_description, alert_tv_1, alert_tv_2;
+    private TextView tv, alert_title, alert_description, alert_tv_1, alert_tv_2;
 
     private String cashBonus = "0";
     private String preProfit = "0";
+    private String dailyProfit = "0";
 
     private String strImgOne = "";
     private String strImgTwo = "";
@@ -371,6 +372,7 @@ public class AddInvestorActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, listener1, year, month, day);
         dialog.show();
     }
+
     private void OpenDatePicker2() {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -380,6 +382,7 @@ public class AddInvestorActivity extends AppCompatActivity {
         DatePickerDialog dialog = new DatePickerDialog(this, listener2, year, month, day);
         dialog.show();
     }
+
     private void OpenDatePicker3() {
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -426,7 +429,7 @@ public class AddInvestorActivity extends AppCompatActivity {
                     str811amount, str811percent, str811date,
                     str58amount, str58percent, str58date,
                     str456amount, str456percent, str456date,
-                    cashBonus, strImgOne, strImgTwo, strImgThree, preProfit))
+                    cashBonus, dailyProfit, strImgOne, strImgTwo, strImgThree, preProfit))
                     .addOnSuccessListener(this, new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {

@@ -14,7 +14,7 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                app:contentScrim="@color/pale_blue"
+                app:contentScrim="@color/bright_blue"
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap">
 
                 <ImageView

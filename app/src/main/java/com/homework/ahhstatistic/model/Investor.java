@@ -17,6 +17,7 @@ public class Investor {
     private String date456;
     private String preProfit;
     private String cashBonus;
+    private String dailyProfit;
     private String imgUrlOne, imgUrlTwo, imgUrlThree;
 
     private String id;
@@ -29,7 +30,7 @@ public class Investor {
                     String amount811, String percent811, String date811,
                     String amount58, String percent58, String date58,
                     String amount456, String percent456, String date456,
-                    String cashBonus,
+                    String cashBonus, String dailyProfit,
                     String imgUrlOne, String imgUrlTwo, String imgUrlThree,String preProfit) {
 
         if (amount811.trim().equals("") | percent811.trim().equals("") | date811.trim().equals("")) {
@@ -87,6 +88,7 @@ public class Investor {
         this.address = address;
         this.preProfit = preProfit;
         this.cashBonus = cashBonus;
+        this.dailyProfit = dailyProfit;
 
     }
 
@@ -148,6 +150,10 @@ public class Investor {
 
     public String getCashBonus() {
         return cashBonus;
+    }
+
+    public String getDailyProfit() {
+        return dailyProfit;
     }
 
     public String getImgUrlOne() {

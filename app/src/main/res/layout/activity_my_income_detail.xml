@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Income.MyIncomeHomeActivity">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/income_detail_progressbar" />
+
+    <RelativeLayout
+        android:id="@+id/income_detail_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue"
+        android:visibility="invisible">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/income_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="34dp" />
+
+        <TextView
+            android:id="@+id/income_detail_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/income_detail_toolbar"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:text="My balance"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/income_detail_total_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/income_detail_tv1"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:text="Not yet calculated"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="246dp"
+            android:background="@drawable/card_bg_color_3"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/human_white_1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/larg_padding">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="Total amount -"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="Percent -"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/income_detail_tv2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="Full profit ( ? )"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="Paid profit -"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="Date -"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/income_detail_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="12,850,000 Ks"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/income_detail_percent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="14%"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/income_detail_full_profit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="1,285,000 Ks"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/income_detail_paid_profit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="900,000 Ks"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/income_detail_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
+                        android:gravity="end"
+                        android:text="25/5/2022"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/large_text"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -22,12 +22,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.homework.ahhstatistic.R;
@@ -96,7 +95,7 @@ public class InvestorCategoryActivity extends AppCompatActivity {
     @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_item,menu);
+        getMenuInflater().inflate(R.menu.add_menu_item,menu);
 
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
@@ -155,7 +154,7 @@ public class InvestorCategoryActivity extends AppCompatActivity {
     }
 
     private void RetrieveData() {
-        collRef.orderBy("name").get().addOnSuccessListener(this, new OnSuccessListener<QuerySnapshot>() {
+        collRef.orderBy("companyID", Query.Direction.ASCENDING).get().addOnSuccessListener(this, new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 progressBar.setVisibility(View.GONE);

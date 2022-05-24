@@ -397,24 +397,24 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginBottom="20dp"
                         android:hint="Amount"
-                        android:textColorHint="@color/pale_blue"
+                        android:textColorHint="@color/bright_blue"
                         android:theme="@style/AppTheme.Pale_blue"
                         app:boxCornerRadiusBottomEnd="8dp"
                         app:boxCornerRadiusBottomStart="8dp"
                         app:boxCornerRadiusTopEnd="8dp"
                         app:boxCornerRadiusTopStart="8dp"
-                        app:boxStrokeColor="@color/pale_blue"
+                        app:boxStrokeColor="@color/bright_blue"
                         app:endIconMode="clear_text"
                         app:endIconTint="@color/red"
                         app:startIconDrawable="@drawable/ic_money"
-                        app:startIconTint="@color/pale_blue">
+                        app:startIconTint="@color/bright_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/add_456_amount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            android:textColor="@color/pale_blue" />
+                            android:textColor="@color/bright_blue" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -425,24 +425,24 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginBottom="20dp"
                         android:hint="Percent"
-                        android:textColorHint="@color/pale_blue"
+                        android:textColorHint="@color/bright_blue"
                         android:theme="@style/AppTheme.Pale_blue"
                         app:boxCornerRadiusBottomEnd="8dp"
                         app:boxCornerRadiusBottomStart="8dp"
                         app:boxCornerRadiusTopEnd="8dp"
                         app:boxCornerRadiusTopStart="8dp"
-                        app:boxStrokeColor="@color/pale_blue"
+                        app:boxStrokeColor="@color/bright_blue"
                         app:endIconMode="clear_text"
                         app:endIconTint="@color/red"
                         app:startIconDrawable="@drawable/ic_level"
-                        app:startIconTint="@color/pale_blue">
+                        app:startIconTint="@color/bright_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/add_456_percent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            android:textColor="@color/pale_blue" />
+                            android:textColor="@color/bright_blue" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -460,7 +460,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_calendar"
-                            android:tint="@color/pale_blue"
+                            android:tint="@color/bright_blue"
                             tools:ignore="UseAppTint" />
 
                         <TextView
@@ -469,8 +469,8 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:hint="Date"
-                            android:textColorHint="@color/pale_blue"
-                            android:textColor="@color/pale_blue"
+                            android:textColorHint="@color/bright_blue"
+                            android:textColor="@color/bright_blue"
                             android:layout_marginStart="20dp"
                             android:textSize="@dimen/normal_text" />
 
