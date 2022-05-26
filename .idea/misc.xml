@@ -53,15 +53,22 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_black_round.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_blue.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_blue_2.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_blue_round.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_bright_blue_round.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_cyan_round.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_dark_blue.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_dark_cyan.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_dark_cyan_round.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_darkblue.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_green.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_orange.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_pale_blue.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_pale_blue_2.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_pink.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_red.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_red_2.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_red_rec.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_red_round.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_transparent.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_white.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg_white_2.xml" value="0.2677083333333333" />
@@ -88,7 +95,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_monthly_profit.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_my_income_category.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_my_income_detail.xml" value="0.2515625" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_my_income_home.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_my_income_home.xml" value="0.3770491803278688" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_percent_plan.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_profit_detail.xml" value="0.24769230769230768" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/activity_register.xml" value="0.2515625" />
@@ -104,7 +111,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/income_cardview_layout.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/investor_cardview_layout.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/investor_relative_layout.xml" value="0.2515625" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_alert_dialog.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_alert_dialog.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_daily_profit_dialog.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_image_dialog.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_progress_dialog.xml" value="0.2515625" />

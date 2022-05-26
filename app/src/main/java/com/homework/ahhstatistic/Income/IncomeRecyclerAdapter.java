@@ -37,8 +37,8 @@ public class IncomeRecyclerAdapter extends RecyclerView.Adapter<IncomeRecyclerAd
     public void onBindViewHolder(@NonNull IncomeViewHolder holder, int position) {
         Income item = list.get(position);
 
-        holder.amount.setText(nf.format(Integer.parseInt(item.getIncome())) + " Ks");
-        holder.date.setText(item.getDate());
+        holder.amount.setText(nf.format(Integer.parseInt(item.getTotalIncome())) + " Ks");
+        holder.date.setText(item.getCurrentDate());
     }
 
     @Override

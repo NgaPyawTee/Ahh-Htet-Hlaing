@@ -50,6 +50,7 @@
             android:name=".investor.AddInvestorActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:parentActivityName=".investor.InvestorCategoryActivity"
             android:theme="@style/AppTheme.LogReg" />
         <activity
             android:name=".RegisterActivity"

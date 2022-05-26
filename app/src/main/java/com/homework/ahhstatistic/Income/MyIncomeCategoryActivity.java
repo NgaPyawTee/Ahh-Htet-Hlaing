@@ -75,7 +75,7 @@ public class MyIncomeCategoryActivity extends AppCompatActivity {
     }
 
     private void RetrieveData() {
-        collRef.orderBy("milleTime", Query.Direction.DESCENDING).get().addOnSuccessListener(this, queryDocumentSnapshots -> {
+        collRef.orderBy("millisTime", Query.Direction.DESCENDING).get().addOnSuccessListener(this, queryDocumentSnapshots -> {
             progressBar.setVisibility(View.GONE);
             list.clear();
 

@@ -68,19 +68,7 @@ public class MyIncomeDetailActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
             rl.setVisibility(View.VISIBLE);
 
-            Income item = queryDocumentSnapshots.toObject(Income.class);
 
-            income.setText(nf.format(Integer.parseInt(item.getIncome())) + " Ks");
-            income.setTextSize(TypedValue.COMPLEX_UNIT_DIP, getResources().getDimension(R.dimen.normal_text));
-
-            amount.setText(nf.format(Integer.parseInt(item.getTotalAmount())) + " Ks");
-            percent.setText(item.getPercent() + "%");
-            fullProfit.setText(nf.format(Integer.parseInt(item.getFullProfit())) + " Ks");
-            paidProfit.setText(nf.format(Integer.parseInt(item.getPaidProfit())) + " Ks");
-
-            tv1.setText("(" + item.getPercent() + "%) profit -");
-
-            date.setText(item.getDate());
         });
     }
 }
