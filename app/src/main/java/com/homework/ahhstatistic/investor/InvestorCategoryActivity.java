@@ -30,6 +30,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.homework.ahhstatistic.R;
+import com.homework.ahhstatistic.investor.deleted.DeletedCategoryRecyclerAdapter;
+import com.homework.ahhstatistic.investor.deleted.DeletedInvestorCategoryActivity;
 import com.homework.ahhstatistic.investor.detail.InvestorDetailActivity;
 import com.homework.ahhstatistic.model.Investor;
 
@@ -48,7 +50,6 @@ public class InvestorCategoryActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private SearchView.SearchAutoComplete searchAutoComplete;
     private ArrayAdapter<String> arrayAdapter;
-    String s = "Investors";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +62,11 @@ public class InvestorCategoryActivity extends AppCompatActivity {
         controllerCompat.hide(WindowInsetsCompat.Type.systemBars());
 
         toolbar = findViewById(R.id.investor_category_toolbar);
+        toolbar.setTitle("Investors");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_normal_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(s);
 
         db = FirebaseFirestore.getInstance();
         collRef = db.collection("Investors");
@@ -81,13 +84,12 @@ public class InvestorCategoryActivity extends AppCompatActivity {
         adapter = new CategoryRecyclerAdapter(this, list);
         adapter.setListener(new CategoryRecyclerAdapter.Listener() {
             @Override
-            public void onClick(int position) {
+            public void onClick(int pos) {
                 Intent intent = new Intent(InvestorCategoryActivity.this, InvestorDetailActivity.class);
-                intent.putExtra(InvestorDetailActivity.ID_PASS, idList.get(position));
+                intent.putExtra(InvestorDetailActivity.ID_PASS, idList.get(pos));
                 startActivity(intent);
             }
         });
-
         recyclerView.setAdapter(adapter);
 
     }
@@ -95,7 +97,7 @@ public class InvestorCategoryActivity extends AppCompatActivity {
     @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_menu_item,menu);
+        getMenuInflater().inflate(R.menu.investor_category_menu,menu);
 
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
@@ -142,6 +144,10 @@ public class InvestorCategoryActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_add_person:
                 startActivity(new Intent(InvestorCategoryActivity.this,AddInvestorActivity.class));
+                break;
+            case R.id.action_show_deleted:
+                startActivity(new Intent(InvestorCategoryActivity.this, DeletedInvestorCategoryActivity.class));
+                break;
         }
 
         return super.onOptionsItemSelected(item);

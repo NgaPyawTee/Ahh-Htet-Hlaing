@@ -59,9 +59,12 @@ public class MonthlyProfitActivity extends AppCompatActivity {
         controllerCompat.hide(WindowInsetsCompat.Type.systemBars());
 
         toolbar = findViewById(R.id.monthly_profit_toolbar);
+        toolbar.setTitle("Monthly Profit");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_normal_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Monthly Profit");
+
 
         db = FirebaseFirestore.getInstance();
         collRef = db.collection("Investors");

@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Income.MyIncomeHomeActivity">
+    tools:context=".Income.MyIncomeDetailActivity">
 
     <ProgressBar
+        android:id="@+id/income_detail_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:id="@+id/income_detail_progressbar" />
+        android:layout_centerInParent="true" />
 
     <RelativeLayout
         android:id="@+id/income_detail_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue"
+        android:background="@drawable/card_bg_color_8"
         android:visibility="invisible">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/income_detail_toolbar"
             android:layout_width="match_parent"
+            app:titleTextColor="@color/white"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="34dp" />
 
@@ -44,7 +46,6 @@
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="@dimen/large_margin"
-            android:layout_marginBottom="@dimen/large_margin"
             android:text="Not yet calculated"
             android:textColor="@color/white"
             android:textSize="30sp"
@@ -55,173 +56,633 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="246dp"
-            android:background="@drawable/card_bg_color_3"
+            android:background="@color/white"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/human_white_1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/larg_padding">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="Total amount -"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
+                        android:layout_margin="@dimen/normal_margin"
+                        app:cardCornerRadius="@dimen/normal_margin"
+                        app:cardElevation="4dp">
 
-                    <TextView
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:background="@drawable/card_bg_color_8"
+                            android:padding="12dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/medium_margin"
+                                    android:layout_marginBottom="@dimen/normal_margin"
+                                    android:gravity="start"
+                                    android:text="(Total amount)"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/normal_text" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/income_detail_total_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/normal_margin"
+                                    android:layout_marginEnd="@dimen/normal_margin"
+                                    android:layout_marginBottom="@dimen/normal_margin"
+                                    android:gravity="end"
+                                    android:text="11,150,000 Ks"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/title_text"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="Percent -"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
+                        android:layout_margin="@dimen/normal_margin"
+                        android:background="@drawable/stroke_bg_dark_cyan"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/income_detail_tv2"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Total amount -"
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Percent -"
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/income_detail_tv2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="( ? ) profit -"
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Paid profit -"
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:background="@color/dark_cyan" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Earing -"
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
+
+                            <TextView
+                                android:id="@+id/income_detail_amount1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text=""
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/income_detail_percent1"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/normal_margin"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_marginBottom="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:gravity="end"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+                                    android:textColor="@color/dark_cyan"
+                                    android:textSize="@dimen/large_text"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="10dp"
+                                    android:text="%"
+                                    android:textColor="@color/dark_cyan"
+                                    android:textSize="@dimen/large_text"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/income_detail_full_profit1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/income_detail_paid_profit1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:background="@color/dark_cyan" />
+
+                            <TextView
+                                android:id="@+id/income_detail_earning_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/dark_cyan"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="Full profit ( ? )"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="Paid profit -"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="Date -"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:background="@color/white"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/income_detail_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginTop="@dimen/large_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
                         android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="12,850,000 Ks"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
+                        android:background="@drawable/stroke_bg_blue_2"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/income_detail_percent"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Total amount -"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Percent -"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/income_detail_tv3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="( ? ) profit -"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Paid profit -"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:background="@color/blue" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Earing -"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
+
+                            <TextView
+                                android:id="@+id/income_detail_amount2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text=""
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/income_detail_percent2"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/normal_margin"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_marginBottom="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:gravity="end"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+                                    android:textColor="@color/blue"
+                                    android:textSize="@dimen/large_text"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="10dp"
+                                    android:text="%"
+                                    android:textColor="@color/blue"
+                                    android:textSize="@dimen/large_text"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/income_detail_full_profit2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/income_detail_paid_profit2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:background="@color/blue" />
+
+                            <TextView
+                                android:id="@+id/income_detail_earning_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginStart="@dimen/normal_margin"
+                        android:layout_marginTop="@dimen/large_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
                         android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="14%"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
+                        android:background="@drawable/stroke_bg_bright_blue"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/income_detail_full_profit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
-                        android:layout_marginEnd="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="1,285,000 Ks"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
 
-                    <TextView
-                        android:id="@+id/income_detail_paid_profit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
-                        android:layout_marginEnd="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="900,000 Ks"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Total amount -"
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Percent -"
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/income_detail_tv4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="( ? ) profit -"
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Paid profit -"
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:background="@color/bright_blue" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text="Earing -"
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
+
+                            <TextView
+                                android:id="@+id/income_detail_amount3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:text=""
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/income_detail_percent3"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginTop="@dimen/normal_margin"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_marginBottom="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:gravity="end"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+                                    android:textColor="@color/bright_blue"
+                                    android:textSize="@dimen/large_text"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="10dp"
+                                    android:text="%"
+                                    android:textColor="@color/bright_blue"
+                                    android:textSize="@dimen/large_text"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/income_detail_full_profit3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/income_detail_paid_profit3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:background="@color/bright_blue" />
+
+                            <TextView
+                                android:id="@+id/income_detail_earning_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/normal_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:gravity="end"
+                                android:textColor="@color/bright_blue"
+                                android:textSize="@dimen/large_text"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/income_detail_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/normal_margin"
-                        android:layout_marginEnd="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:gravity="end"
-                        android:text="25/5/2022"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/large_text"
-                        android:textStyle="bold" />
+                        android:layout_margin="@dimen/large_margin"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/bright_blue"
+                        android:textSize="@dimen/title_text"
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
-            </LinearLayout>
-
+            </androidx.core.widget.NestedScrollView>
 
         </LinearLayout>
+
     </RelativeLayout>
 </RelativeLayout>

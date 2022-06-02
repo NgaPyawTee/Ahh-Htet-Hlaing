@@ -54,12 +54,11 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     String intentPass, id;
 
     private TextInputEditText name, companyID, phone, nrc, address, cashBonus, preProfit;
-    private ImageView exImgView1, exImgView2, exImgView3, OnImgView1, OnImgView2, OnImgView3,
-            zoomPic, downImg, backImg, clrImg;
+    private ImageView exImgView1, exImgView2, exImgView3, zoomPic, downImg, backImg, clrImg;
     private TextView date811, date58, date456;
     private EditText amount811, percent811, amount58, percent58, amount456, percent456;
     private Button btnEx1st, btnOn1st, btnEx2nd, btnOn2nd, btnEx3rd, btnOn3rd, btnUpdate;
-    private RelativeLayout exRL1, onRL1, exRL2, onRL2, exRL3, onRL3;
+    private RelativeLayout exRL1, exRL2, exRL3;
     private ProgressBar progressBar;
     private NestedScrollView NSV;
     private Toolbar toolbar;
@@ -68,7 +67,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     private CollectionReference collRef;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private DatePickerDialog.OnDateSetListener listener1, listener2, listener3;
-    private Uri exImgUri1, onImgUri1, exImgUri2, onImgUri2, exImgUri3, onImgUri3;
+    private Uri exImgUri1, exImgUri2, exImgUri3;
     int intAmount811, intPercent811, intCashBonus, intAmount58, intPercent58, intAmount456, intPercent456;
 
     //Alert Dialog
@@ -94,7 +93,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.update_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Update an investor");
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,9 +140,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         exImgView1 = findViewById(R.id.edit_expired_img_1);
         exImgView2 = findViewById(R.id.edit_expired_img_2);
         exImgView3 = findViewById(R.id.edit_expired_img_3);
-        OnImgView1 = findViewById(R.id.edit_new_img_1);
-        OnImgView2 = findViewById(R.id.edit_new_img_2);
-        OnImgView3 = findViewById(R.id.edit_new_img_3);
 
         btnEx1st = findViewById(R.id.save_expired_1st);
         btnOn1st = findViewById(R.id.upload_new_1st);
@@ -156,9 +151,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         exRL1 = findViewById(R.id.edit_expired_rl_1);
         exRL2 = findViewById(R.id.edit_expired_rl_2);
         exRL3 = findViewById(R.id.edit_expired_rl_3);
-        onRL1 = findViewById(R.id.edit_new_rl_1);
-        onRL2 = findViewById(R.id.edit_new_rl_2);
-        onRL3 = findViewById(R.id.edit_new_rl_3);
 
         exImgView1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +184,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                 public void run() {
                                     exImgUri1 = null;
                                     exImgView1.setImageURI(null);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView1);
                                     exImgView1.setBackgroundResource(R.drawable.stroke_bg_cyan);
                                     exRL1.setBackgroundResource(R.color.white);
                                     imageDialog.dismiss();
@@ -234,6 +227,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                 public void run() {
                                     exImgUri2 = null;
                                     exImgView2.setImageURI(null);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView2);
                                     exImgView2.setBackgroundResource(R.drawable.stroke_bg_blue);
                                     exRL2.setBackgroundResource(R.color.white);
                                     imageDialog.dismiss();
@@ -276,134 +270,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                 public void run() {
                                     exImgUri3 = null;
                                     exImgView3.setImageURI(null);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView3);
                                     exImgView3.setBackgroundResource(R.drawable.stroke_bg_pale_blue);
                                     exRL3.setBackgroundResource(R.color.white);
-                                    imageDialog.dismiss();
-                                }
-                            }, 2000);
-                        }
-                    });
-                }
-            }
-        });
-        OnImgView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onImgUri1 == null) {
-                    OpenFileChooser4();
-                } else {
-                    Glide.with(UpdateInvestorActivity.this).load(onImgUri1).into(zoomPic);
-                    imageDialog.show();
-
-                    zoomPic.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (visible) {
-                                RLToolbar.setVisibility(View.VISIBLE);
-                                visible = false;
-                            } else {
-                                RLToolbar.setVisibility(View.GONE);
-                                visible = true;
-                            }
-                        }
-                    });
-
-                    clrImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(UpdateInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    onImgUri1 = null;
-                                    OnImgView1.setImageURI(null);
-                                    OnImgView1.setBackgroundResource(R.drawable.stroke_bg_cyan);
-                                    onRL1.setBackgroundResource(R.color.white);
-                                    imageDialog.dismiss();
-                                }
-                            }, 2000);
-                        }
-                    });
-                }
-            }
-        });
-        OnImgView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onImgUri2 == null) {
-                    OpenFileChooser5();
-                } else {
-                    Glide.with(UpdateInvestorActivity.this).load(onImgUri2).into(zoomPic);
-                    imageDialog.show();
-
-                    zoomPic.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (visible) {
-                                RLToolbar.setVisibility(View.VISIBLE);
-                                visible = false;
-                            } else {
-                                RLToolbar.setVisibility(View.GONE);
-                                visible = true;
-                            }
-                        }
-                    });
-
-                    clrImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(UpdateInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    onImgUri2 = null;
-                                    OnImgView2.setImageURI(null);
-                                    OnImgView2.setBackgroundResource(R.drawable.stroke_bg_blue);
-                                    onRL2.setBackgroundResource(R.color.white);
-                                    imageDialog.dismiss();
-                                }
-                            }, 2000);
-                        }
-                    });
-                }
-            }
-        });
-        OnImgView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onImgUri3 == null) {
-                    OpenFileChooser6();
-                } else {
-                    Glide.with(UpdateInvestorActivity.this).load(onImgUri3).into(zoomPic);
-                    imageDialog.show();
-
-                    zoomPic.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (visible) {
-                                RLToolbar.setVisibility(View.VISIBLE);
-                                visible = false;
-                            } else {
-                                RLToolbar.setVisibility(View.GONE);
-                                visible = true;
-                            }
-                        }
-                    });
-
-                    clrImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(UpdateInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    onImgUri3 = null;
-                                    OnImgView3.setImageURI(null);
-                                    OnImgView3.setBackgroundResource(R.drawable.stroke_bg_pale_blue);
-                                    onRL3.setBackgroundResource(R.color.white);
                                     imageDialog.dismiss();
                                 }
                             }, 2000);
@@ -561,7 +430,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String percent = percent811.getText().toString();
         String date = date811.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
-        String imageUrl = "";
+        String imageUrl = String.valueOf(exImgUri1);
         String color = "Cyan";
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
@@ -583,46 +452,36 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            StorageReference fileRef = storageReference.child(name.getText().toString() + "/Expired Date/First Date/"
-                                    + System.currentTimeMillis() + "." + getFileExtension(exImgUri1));
-                            fileRef.putFile(exImgUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            collRef.document(id).update("amount811", "0");
+                            collRef.document(id).update("percent811", "");
+                            collRef.document(id).update("date811", "");
+                            collRef.document(id).update("imgUrlOne", "");
+                            collRef.document(id).update("preProfit", preProfit.getText().toString());
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
                                 @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            collRef.document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                @Override
-                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                    StorageReference deleRef = FirebaseStorage.getInstance().getReferenceFromUrl(documentSnapshot.getString("imgUrlOne"));
-                                                    deleRef.delete();
-                                                    collRef.document(id).update("amount811", "0");
-                                                    collRef.document(id).update("percent811", "");
-                                                    collRef.document(id).update("date811", "");
-                                                    collRef.document(id).update("imgUrlOne", "");
-                                                    collRef.document(id).update("preProfit", preProfit.getText().toString());
-                                                    collRef.document(id).collection("First Date").document(documentReference.getId())
-                                                            .update("imageUrl", uri.toString());
+                                public void run() {
+                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted successfully", Toast.LENGTH_SHORT).show();
+                                    btnEx1st.setText("Deleted");
+                                    btnEx1st.setClickable(false);
 
-                                                    Toast.makeText(UpdateInvestorActivity.this, "Saved pre-date", Toast.LENGTH_SHORT).show();
-                                                    btnEx1st.setText("Saved");
-                                                    btnEx1st.setClickable(false);
+                                    amount811.setText(null);
+                                    amount811.setHint("Unavaliable");
+                                    percent811.setText(null);
+                                    percent811.setHint("Unavaliable");
+                                    date811.setText(null);
+                                    date811.setHint("Unavaliable");
+                                    progressDialog.dismiss();
 
-                                                    amount811.setText(null);
-                                                    amount811.setHint("Unavaliable");
-                                                    percent811.setText(null);
-                                                    percent811.setHint("Unavaliable");
-                                                    date811.setText(null);
-                                                    date811.setHint("Unavaliable");
-                                                    progressDialog.dismiss();
+                                    exImgUri1 = null;
+                                    exImgView1.setBackgroundResource(R.drawable.stroke_bg_cyan);
+                                    exRL1.setBackgroundResource(R.color.white);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView1);
 
-                                                    intAmount811 = 0;
-                                                }
-                                            });
-                                        }
-                                    });
+                                    intAmount811 = 0;
                                 }
-                            });
+                            }, 3000);
                         }
                     });
         }
@@ -633,7 +492,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String percent = percent58.getText().toString();
         String date = date58.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
-        String imageUrl = "";
+        String imageUrl =  String.valueOf(exImgUri2);
         String color = "Blue";
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
@@ -655,46 +514,36 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            StorageReference fileRef = storageReference.child(name.getText().toString() + "/Expired Date/Second Date/"
-                                    + System.currentTimeMillis() + "." + getFileExtension(exImgUri2));
-                            fileRef.putFile(exImgUri2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            collRef.document(id).update("amount58", "0");
+                            collRef.document(id).update("percent58", "");
+                            collRef.document(id).update("date58", "");
+                            collRef.document(id).update("imgUrlTwo", "");
+                            collRef.document(id).update("preProfit", preProfit.getText().toString());
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
                                 @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            collRef.document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                @Override
-                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                    StorageReference deleRef = FirebaseStorage.getInstance().getReferenceFromUrl(documentSnapshot.getString("imgUrlTwo"));
-                                                    deleRef.delete();
-                                                    collRef.document(id).update("amount58", "0");
-                                                    collRef.document(id).update("percent58", "");
-                                                    collRef.document(id).update("date58", "");
-                                                    collRef.document(id).update("imgUrlTwo", "");
-                                                    collRef.document(id).update("preProfit", preProfit.getText().toString());
-                                                    collRef.document(id).collection("Second Date").document(documentReference.getId())
-                                                            .update("imageUrl", uri.toString());
+                                public void run() {
+                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted successfully", Toast.LENGTH_SHORT).show();
+                                    btnEx2nd.setText("Deleted");
+                                    btnEx2nd.setClickable(false);
 
-                                                    Toast.makeText(UpdateInvestorActivity.this, "Saved pre-date", Toast.LENGTH_SHORT).show();
-                                                    btnEx2nd.setText("Saved");
-                                                    btnEx2nd.setClickable(false);
+                                    amount58.setText(null);
+                                    amount58.setHint("Unavaliable");
+                                    percent58.setText(null);
+                                    percent58.setHint("Unavaliable");
+                                    date58.setText(null);
+                                    date58.setHint("Unavaliable");
+                                    progressDialog.dismiss();
 
-                                                    amount58.setText(null);
-                                                    amount58.setHint("Unavaliable");
-                                                    percent58.setText(null);
-                                                    percent58.setHint("Unavaliable");
-                                                    date58.setText(null);
-                                                    date58.setHint("Unavaliable");
-                                                    progressDialog.dismiss();
+                                    exImgUri2 = null;
+                                    exImgView2.setBackgroundResource(R.drawable.stroke_bg_blue);
+                                    exRL2.setBackgroundResource(R.color.white);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView2);
 
-                                                    intAmount58 = 0;
-                                                }
-                                            });
-                                        }
-                                    });
+                                    intAmount58 = 0;
                                 }
-                            });
+                            }, 3000);
                         }
                     });
         }
@@ -705,7 +554,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String percent = percent456.getText().toString();
         String date = date456.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
-        String imageUrl = "";
+        String imageUrl =  String.valueOf(exImgUri3);
         String color = "Pale Blue";
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
@@ -727,46 +576,36 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            StorageReference fileRef = storageReference.child(name.getText().toString() + "/Expired Date/Third Date/"
-                                    + System.currentTimeMillis() + "." + getFileExtension(exImgUri3));
-                            fileRef.putFile(exImgUri3).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            collRef.document(id).update("amount456", "0");
+                            collRef.document(id).update("percent456", "");
+                            collRef.document(id).update("date456", "");
+                            collRef.document(id).update("imgUrlThree", "");
+                            collRef.document(id).update("preProfit", preProfit.getText().toString());
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
                                 @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            collRef.document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                @Override
-                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                    StorageReference deleRef = FirebaseStorage.getInstance().getReferenceFromUrl(documentSnapshot.getString("imgUrlThree"));
-                                                    deleRef.delete();
-                                                    collRef.document(id).update("amount456", "0");
-                                                    collRef.document(id).update("percent456", "");
-                                                    collRef.document(id).update("date456", "");
-                                                    collRef.document(id).update("imgUrlThree", "");
-                                                    collRef.document(id).update("preProfit", preProfit.getText().toString());
-                                                    collRef.document(id).collection("Third Date").document(documentReference.getId())
-                                                            .update("imageUrl", uri.toString());
+                                public void run() {
+                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted successfully", Toast.LENGTH_SHORT).show();
+                                    btnEx3rd.setText("Deleted");
+                                    btnEx3rd.setClickable(false);
 
-                                                    Toast.makeText(UpdateInvestorActivity.this, "Saved pre-date", Toast.LENGTH_SHORT).show();
-                                                    btnEx3rd.setText("Saved");
-                                                    btnEx3rd.setClickable(false);
+                                    amount456.setText(null);
+                                    amount456.setHint("Unavaliable");
+                                    percent456.setText(null);
+                                    percent456.setHint("Unavaliable");
+                                    date456.setText(null);
+                                    date456.setHint("Unavaliable");
+                                    progressDialog.dismiss();
 
-                                                    amount456.setText(null);
-                                                    amount456.setHint("Unavaliable");
-                                                    percent456.setText(null);
-                                                    percent456.setHint("Unavaliable");
-                                                    date456.setText(null);
-                                                    date456.setHint("Unavaliable");
-                                                    progressDialog.dismiss();
+                                    exImgUri3 = null;
+                                    exImgView3.setBackgroundResource(R.drawable.stroke_bg_pale_blue);
+                                    exRL3.setBackgroundResource(R.color.white);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView3);
 
-                                                    intAmount456 = 0;
-                                                }
-                                            });
-                                        }
-                                    });
+                                    intAmount456 = 0;
                                 }
-                            });
+                            },3000);
                         }
                     });
         }
@@ -777,7 +616,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String percent = percent811.getText().toString();
         String date = date811.getText().toString();
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | onImgUri1 == null) {
+        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and add a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -797,9 +636,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             progressDialog.show();
             progressDialog.setCancelable(false);
 
-            StorageReference fileRef = storageReference.child(name.getText().toString() + "/Ongoing Date/" + "First Contract"
-                    + "." + getFileExtension(onImgUri1));
-            fileRef.putFile(onImgUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            StorageReference fileRef = storageReference.child(name.getText().toString() + "/First Contract/" + System.currentTimeMillis()
+                    + "." + getFileExtension(exImgUri1));
+            fileRef.putFile(exImgUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -826,7 +665,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String percent = percent58.getText().toString();
         String date = date58.getText().toString();
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | onImgUri2 == null) {
+        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and add a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -846,9 +685,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             progressDialog.show();
             progressDialog.setCancelable(false);
 
-            StorageReference fileRef = storageReference.child(name.getText().toString() + "/Ongoing Date/" + "Second Contract"
-                    + "." + getFileExtension(onImgUri2));
-            fileRef.putFile(onImgUri2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            StorageReference fileRef = storageReference.child(name.getText().toString() + "/Second Contract/" + System.currentTimeMillis()
+                    + "." + getFileExtension(exImgUri2));
+            fileRef.putFile(exImgUri2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -875,7 +714,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String percent = percent456.getText().toString();
         String date = date456.getText().toString();
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | onImgUri3 == null) {
+        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and add a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -895,9 +734,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             progressDialog.show();
             progressDialog.setCancelable(false);
 
-            StorageReference fileRef = storageReference.child(name.getText().toString() + "/Ongoing Date/" + "Third Contract"
-                    + "." + getFileExtension(onImgUri3));
-            fileRef.putFile(onImgUri3).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            StorageReference fileRef = storageReference.child(name.getText().toString() + "/Third Contract/" + System.currentTimeMillis()
+                    + "." + getFileExtension(exImgUri3));
+            fileRef.putFile(exImgUri3).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -923,7 +762,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         progressDialog.setContentView(R.layout.layout_progress_dialog_2);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
-        tv.setText("Saving...");
+        tv.setText("Deleting...");
         progressDialog.show();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -973,7 +812,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         progressDialog.setContentView(R.layout.layout_progress_dialog_2);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
-        tv.setText("Saving...");
+        tv.setText("Deleting...");
         progressDialog.show();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1022,7 +861,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         progressDialog.setContentView(R.layout.layout_progress_dialog_2);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
-        tv.setText("Saving...");
+        tv.setText("Deleting...");
         progressDialog.show();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1204,27 +1043,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         startActivityForResult(intent, 3);
     }
 
-    private void OpenFileChooser4() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, 4);
-    }
-
-    private void OpenFileChooser5() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, 5);
-    }
-
-    private void OpenFileChooser6() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, 6);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -1244,21 +1062,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             exImgView3.setBackgroundResource(android.R.color.transparent);
             exImgView3.setImageURI(exImgUri3);
             exRL3.setBackgroundResource(android.R.color.transparent);
-        } else if (requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            onImgUri1 = data.getData();
-            OnImgView1.setBackgroundResource(android.R.color.transparent);
-            OnImgView1.setImageURI(onImgUri1);
-            onRL1.setBackgroundResource(android.R.color.transparent);
-        } else if (requestCode == 5 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            onImgUri2 = data.getData();
-            OnImgView2.setBackgroundResource(android.R.color.transparent);
-            OnImgView2.setImageURI(onImgUri2);
-            onRL2.setBackgroundResource(android.R.color.transparent);
-        } else if (requestCode == 6 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            onImgUri3 = data.getData();
-            OnImgView3.setBackgroundResource(android.R.color.transparent);
-            OnImgView3.setImageURI(onImgUri3);
-            onRL3.setBackgroundResource(android.R.color.transparent);
         }
     }
 
@@ -1295,6 +1098,11 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
                     intAmount811 = Integer.parseInt(documentSnapshot.getString("amount811"));
                     intPercent811 = Integer.parseInt(documentSnapshot.getString("percent811"));
+
+                    exImgView1.setBackgroundResource(android.R.color.transparent);
+                    exRL1.setBackgroundResource(android.R.color.transparent);
+                    exImgUri1 = Uri.parse(documentSnapshot.getString("imgUrlOne"));
+                    Glide.with(UpdateInvestorActivity.this).load(exImgUri1).into(exImgView1);
                 }
 
                 if (documentSnapshot.getString("amount58").equals("0") && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
@@ -1311,6 +1119,11 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
                     intAmount58 = Integer.parseInt(documentSnapshot.getString("amount58"));
                     intPercent58 = Integer.parseInt(documentSnapshot.getString("percent58"));
+
+                    exImgView2.setBackgroundResource(android.R.color.transparent);
+                    exRL2.setBackgroundResource(android.R.color.transparent);
+                    exImgUri2 = Uri.parse(documentSnapshot.getString("imgUrlTwo"));
+                    Glide.with(UpdateInvestorActivity.this).load(exImgUri2).into(exImgView2);
                 }
 
                 if (documentSnapshot.getString("amount456").equals("0") && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
@@ -1327,6 +1140,11 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
                     intAmount456 = Integer.parseInt(documentSnapshot.getString("amount456"));
                     intPercent456 = Integer.parseInt(documentSnapshot.getString("percent456"));
+
+                    exImgView3.setBackgroundResource(android.R.color.transparent);
+                    exRL3.setBackgroundResource(android.R.color.transparent);
+                    exImgUri3 = Uri.parse(documentSnapshot.getString("imgUrlThree"));
+                    Glide.with(UpdateInvestorActivity.this).load(exImgUri3).into(exImgView3);
                 }
 
                 cashBonus.setText(documentSnapshot.getString("cashBonus"));

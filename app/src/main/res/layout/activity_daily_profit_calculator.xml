@@ -20,7 +20,8 @@
         android:layout_below="@+id/status_bar_space"
         android:background="@color/dark_blue"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="Daily Profit Calculator" />
+        app:title="Daily Profit Calculator"
+        app:titleTextColor="@color/white" />
 
     <RelativeLayout
         android:id="@+id/day_left_container"
@@ -191,7 +192,7 @@
                     android:background="@color/white"
                     android:gravity="center"
                     android:inputType="number"
-                    android:maxLength="1"
+                    android:maxLength="2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/title_text"

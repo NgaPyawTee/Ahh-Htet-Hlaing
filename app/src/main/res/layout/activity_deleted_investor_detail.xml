@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".investor.deleted.DeletedInvestorDetailActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/deleted_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:background="@color/dark_blue">
+
+                <LinearLayout
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingEnd="8dp">
+
+                    <TextView
+                        android:id="@+id/deleted_detail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:text="Khun Kyaw Win Soe"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="@dimen/title_text"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="ID - "
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <TextView
+                            android:id="@+id/deleted_detail_company_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00123"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="Phone - "
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <TextView
+                            android:id="@+id/deleted_detail_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="091234567"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="NRC - "
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <TextView
+                            android:id="@+id/deleted_detail_nrc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="13/Takana (Nai) 123456"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="Address - "
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+
+                        <TextView
+                            android:id="@+id/deleted_detail_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1/27 Malikha Street, Phayar Phyu Quarter, Taunggyi"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:layout_marginBottom="@dimen/large_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="Total profit - "
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+
+                        <TextView
+                            android:id="@+id/deleted_detail_total_profit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2,020,000 Ks"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/card_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="370dp"
+                android:background="@color/cyan">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/large_margin"
+                        android:gravity="center_vertical"
+                        android:layout_weight="2">
+
+                        <ImageView
+                            android:id="@+id/icon_amount"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:src="@drawable/ic_money" />
+
+                        <TextView
+                            android:id="@+id/deleted_detail_plan_811_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:layout_toEndOf="@+id/icon_amount"
+                            android:text="450000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
+
+                        <ImageView
+                            android:id="@+id/icon_percent"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/icon_amount"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_level" />
+
+                        <TextView
+                            android:id="@+id/deleted_detail_plan_811_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/icon_amount"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/icon_amount"
+                            android:text="11"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
+
+                        <ImageView
+                            android:id="@+id/icon_date"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/icon_percent"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_calendar"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
+
+                        <TextView
+                            android:id="@+id/deleted_detail_date_811"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_percent"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/icon_amount"
+                            android:text="27/2/2022"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/deleted_detail_img_one"
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/stroke_bg_white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_one"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:background="@color/blue">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/large_margin"
+                        android:layout_weight="2">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true">
+
+                            <ImageView
+                                android:id="@+id/icon_amount2"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_money" />
+
+                            <TextView
+                                android:id="@+id/deleted_detail_plan_58_amount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_toEndOf="@+id/icon_amount2"
+                                android:text="100000"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/large_text" />
+
+                            <ImageView
+                                android:id="@+id/icon_percent2"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_below="@id/icon_amount2"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="@dimen/large_margin"
+                                android:src="@drawable/ic_level" />
+
+                            <TextView
+                                android:id="@+id/deleted_detail_plan_58_percent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/icon_amount2"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_marginTop="@dimen/large_margin"
+                                android:layout_toEndOf="@+id/icon_amount2"
+                                android:text="8"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/large_text" />
+
+                            <ImageView
+                                android:id="@+id/icon_date2"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_below="@id/icon_percent2"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="@dimen/large_margin"
+                                android:src="@drawable/ic_calendar"
+                                android:tint="@color/white"
+                                tools:ignore="UseAppTint" />
+
+                            <TextView
+                                android:id="@+id/deleted_detail_date_58"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/icon_percent2"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_marginTop="@dimen/large_margin"
+                                android:layout_toEndOf="@+id/icon_amount2"
+                                android:text="27/2/2022"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/large_text" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/deleted_detail_img_two"
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/stroke_bg_white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_two"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:background="@color/bright_blue">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/large_margin"
+                        android:layout_weight="2">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true">
+
+                            <ImageView
+                                android:id="@+id/icon_amount3"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_money" />
+
+                            <TextView
+                                android:id="@+id/deleted_detail_plan_456_amount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_toEndOf="@+id/icon_amount3"
+                                android:text="Unavaliable"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/large_text" />
+
+                            <ImageView
+                                android:id="@+id/icon_percent3"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_below="@id/icon_amount3"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="@dimen/large_margin"
+                                android:src="@drawable/ic_level" />
+
+                            <TextView
+                                android:id="@+id/deleted_detail_plan_456_percent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/icon_amount3"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_marginTop="@dimen/large_margin"
+                                android:layout_toEndOf="@+id/icon_amount3"
+                                android:text="Unavaliable"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/large_text" />
+
+                            <ImageView
+                                android:id="@+id/icon_date3"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_below="@id/icon_percent3"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="@dimen/large_margin"
+                                android:src="@drawable/ic_calendar"
+                                android:tint="@color/white"
+                                tools:ignore="UseAppTint" />
+
+                            <TextView
+                                android:id="@+id/deleted_detail_date_456"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/icon_percent3"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_marginTop="@dimen/large_margin"
+                                android:layout_toEndOf="@+id/icon_amount3"
+                                android:text="Unavaliable"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/large_text" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/deleted_detail_img_three"
+                        android:layout_width="0dp"
+                        android:layout_height="220dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/stroke_bg_white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/deleted_detail_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:theme="@style/AppTheme.progress" />
+
+</RelativeLayout>

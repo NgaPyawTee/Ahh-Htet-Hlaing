@@ -22,6 +22,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/income_home_toolbar"
+            app:titleTextColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="34dp" />
@@ -129,14 +130,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/normal_margin"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/normal_padding">
+                        android:background="@drawable/stroke_bg_dark_cyan"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -185,7 +188,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="2dp"
+                                android:layout_height="3dp"
                                 android:background="@color/dark_cyan" />
 
                             <TextView
@@ -206,7 +209,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
 
                             <TextView
                                 android:id="@+id/income_home_amount1"
@@ -282,7 +287,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="2dp"
+                                android:layout_height="3dp"
                                 android:background="@color/dark_cyan" />
 
                             <TextView
@@ -307,14 +312,16 @@
                         android:layout_marginTop="@dimen/large_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
                         android:layout_marginBottom="@dimen/normal_margin"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/normal_padding">
+                        android:background="@drawable/stroke_bg_blue_2"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -363,7 +370,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="2dp"
+                                android:layout_height="3dp"
                                 android:background="@color/blue" />
 
                             <TextView
@@ -384,7 +391,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
 
                             <TextView
                                 android:id="@+id/income_home_amount2"
@@ -460,7 +469,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="2dp"
+                                android:layout_height="3dp"
                                 android:background="@color/blue" />
 
                             <TextView
@@ -485,14 +494,16 @@
                         android:layout_marginTop="@dimen/large_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
                         android:layout_marginBottom="@dimen/normal_margin"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/normal_padding">
+                        android:background="@drawable/stroke_bg_bright_blue"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -541,7 +552,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="2dp"
+                                android:layout_height="3dp"
                                 android:background="@color/bright_blue" />
 
                             <TextView
@@ -562,7 +573,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/normal_padding"
+                            android:paddingBottom="@dimen/normal_padding">
 
                             <TextView
                                 android:id="@+id/income_home_amount3"
@@ -638,7 +651,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="2dp"
+                                android:layout_height="3dp"
                                 android:background="@color/bright_blue" />
 
                             <TextView
@@ -660,6 +673,7 @@
                         android:id="@+id/check_method"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/normal_margin"
                         android:gravity="center_horizontal"
                         android:textColor="@color/red"
                         android:textSize="@dimen/normal_text" />
@@ -671,19 +685,10 @@
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginTop="@dimen/large_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
+                        android:layout_marginBottom="@dimen/normal_margin"
                         android:backgroundTint="@color/red"
                         android:gravity="center"
                         android:text="Calculate"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/income_home_show"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/normal_margin"
-                        android:backgroundTint="@color/red"
-                        android:gravity="center"
-                        android:text="Show all earnings"
                         android:textColor="@color/white" />
 
                 </LinearLayout>

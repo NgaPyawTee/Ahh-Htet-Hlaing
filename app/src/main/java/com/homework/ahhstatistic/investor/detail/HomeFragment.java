@@ -28,12 +28,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.homework.ahhstatistic.R;
 import com.homework.ahhstatistic.investor.UpdateInvestorActivity;
+import com.homework.ahhstatistic.model.ExpiredDate;
+import com.homework.ahhstatistic.model.Investor;
 
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
@@ -41,8 +45,10 @@ import org.joda.time.PeriodType;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private String bundlePass;
@@ -76,6 +82,12 @@ public class HomeFragment extends Fragment {
     private NumberFormat nf = NumberFormat.getInstance();
 
     int intAmount811, intPercent811, intCashBonus, intAmount58, intPercent58, intAmount456, intPercent456;
+    private String strAmount811, strPercent811, strDate811, strAmount58, strPercent58, strDate58, strAmount456, strPercent456, strDate456;
+    private String ImgOne, ImgTwo, ImgThree, TotalProfit;
+    private List<ExpiredDate> firstData = new ArrayList<>();
+    private List<ExpiredDate> secondData = new ArrayList<>();
+    private List<ExpiredDate> thirdData = new ArrayList<>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,22 +119,45 @@ public class HomeFragment extends Fragment {
         alert_tv_2 = alertDialog.findViewById(R.id.alert_dialog_tv_2);
         alert_tv_2.setText("YES");
         alert_tv_2.setOnClickListener(view1 -> {
-            alert_title.setText("Removing...");
-            alert_description.setText("Please wait a few seconds");
-            alert_tv_1.setText("");
-            alert_tv_2.setText("");
-            DeleteSubCollection();
-            DeleteCollection();
+            if (intAmount811 == 0 && intAmount58 == 0 && intAmount456 == 0) {
+                alert_title.setText("Removing...");
+                alert_description.setText("Please wait a few seconds");
+                alert_tv_1.setText("");
+                alert_tv_2.setText("");
 
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    alertDialog.dismiss();
-                    Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
-                    getActivity().finish();
-                }
-            }, 3000);
+                String strName = name.getText().toString();
+                String strCompanyID = companyID.getText().toString();
+                String strPhone = phone.getText().toString();
+                String strNRC = nrc.getText().toString();
+                String strAddress = address.getText().toString();
+                String cashBonus = "0";
+                String dailyProfit = "0";
+
+                FirebaseFirestore.getInstance().collection("Deleted Investors")
+                        .add(new Investor(strName, strCompanyID, strPhone, strNRC, strAddress,
+                                strAmount811, strPercent811, strDate811,
+                                strAmount58, strPercent58, strDate58,
+                                strAmount456, strPercent456, strDate456,
+                                cashBonus, dailyProfit, ImgOne, ImgTwo, ImgThree, TotalProfit))
+                        .addOnSuccessListener(getActivity(), documentReference -> {
+                            DeleteSubCollection();
+                            DeleteCollection();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    alertDialog.dismiss();
+                                    Toast.makeText(getActivity(), "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                                    getActivity().finish();
+                                }
+                            }, 3000);
+                        });
+            } else {
+                Toast.makeText(getActivity(), "You need to delete all contracts", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+
         });
 
 
@@ -233,6 +268,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private void OpenImageDialog2() {
         Glide.with(getContext()).load(imgUri2).into(zoomPic);
         imageDialog.show();
@@ -258,6 +294,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private void OpenImageDialog3() {
         Glide.with(getContext()).load(imgUri3).into(zoomPic);
         imageDialog.show();
@@ -297,6 +334,7 @@ public class HomeFragment extends Fragment {
         request.setMimeType("*/*");
         downloadManager.enqueue(request);
     }
+
     private void DownloadFirstImage2() {
         DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(imgUri2);
@@ -310,6 +348,7 @@ public class HomeFragment extends Fragment {
         request.setMimeType("*/*");
         downloadManager.enqueue(request);
     }
+
     private void DownloadFirstImage3() {
         DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(imgUri3);
@@ -355,6 +394,7 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
+
     private void DeleteCollection() {
         collRef.document(id).delete();
     }
@@ -465,6 +505,81 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         RetrieveData();
+        FetchingLatestData();
+    }
+
+    private void FetchingLatestData() {
+        collRef.document(bundlePass).collection("First Date").orderBy("currentTime", Query.Direction.DESCENDING).get()
+                .addOnSuccessListener(getActivity(), new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot ds : queryDocumentSnapshots) {
+                            ExpiredDate item = ds.toObject(ExpiredDate.class);
+                            firstData.add(item);
+                        }
+
+                        if (firstData.size() > 0){
+                            strAmount811 = firstData.get(0).getAmount();
+                            strPercent811 = firstData.get(0).getPercent();
+                            strDate811 = firstData.get(0).getDate();
+                            ImgOne = firstData.get(0).getImageUrl();
+                        }else{
+                            strAmount811 = "";
+                            strPercent811 = "";
+                            strDate811 = "";
+                            ImgOne = "";
+                        }
+
+                    }
+                });
+
+        collRef.document(bundlePass).collection("Second Date").orderBy("currentTime", Query.Direction.DESCENDING).get()
+                .addOnSuccessListener(getActivity(), new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot ds : queryDocumentSnapshots) {
+                            ExpiredDate item = ds.toObject(ExpiredDate.class);
+                            secondData.add(item);
+                        }
+
+                        if (secondData.size() > 0){
+                            strAmount58 = secondData.get(0).getAmount();
+                            strPercent58 = secondData.get(0).getPercent();
+                            strDate58 = secondData.get(0).getDate();
+                            ImgTwo = secondData.get(0).getImageUrl();
+                        }else{
+                            strAmount58 = "";
+                            strPercent58 = "";
+                            strDate58 = "";
+                            ImgTwo = "";
+                        }
+
+                    }
+                });
+
+        collRef.document(bundlePass).collection("Third Date").orderBy("currentTime", Query.Direction.DESCENDING).get()
+                .addOnSuccessListener(getActivity(), new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot ds : queryDocumentSnapshots) {
+                            ExpiredDate item = ds.toObject(ExpiredDate.class);
+                            thirdData.add(item);
+                        }
+
+                        if (thirdData.size() > 0){
+                            strAmount456 = thirdData.get(0).getAmount();
+                            strPercent456 = thirdData.get(0).getPercent();
+                            strDate456 = thirdData.get(0).getDate();
+                            ImgThree = thirdData.get(0).getImageUrl();
+                        }else{
+                            strAmount456 = "";
+                            strPercent456 = "";
+                            strDate456 = "";
+                            ImgThree = "";
+                        }
+
+                    }
+                });
     }
 
     private void RetrieveData() {
@@ -473,6 +588,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 id = documentSnapshot.getId();
+
+                TotalProfit = documentSnapshot.getString("preProfit");
 
                 name.setText(documentSnapshot.getString("name"));
                 companyID.setText(documentSnapshot.getString("companyID"));
@@ -488,7 +605,7 @@ public class HomeFragment extends Fragment {
                     intAmount811 = 0;
                     intPercent811 = 0;
                 } else {
-                    amount811.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount811"))) + " Ks");
+                    amount811.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount811"))) + " Ks");
                     percent811.setText(documentSnapshot.getString("percent811") + "%");
                     date811.setText(documentSnapshot.getString("date811"));
 
@@ -504,7 +621,7 @@ public class HomeFragment extends Fragment {
                     intAmount58 = 0;
                     intPercent58 = 0;
                 } else {
-                    amount58.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount58"))) + " Ks");
+                    amount58.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount58"))) + " Ks");
                     percent58.setText(documentSnapshot.getString("percent58") + "%");
                     date58.setText(documentSnapshot.getString("date58"));
 
@@ -520,7 +637,7 @@ public class HomeFragment extends Fragment {
                     intAmount456 = 0;
                     intPercent456 = 0;
                 } else {
-                    amount456.setText(nf.format(Integer.valueOf(documentSnapshot.getString("amount456"))) + " Ks");
+                    amount456.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount456"))) + " Ks");
                     percent456.setText(documentSnapshot.getString("percent456") + "%");
                     date456.setText(documentSnapshot.getString("date456"));
 
@@ -536,18 +653,27 @@ public class HomeFragment extends Fragment {
                     imgUri1 = Uri.parse(documentSnapshot.getString("imgUrlOne"));
                     imageView1.setBackgroundResource(android.R.color.transparent);
                     Glide.with(getContext()).load(imgUri1).into(imageView1);
+                }else{
+                    imageView1.setBackground(getResources().getDrawable(R.drawable.stroke_bg_white));
+                    Glide.with(getContext()).clear(imageView1);
                 }
 
                 if (!documentSnapshot.getString("imgUrlTwo").isEmpty()) {
                     imgUri2 = Uri.parse(documentSnapshot.getString("imgUrlTwo"));
                     imageView2.setBackgroundResource(android.R.color.transparent);
                     Glide.with(getContext()).load(imgUri2).into(imageView2);
+                }else{
+                    imageView2.setBackground(getResources().getDrawable(R.drawable.stroke_bg_white));
+                    Glide.with(getContext()).clear(imageView2);
                 }
 
                 if (!documentSnapshot.getString("imgUrlThree").isEmpty()) {
                     imgUri3 = Uri.parse(documentSnapshot.getString("imgUrlThree"));
                     imageView3.setBackgroundResource(android.R.color.transparent);
                     Glide.with(getContext()).load(imgUri3).into(imageView3);
+                }else{
+                    imageView3.setBackground(getResources().getDrawable(R.drawable.stroke_bg_white));
+                    Glide.with(getContext()).clear(imageView3);
                 }
 
                 progressBar.setVisibility(View.GONE);

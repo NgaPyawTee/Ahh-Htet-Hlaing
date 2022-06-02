@@ -12,6 +12,8 @@
         android:id="@+id/add_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:title="Add New Investor"
+        app:titleTextColor="@color/white"
         android:background="@color/blue" />
 
     <androidx.core.widget.NestedScrollView

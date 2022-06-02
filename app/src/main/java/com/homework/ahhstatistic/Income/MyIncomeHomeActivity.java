@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.WindowCompat;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +48,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
     private CollectionReference collRef2 = FirebaseFirestore.getInstance().collection("Earnings");
     private NumberFormat nf = NumberFormat.getInstance();
     private List<Investor> list;
-    private Button btnCalulate, btnShow;
+    private Button btnCalulate;
     private ProgressBar progressBar;
 
     private int TotalIncome , TotalAmount, TotalpaidProfit, TotalfullProfit, intFullProfit1, intIncome1, intFullProfit2, intIncome2, intFullProfit3, intIncome3;
@@ -64,6 +66,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.income_home_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_normal_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(null);
 
@@ -98,7 +101,6 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.income_home_progressbar);
 
         btnCalulate = findViewById(R.id.income_home_calculate);
-        btnShow = findViewById(R.id.income_home_show);
 
         list = new ArrayList<>();
 
@@ -109,11 +111,6 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
                 CalculatePercent();
             }
         });
-
-        btnShow.setOnClickListener(view -> {
-            startActivity(new Intent(MyIncomeHomeActivity.this, MyIncomeCategoryActivity.class));
-        });
-
     }
 
     @Override
@@ -128,16 +125,26 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_save:
                 if (income.getText().toString().equals("Not yet calculated")) {
-                    Toast.makeText(MyIncomeHomeActivity.this, "Calculate first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyIncomeHomeActivity.this, "Calculate your income first", Toast.LENGTH_SHORT).show();
                 } else {
                     SaveMonthlyIncome();
                 }
+                break;
+            case R.id.action_show_list:
+                startActivity(new Intent(MyIncomeHomeActivity.this, MyIncomeCategoryActivity.class));
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     private void SaveMonthlyIncome() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.layout_progress_dialog_4);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.show();
+        dialog.setCancelable(false);
+
         String currentDate = sdf.format(Calendar.getInstance().getTime());
         String millisTime = String.valueOf(System.currentTimeMillis());
 
@@ -146,7 +153,11 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
                 String.valueOf(ttamount2),  percent58.getText().toString(), String.valueOf(intFullProfit2), String.valueOf(paidProfit2), String.valueOf(intIncome2),
                 String.valueOf(ttamount3), percent456.getText().toString(), String.valueOf(intFullProfit3), String.valueOf(paidProfit3), String.valueOf(intIncome3),
                 currentDate, millisTime)).addOnSuccessListener(this, documentReference -> {
-            Toast.makeText(MyIncomeHomeActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+            Handler handler = new Handler();
+            handler.postDelayed((Runnable) () -> {
+                dialog.dismiss();
+                Toast.makeText(MyIncomeHomeActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+            }, 3000);
         });
     }
 
@@ -243,7 +254,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
 
             totalAmount.setText(nf.format(TotalAmount) + " Ks");
 
-            checkMethod.setText("If you want to check your income, use this method\nall 3 earnings - (all paid profit + "+nf.format(ttdailyProfit)+")");
+            checkMethod.setText("Check method :\nall earnings - (all paid profit + "+nf.format(ttdailyProfit)+")");
 
         });
     }

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -81,7 +82,7 @@ public class FirstContractFragment extends Fragment {
             public void onClick(int position) {
                 UriDown = Uri.parse(imageUrlList.get(position));
                 if (UriDown != null) {
-                    Glide.with(getContext()).load(UriDown).into(pic);
+                    Glide.with(getContext()).load(UriDown).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(pic);
                     imgDialog.show();
 
                     pic.setOnClickListener(new View.OnClickListener() {

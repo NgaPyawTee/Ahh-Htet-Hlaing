@@ -48,7 +48,7 @@
                 android:layout_alignParentStart="true"
                 android:text="Khun Kyaw Win Soe"
                 android:textColor="@color/blue"
-                android:textSize="@dimen/title_text"
+                android:textSize="@dimen/large_text"
                 android:textStyle="bold" />
 
             <TextView
@@ -61,8 +61,7 @@
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:text="150000"
                 android:textColor="@color/black"
-                android:textSize="@dimen/large_text"
-                 />
+                android:textSize="@dimen/large_text" />
 
             <TextView
                 android:id="@+id/investor_company_id"
@@ -70,12 +69,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/investor_name"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginTop="14dp"
                 android:layout_marginEnd="8dp"
                 android:text="00123"
                 android:textColor="@color/blue"
-                android:textSize="@dimen/large_text"
-                />
+                android:textSize="@dimen/normal_text" />
 
         </RelativeLayout>
 

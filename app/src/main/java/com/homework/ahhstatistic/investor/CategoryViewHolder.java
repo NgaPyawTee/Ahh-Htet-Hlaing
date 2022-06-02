@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.homework.ahhstatistic.R;
+import com.homework.ahhstatistic.investor.deleted.DeletedCategoryRecyclerAdapter;
 import com.homework.ahhstatistic.model.Investor;
 
 import java.text.NumberFormat;

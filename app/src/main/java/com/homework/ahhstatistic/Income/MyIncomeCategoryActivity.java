@@ -46,8 +46,10 @@ public class MyIncomeCategoryActivity extends AppCompatActivity {
         windowInsetsControllerCompat.hide(WindowInsetsCompat.Type.systemBars());
 
         toolbar = findViewById(R.id.income_category_toolbar);
+        toolbar.setTitle("My Earnings");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("My Earnings");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_normal_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         list = new ArrayList<>();

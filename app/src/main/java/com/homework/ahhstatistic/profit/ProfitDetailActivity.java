@@ -68,14 +68,11 @@ public class ProfitDetailActivity extends AppCompatActivity {
         tvTitle = dialog.findViewById(R.id.profit_detail_dialog_title);
         edtProfit = dialog.findViewById(R.id.profit_detail_dialog_edt);
         btnProfit = dialog.findViewById(R.id.profit_detail_dialog_btn);
-        btnProfit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (edtProfit.getText().toString().trim().equals("")) {
-                    dialog.dismiss();
-                } else {
-                    UpdateDailyProfit();
-                }
+        btnProfit.setOnClickListener(view -> {
+            if (edtProfit.getText().toString().trim().equals("")) {
+                dialog.dismiss();
+            } else {
+                UpdateDailyProfit();
             }
         });
 

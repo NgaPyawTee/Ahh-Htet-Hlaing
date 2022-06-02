@@ -80,7 +80,7 @@ public class AddInvestorActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.add_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add New Investor");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_normal_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Alert Dialog
@@ -434,7 +434,7 @@ public class AddInvestorActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             if (imgUri1 != null) {
-                                StorageReference fileRef = storageReference.child(strName + "/Ongoing Date/" + "First Contract"
+                                StorageReference fileRef = storageReference.child(strName + "/First Contract/" + System.currentTimeMillis()
                                         + "." + getFileExtension(imgUri1));
                                 fileRef.putFile(imgUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
@@ -453,7 +453,7 @@ public class AddInvestorActivity extends AppCompatActivity {
                             }
 
                             if (imgUri2 != null) {
-                                StorageReference fileRef = storageReference.child(strName + "/Ongoing Date/" + "Second Contract"
+                                StorageReference fileRef = storageReference.child(strName + "/Second Contract/" + System.currentTimeMillis()
                                         + "." + getFileExtension(imgUri2));
                                 fileRef.putFile(imgUri2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
@@ -472,7 +472,7 @@ public class AddInvestorActivity extends AppCompatActivity {
                             }
 
                             if (imgUri3 != null) {
-                                StorageReference fileRef = storageReference.child(strName + "/Ongoing Date/" + "Third Contract"
+                                StorageReference fileRef = storageReference.child(strName + "/Third Contract/" + System.currentTimeMillis()
                                         + "." + getFileExtension(imgUri3));
                                 fileRef.putFile(imgUri3).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
