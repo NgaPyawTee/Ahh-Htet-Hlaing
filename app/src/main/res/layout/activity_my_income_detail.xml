@@ -23,9 +23,9 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/income_detail_toolbar"
             android:layout_width="match_parent"
-            app:titleTextColor="@color/white"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="34dp" />
+            android:layout_marginTop="34dp"
+            app:titleTextColor="@color/white" />
 
         <TextView
             android:id="@+id/income_detail_tv1"
@@ -78,8 +78,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:background="@drawable/card_bg_color_8"
+                            android:orientation="horizontal"
                             android:padding="12dp">
 
                             <LinearLayout
@@ -669,14 +669,23 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/income_detail_date"
+                        android:id="@+id/detail_check_method"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/large_margin"
+                        android:layout_marginTop="@dimen/normal_margin"
                         android:gravity="center_horizontal"
                         android:textColor="@color/bright_blue"
+                        android:textSize="@dimen/normal_text" />
+
+                    <TextView
+                        android:id="@+id/income_detail_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="@dimen/large_margin"
+                        android:textColor="@color/bright_blue"
                         android:textSize="@dimen/title_text"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

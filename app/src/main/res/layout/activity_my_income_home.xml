@@ -17,7 +17,7 @@
         android:id="@+id/income_home_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/red"
+        android:background="@drawable/card_bg_color_2"
         android:visibility="invisible">
 
         <androidx.appcompat.widget.Toolbar
@@ -72,7 +72,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/normal_margin"
-                        app:cardBackgroundColor="@color/red"
                         app:cardCornerRadius="@dimen/normal_margin"
                         app:cardElevation="4dp">
 
@@ -80,6 +79,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:background="@drawable/card_bg_color_2"
                             android:padding="12dp">
 
                             <LinearLayout
@@ -670,7 +670,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/check_method"
+                        android:id="@+id/home_check_method"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/normal_margin"

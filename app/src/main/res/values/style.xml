@@ -30,7 +30,7 @@
     </style>
 
     <style name="AppTheme.Cyan" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="colorPrimary">@color/cyan</item>
+        <item name="colorPrimary">@color/dark_cyan</item>
     </style>
 
     <style name="AppTheme.Pale_blue" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

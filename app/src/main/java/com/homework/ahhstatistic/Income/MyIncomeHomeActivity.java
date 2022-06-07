@@ -77,7 +77,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
         earning2 = findViewById(R.id.earning_2);
         earning3 = findViewById(R.id.earning_3);
         totalAmount = findViewById(R.id.income_home_total_amount);
-        checkMethod = findViewById(R.id.check_method);
+        checkMethod = findViewById(R.id.home_check_method);
 
         amount811 = findViewById(R.id.income_home_amount1);
         percent811 = findViewById(R.id.income_home_percent1);
@@ -148,7 +148,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
         String currentDate = sdf.format(Calendar.getInstance().getTime());
         String millisTime = String.valueOf(System.currentTimeMillis());
 
-        collRef2.add(new Income(String.valueOf(TotalIncome), String.valueOf(TotalAmount),
+        collRef2.add(new Income(String.valueOf(TotalIncome), String.valueOf(TotalAmount), String.valueOf(ttdailyProfit),
                 String.valueOf(ttamount1), percent811.getText().toString(), String.valueOf(intFullProfit1), String.valueOf(paidProfit1), String.valueOf(intIncome1),
                 String.valueOf(ttamount2),  percent58.getText().toString(), String.valueOf(intFullProfit2), String.valueOf(paidProfit2), String.valueOf(intIncome2),
                 String.valueOf(ttamount3), percent456.getText().toString(), String.valueOf(intFullProfit3), String.valueOf(paidProfit3), String.valueOf(intIncome3),
@@ -254,7 +254,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
 
             totalAmount.setText(nf.format(TotalAmount) + " Ks");
 
-            checkMethod.setText("Check method :\nall earnings - (all paid profit + "+nf.format(ttdailyProfit)+")");
+            checkMethod.setText("Check method :\nall earnings - "+nf.format(ttdailyProfit)+" Ks (all daily profit)");
 
         });
     }

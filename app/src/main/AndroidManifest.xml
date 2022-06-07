@@ -57,6 +57,7 @@
             android:name=".investor.detail.InvestorDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:parentActivityName=".investor.InvestorCategoryActivity"
             android:theme="@style/AppTheme.Yellow" />
         <activity
             android:name=".investor.AddInvestorActivity"

@@ -18,7 +18,7 @@ public class Investor {
     private String preProfit;
     private String cashBonus;
     private String dailyProfit;
-    private String imgUrlOne, imgUrlTwo, imgUrlThree;
+    private String imgUrlOne, imgUrlTwo, imgUrlThree, nrcImgUrl;
 
     private String id;
 
@@ -30,7 +30,7 @@ public class Investor {
                     String amount811, String percent811, String date811,
                     String amount58, String percent58, String date58,
                     String amount456, String percent456, String date456,
-                    String cashBonus, String dailyProfit,
+                    String cashBonus, String dailyProfit, String nrcImgUrl,
                     String imgUrlOne, String imgUrlTwo, String imgUrlThree,String preProfit) {
 
         if (amount811.trim().equals("") | percent811.trim().equals("") | date811.trim().equals("")) {
@@ -79,6 +79,12 @@ public class Investor {
             this.imgUrlThree = "";
         }else{
             this.imgUrlThree = imgUrlThree;
+        }
+
+        if (nrcImgUrl.trim().equals("")){
+            this.nrcImgUrl = "";
+        }else{
+            this.nrcImgUrl = nrcImgUrl;
         }
 
         this.name = name;
@@ -178,5 +184,9 @@ public class Investor {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNrcImgUrl() {
+        return nrcImgUrl;
     }
 }

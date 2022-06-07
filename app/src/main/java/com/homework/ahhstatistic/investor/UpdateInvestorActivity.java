@@ -54,7 +54,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     String intentPass, id;
 
     private TextInputEditText name, companyID, phone, nrc, address, cashBonus, preProfit;
-    private ImageView exImgView1, exImgView2, exImgView3, zoomPic, downImg, backImg, clrImg;
+    private ImageView exImgView1, exImgView2, exImgView3, nrcImgView, zoomPic, downImg, backImg, clrImg;
     private TextView date811, date58, date456;
     private EditText amount811, percent811, amount58, percent58, amount456, percent456;
     private Button btnEx1st, btnOn1st, btnEx2nd, btnOn2nd, btnEx3rd, btnOn3rd, btnUpdate;
@@ -67,7 +67,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     private CollectionReference collRef;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private DatePickerDialog.OnDateSetListener listener1, listener2, listener3;
-    private Uri exImgUri1, exImgUri2, exImgUri3;
+    private Uri exImgUri1, exImgUri2, exImgUri3, nrcImgUri;
     int intAmount811, intPercent811, intCashBonus, intAmount58, intPercent58, intAmount456, intPercent456;
 
     //Alert Dialog
@@ -140,6 +140,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         exImgView1 = findViewById(R.id.edit_expired_img_1);
         exImgView2 = findViewById(R.id.edit_expired_img_2);
         exImgView3 = findViewById(R.id.edit_expired_img_3);
+        nrcImgView = findViewById(R.id.edit_nrc_img);
 
         btnEx1st = findViewById(R.id.save_expired_1st);
         btnOn1st = findViewById(R.id.upload_new_1st);
@@ -281,6 +282,75 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 }
             }
         });
+        nrcImgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (nrcImgUri == null) {
+                    OpenFileChooser4();
+                } else {
+                    Glide.with(UpdateInvestorActivity.this).load(nrcImgUri).into(zoomPic);
+                    imageDialog.show();
+
+                    zoomPic.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (visible) {
+                                RLToolbar.setVisibility(View.VISIBLE);
+                                visible = false;
+                            } else {
+                                RLToolbar.setVisibility(View.GONE);
+                                visible = true;
+                            }
+                        }
+                    });
+
+                    clrImg.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            collRef.document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (!documentSnapshot.getString("nrcImgUrl").equals("")){
+                                        Toast.makeText(UpdateInvestorActivity.this, "Deleting image...", Toast.LENGTH_SHORT).show();
+                                        StorageReference stoRef = FirebaseStorage.getInstance().getReferenceFromUrl(documentSnapshot.getString("nrcImgUrl"));
+                                        stoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                collRef.document(id).update("nrcImgUrl", "");
+
+                                                Handler handler = new Handler();
+                                                handler.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        nrcImgUri = null;
+                                                        nrcImgView.setImageURI(null);
+                                                        Glide.with(UpdateInvestorActivity.this).clear(nrcImgView);
+                                                        imageDialog.dismiss();
+                                                    }
+                                                },2000);
+                                            }
+                                        });
+                                    }else{
+                                        Toast.makeText(UpdateInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                nrcImgUri = null;
+                                                nrcImgView.setImageURI(null);
+                                                Glide.with(UpdateInvestorActivity.this).clear(nrcImgView);
+                                                imageDialog.dismiss();
+                                            }
+                                        },2000);
+                                    }
+                                }
+                            });
+
+                        }
+                    });
+                }
+            }
+        });
 
         date811.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -338,7 +408,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 if (intAmount811 != 0) {
                     savedEx1st();
                 } else {
-                    Toast.makeText(UpdateInvestorActivity.this, "No data to save as expired", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateInvestorActivity.this, "No contract exists", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -348,7 +418,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 if (intAmount58 != 0) {
                     savedEx2nd();
                 } else {
-                    Toast.makeText(UpdateInvestorActivity.this, "No data to save as expired", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateInvestorActivity.this, "No contract exists", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -358,7 +428,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 if (intAmount456 != 0) {
                     savedEx3rd();
                 } else {
-                    Toast.makeText(UpdateInvestorActivity.this, "No data to save as expired", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateInvestorActivity.this, "No contract exists", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -367,7 +437,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (intAmount811 != 0) {
                     alert_title.setText("Warning");
-                    alert_description.setText("Please save this contract as an expired one first.");
+                    alert_description.setText("Delete current contract first.");
                     alert_tv_1.setVisibility(View.INVISIBLE);
                     alert_tv_2.setText("OK");
                     alert_tv_2.setOnClickListener(new View.OnClickListener() {
@@ -387,7 +457,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (intAmount58 != 0) {
                     alert_title.setText("Warning");
-                    alert_description.setText("Please save this contract as an expired one first.");
+                    alert_description.setText("Delete current contract first.");
                     alert_tv_1.setVisibility(View.INVISIBLE);
                     alert_tv_2.setText("OK");
                     alert_tv_2.setOnClickListener(new View.OnClickListener() {
@@ -407,7 +477,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (intAmount456 != 0) {
                     alert_title.setText("Warning");
-                    alert_description.setText("Please save this contract as an expired one first.");
+                    alert_description.setText("Delete current contract first.");
                     alert_tv_1.setVisibility(View.INVISIBLE);
                     alert_tv_2.setText("OK");
                     alert_tv_2.setOnClickListener(new View.OnClickListener() {
@@ -435,7 +505,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
             alert_title.setText("Insufficient Data");
-            alert_description.setText("Please check the fields and add a contract photo.");
+            alert_description.setText("Please check the fields and a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
             alert_tv_2.setText("OK");
             alert_tv_2.setOnClickListener(new View.OnClickListener() {
@@ -497,7 +567,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
             alert_title.setText("Insufficient Data");
-            alert_description.setText("Please check the fields and add a contract photo.");
+            alert_description.setText("Please check the fields and a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
             alert_tv_2.setText("OK");
             alert_tv_2.setOnClickListener(new View.OnClickListener() {
@@ -559,7 +629,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
         if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
             alert_title.setText("Insufficient Data");
-            alert_description.setText("Please check the fields and add a contract photo.");
+            alert_description.setText("Please check the fields and a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
             alert_tv_2.setText("OK");
             alert_tv_2.setOnClickListener(new View.OnClickListener() {
@@ -935,6 +1005,22 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             tv.setText("Updating...");
             progressDialog.show();
 
+            if (nrcImgUri != null){
+                StorageReference fileRef = storageReference.child(strName + "/NRC"
+                        + "." + getFileExtension(nrcImgUri));
+                fileRef.putFile(nrcImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                collRef.document(id).update("nrcImgUrl", uri.toString());
+                            }
+                        });
+                    }
+                });
+            }
+
             collRef.document(id).update("name", name.getText().toString());
             collRef.document(id).update("companyID", companyID.getText().toString());
             collRef.document(id).update("phone", phone.getText().toString());
@@ -1043,6 +1129,13 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         startActivityForResult(intent, 3);
     }
 
+    private void OpenFileChooser4() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 4);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -1062,6 +1155,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             exImgView3.setBackgroundResource(android.R.color.transparent);
             exImgView3.setImageURI(exImgUri3);
             exRL3.setBackgroundResource(android.R.color.transparent);
+        }else if (requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            nrcImgUri = data.getData();
+            nrcImgView.setBackgroundResource(android.R.color.transparent);
+            nrcImgView.setImageURI(nrcImgUri);
         }
     }
 
@@ -1083,6 +1180,11 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 phone.setText(documentSnapshot.getString("phone"));
                 nrc.setText(documentSnapshot.getString("nrc"));
                 address.setText(documentSnapshot.getString("address"));
+
+                if (!documentSnapshot.getString("nrcImgUrl").equals("")){
+                    nrcImgUri = Uri.parse(documentSnapshot.getString("nrcImgUrl"));
+                    Glide.with(UpdateInvestorActivity.this).load(nrcImgUri).into(nrcImgView);
+                }
 
                 if (documentSnapshot.getString("amount811").equals("0") && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
                     amount811.setHint("Unavaliable");
@@ -1141,10 +1243,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     intAmount456 = Integer.parseInt(documentSnapshot.getString("amount456"));
                     intPercent456 = Integer.parseInt(documentSnapshot.getString("percent456"));
 
-                    exImgView3.setBackgroundResource(android.R.color.transparent);
-                    exRL3.setBackgroundResource(android.R.color.transparent);
                     exImgUri3 = Uri.parse(documentSnapshot.getString("imgUrlThree"));
                     Glide.with(UpdateInvestorActivity.this).load(exImgUri3).into(exImgView3);
+                    exImgView3.setBackgroundResource(android.R.color.transparent);
+                    exRL3.setBackgroundResource(android.R.color.transparent);
                 }
 
                 cashBonus.setText(documentSnapshot.getString("cashBonus"));

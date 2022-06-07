@@ -10,715 +10,747 @@
 
     <ProgressBar
         android:id="@+id/update_progress_bar"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/update_toolbar"
-        android:layout_width="match_parent"
-        app:title="Update an investor"
-        app:titleTextColor="@color/white"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/blue" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/update_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue"
+            app:title="Update an investor"
+            app:titleTextColor="@color/white" />
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/update_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible">
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/update_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:visibility="invisible">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Name"
-                android:textColorHint="@color/blue"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_name"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textColor="@color/black" />
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Name"
+                    android:textColorHint="@color/blue"
+                    app:boxStrokeColor="@color/blue"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/red">
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Company ID"
-                android:textColorHint="@color/blue"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_companyID"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Phone"
-                android:textColorHint="@color/blue"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:hint="NRC"
-                android:textColorHint="@color/blue"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_nrc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Address"
-                android:textColorHint="@color/blue"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Cash Bonus"
-                android:textColorHint="@color/blue"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_cash_bonus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Pre-Profit"
-                android:textColorHint="@color/blue"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_pre_profit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/btn_update_investor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="Update personal infomation"
-                android:textColor="@color/white" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="450dp"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginBottom="8dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/stroke_bg_cyan">
-
-                    <RelativeLayout
-                        android:id="@+id/three_line_container"
-                        android:layout_width="200dp"
-                        android:layout_height="150dp"
-                        android:layout_above="@id/btn_container_1"
-                        android:layout_centerHorizontal="true">
-
-                        <LinearLayout
-                            android:id="@+id/amount_container_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/percent_container_1"
-                            android:layout_marginBottom="8dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_money"
-                                android:tint="@color/cyan"
-                                tools:ignore="UseAppTint" />
-
-                            <EditText
-                                android:id="@+id/edit_811_amount"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:background="@color/white"
-                                android:hint="Amount"
-                                android:inputType="number"
-                                android:textColor="@color/cyan"
-                                android:textColorHint="@color/cyan"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/percent_container_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/date_container_1"
-                            android:layout_marginBottom="9dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_level"
-                                android:tint="@color/cyan"
-                                tools:ignore="UseAppTint" />
-
-                            <EditText
-                                android:id="@+id/edit_811_percent"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:background="@color/white"
-                                android:hint="Percent"
-                                android:inputType="number"
-                                android:maxLength="2"
-                                android:textColor="@color/cyan"
-                                android:textColorHint="@color/cyan"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/date_container_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginBottom="8dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_calendar"
-                                android:tint="@color/cyan"
-                                tools:ignore="UseAppTint" />
-
-                            <TextView
-                                android:id="@+id/edit_811_date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:textColor="@color/cyan"
-                                android:textColorHint="@color/cyan"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/btn_container_1"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="8dp">
+                        android:inputType="text"
+                        android:textColor="@color/black" />
 
-                        <Button
-                            android:id="@+id/save_expired_1st"
-                            android:layout_width="154dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginStart="20dp"
-                            android:backgroundTint="@color/cyan"
-                            android:gravity="center"
-                            android:text="Delete"
-                            android:textColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <Button
-                            android:id="@+id/upload_new_1st"
-                            android:layout_width="154dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="20dp"
-                            android:backgroundTint="@color/cyan"
-                            android:gravity="center"
-                            android:text="Upload New"
-                            android:textColor="@color/white" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Company ID"
+                    android:textColorHint="@color/blue"
+                    app:boxStrokeColor="@color/blue"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/red">
 
-                    </RelativeLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_companyID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textColor="@color/black" />
 
+                </com.google.android.material.textfield.TextInputLayout>
 
-                </RelativeLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Phone"
+                    android:textColorHint="@color/blue"
+                    app:boxStrokeColor="@color/blue"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
 
-                    <RelativeLayout
-                        android:id="@+id/edit_expired_rl_1"
-                        android:layout_width="150dp"
-                        android:layout_height="220dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="32dp"
-                        android:background="@color/white">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:hint="NRC"
+                        android:textColorHint="@color/blue"
+                        app:boxStrokeColor="@color/blue"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/red">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edit_nrc"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="No Image"
-                            android:textColor="@color/default_color" />
+                            android:inputType="text"
+                            android:textColor="@color/black" />
 
-                        <ImageView
-                            android:id="@+id/edit_expired_img_1"
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="@dimen/medium_margin"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="0dp">
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/stroke_bg_cyan" />
-                    </RelativeLayout>
+                            android:background="@drawable/stroke_round_cyan_img_2">
+
+                            <ImageView
+                                android:id="@+id/edit_nrc_img"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Address"
+                    android:textColorHint="@color/blue"
+                    app:boxStrokeColor="@color/blue"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/red">
 
-            </RelativeLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="450dp"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginBottom="8dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Cash Bonus"
+                    android:textColorHint="@color/blue"
+                    app:boxStrokeColor="@color/blue"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_cash_bonus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Pre-Profit"
+                    android:textColorHint="@color/blue"
+                    app:boxStrokeColor="@color/blue"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_pre_profit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_update_investor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Update personal infomation"
+                    android:textColor="@color/white" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/stroke_bg_blue">
+                    android:layout_height="450dp"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginBottom="8dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
                     <RelativeLayout
-                        android:layout_width="200dp"
-                        android:layout_height="150dp"
-                        android:layout_above="@id/btn_container_2"
-                        android:layout_centerHorizontal="true">
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/stroke_bg_cyan">
 
-                        <LinearLayout
-                            android:id="@+id/amount_container_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/percent_container_2"
-                            android:layout_marginBottom="8dp"
-                            android:orientation="horizontal">
+                        <RelativeLayout
+                            android:id="@+id/three_line_container"
+                            android:layout_width="200dp"
+                            android:layout_height="150dp"
+                            android:layout_above="@id/btn_container_1"
+                            android:layout_centerHorizontal="true">
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_money"
-                                android:tint="@color/blue"
-                                tools:ignore="UseAppTint" />
-
-                            <EditText
-                                android:id="@+id/edit_58_amount"
+                            <LinearLayout
+                                android:id="@+id/amount_container_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:background="@color/white"
-                                android:hint="Amount"
-                                android:inputType="number"
-                                android:textColor="@color/blue"
-                                android:textColorHint="@color/blue"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
+                                android:layout_above="@+id/percent_container_1"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:id="@+id/percent_container_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/date_container_2"
-                            android:layout_marginBottom="9dp"
-                            android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_money"
+                                    android:tint="@color/dark_cyan"
+                                    tools:ignore="UseAppTint" />
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_level"
-                                android:tint="@color/blue"
-                                tools:ignore="UseAppTint" />
+                                <EditText
+                                    android:id="@+id/edit_811_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Amount"
+                                    android:inputType="number"
+                                    android:textColor="@color/dark_cyan"
+                                    android:textColorHint="@color/dark_cyan"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
 
-                            <EditText
-                                android:id="@+id/edit_58_percent"
+                            <LinearLayout
+                                android:id="@+id/percent_container_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:background="@color/white"
-                                android:hint="Percent"
-                                android:inputType="number"
-                                android:maxLength="1"
-                                android:textColor="@color/blue"
-                                android:textColorHint="@color/blue"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
+                                android:layout_above="@+id/date_container_1"
+                                android:layout_marginBottom="9dp"
+                                android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:id="@+id/date_container_2"
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_level"
+                                    android:tint="@color/dark_cyan"
+                                    tools:ignore="UseAppTint" />
+
+                                <EditText
+                                    android:id="@+id/edit_811_percent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Percent"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+                                    android:textColor="@color/dark_cyan"
+                                    android:textColorHint="@color/dark_cyan"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/date_container_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_calendar"
+                                    android:tint="@color/dark_cyan"
+                                    tools:ignore="UseAppTint" />
+
+                                <TextView
+                                    android:id="@+id/edit_811_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:textColor="@color/dark_cyan"
+                                    android:textColorHint="@color/dark_cyan"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/btn_container_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginBottom="8dp"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="8dp">
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_calendar"
-                                android:tint="@color/blue"
-                                tools:ignore="UseAppTint" />
-
-                            <TextView
-                                android:id="@+id/edit_58_date"
-                                android:layout_width="match_parent"
+                            <Button
+                                android:id="@+id/save_expired_1st"
+                                android:layout_width="154dp"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:textColorHint="@color/blue"
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="20dp"
+                                android:backgroundTint="@color/dark_cyan"
+                                android:gravity="center"
+                                android:text="Delete"
+                                android:textColor="@color/white" />
+
+                            <Button
+                                android:id="@+id/upload_new_1st"
+                                android:layout_width="154dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="20dp"
+                                android:backgroundTint="@color/dark_cyan"
+                                android:gravity="center"
+                                android:text="Upload New"
+                                android:textColor="@color/white" />
+
+                        </RelativeLayout>
+
+
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/btn_container_2"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="8dp">
+                        android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/save_expired_2nd"
-                            android:layout_width="154dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginStart="20dp"
-                            android:backgroundTint="@color/blue"
-                            android:gravity="center"
-                            android:text="Delete"
-                            android:textColor="@color/white" />
+                        <RelativeLayout
+                            android:id="@+id/edit_expired_rl_1"
+                            android:layout_width="150dp"
+                            android:layout_height="220dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="32dp"
+                            android:background="@color/white">
 
-                        <Button
-                            android:id="@+id/upload_new_2nd"
-                            android:layout_width="154dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="20dp"
-                            android:backgroundTint="@color/blue"
-                            android:text="Upload New"
-                            android:gravity="center"
-                            android:textColor="@color/white" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="No Image"
+                                android:textColor="@color/default_color" />
 
-                    </RelativeLayout>
+                            <ImageView
+                                android:id="@+id/edit_expired_img_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/stroke_bg_cyan" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
 
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/edit_expired_rl_2"
-                        android:layout_width="150dp"
-                        android:layout_height="220dp"
-                        android:layout_marginTop="32dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/white">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="No Image"
-                            android:textColor="@color/default_color" />
-
-                        <ImageView
-                            android:id="@+id/edit_expired_img_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/stroke_bg_blue" />
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="450dp"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/large_margin"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
-
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/stroke_bg_pale_blue">
+                    android:layout_height="450dp"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginBottom="8dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
 
                     <RelativeLayout
-                        android:layout_width="200dp"
-                        android:layout_height="150dp"
-                        android:layout_above="@id/btn_container_3"
-                        android:layout_centerHorizontal="true">
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/stroke_bg_blue">
 
-                        <LinearLayout
-                            android:id="@+id/amount_container_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/percent_container_3"
-                            android:layout_marginBottom="8dp"
-                            android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="200dp"
+                            android:layout_height="150dp"
+                            android:layout_above="@id/btn_container_2"
+                            android:layout_centerHorizontal="true">
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_money"
-                                android:tint="@color/bright_blue"
-                                tools:ignore="UseAppTint" />
-
-                            <EditText
-                                android:id="@+id/edit_456_amount"
+                            <LinearLayout
+                                android:id="@+id/amount_container_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:background="@color/white"
-                                android:hint="Amount"
-                                android:inputType="number"
-                                android:textColor="@color/bright_blue"
-                                android:textColorHint="@color/bright_blue"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
+                                android:layout_above="@+id/percent_container_2"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:id="@+id/percent_container_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/date_container_3"
-                            android:layout_marginBottom="9dp"
-                            android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_money"
+                                    android:tint="@color/blue"
+                                    tools:ignore="UseAppTint" />
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_level"
-                                android:tint="@color/bright_blue"
-                                tools:ignore="UseAppTint" />
+                                <EditText
+                                    android:id="@+id/edit_58_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Amount"
+                                    android:inputType="number"
+                                    android:textColor="@color/blue"
+                                    android:textColorHint="@color/blue"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
 
-                            <EditText
-                                android:id="@+id/edit_456_percent"
+                            <LinearLayout
+                                android:id="@+id/percent_container_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:background="@color/white"
-                                android:hint="Percent"
-                                android:inputType="number"
-                                android:maxLength="1"
-                                android:textColor="@color/bright_blue"
-                                android:textColorHint="@color/bright_blue"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
+                                android:layout_above="@+id/date_container_2"
+                                android:layout_marginBottom="9dp"
+                                android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:id="@+id/date_container_3"
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_level"
+                                    android:tint="@color/blue"
+                                    tools:ignore="UseAppTint" />
+
+                                <EditText
+                                    android:id="@+id/edit_58_percent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Percent"
+                                    android:inputType="number"
+                                    android:maxLength="1"
+                                    android:textColor="@color/blue"
+                                    android:textColorHint="@color/blue"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/date_container_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_calendar"
+                                    android:tint="@color/blue"
+                                    tools:ignore="UseAppTint" />
+
+                                <TextView
+                                    android:id="@+id/edit_58_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:textColor="@color/blue"
+                                    android:textColorHint="@color/blue"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/btn_container_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginBottom="8dp"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="8dp">
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_calendar"
-                                android:tint="@color/bright_blue"
-                                tools:ignore="UseAppTint" />
-
-                            <TextView
-                                android:id="@+id/edit_456_date"
-                                android:layout_width="match_parent"
+                            <Button
+                                android:id="@+id/save_expired_2nd"
+                                android:layout_width="154dp"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:textColorHint="@color/bright_blue"
-                                android:textColor="@color/bright_blue"
-                                android:textSize="@dimen/large_text" />
-                        </LinearLayout>
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="20dp"
+                                android:backgroundTint="@color/blue"
+                                android:gravity="center"
+                                android:text="Delete"
+                                android:textColor="@color/white" />
+
+                            <Button
+                                android:id="@+id/upload_new_2nd"
+                                android:layout_width="154dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="20dp"
+                                android:backgroundTint="@color/blue"
+                                android:gravity="center"
+                                android:text="Upload New"
+                                android:textColor="@color/white" />
+
+                        </RelativeLayout>
+
+
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/btn_container_3"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="8dp">
+                        android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/save_expired_3rd"
-                            android:layout_width="154dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginStart="20dp"
-                            android:backgroundTint="@color/bright_blue"
-                            android:gravity="center"
-                            android:text="Delete"
-                            android:textColor="@color/white" />
+                        <RelativeLayout
+                            android:id="@+id/edit_expired_rl_2"
+                            android:layout_width="150dp"
+                            android:layout_height="220dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="32dp"
+                            android:background="@color/white">
 
-                        <Button
-                            android:id="@+id/upload_new_3rd"
-                            android:layout_width="154dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="20dp"
-                            android:backgroundTint="@color/bright_blue"
-                            android:gravity="center"
-                            android:text="Upload New"
-                            android:textColor="@color/white" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="No Image"
+                                android:textColor="@color/default_color" />
 
-                    </RelativeLayout>
+                            <ImageView
+                                android:id="@+id/edit_expired_img_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/stroke_bg_blue" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
 
                 </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="450dp"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginBottom="@dimen/large_margin"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/stroke_bg_pale_blue">
+
+                        <RelativeLayout
+                            android:layout_width="200dp"
+                            android:layout_height="150dp"
+                            android:layout_above="@id/btn_container_3"
+                            android:layout_centerHorizontal="true">
+
+                            <LinearLayout
+                                android:id="@+id/amount_container_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/percent_container_3"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_money"
+                                    android:tint="@color/bright_blue"
+                                    tools:ignore="UseAppTint" />
+
+                                <EditText
+                                    android:id="@+id/edit_456_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Amount"
+                                    android:inputType="number"
+                                    android:textColor="@color/bright_blue"
+                                    android:textColorHint="@color/bright_blue"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/percent_container_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/date_container_3"
+                                android:layout_marginBottom="9dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_level"
+                                    android:tint="@color/bright_blue"
+                                    tools:ignore="UseAppTint" />
+
+                                <EditText
+                                    android:id="@+id/edit_456_percent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Percent"
+                                    android:inputType="number"
+                                    android:maxLength="1"
+                                    android:textColor="@color/bright_blue"
+                                    android:textColorHint="@color/bright_blue"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/date_container_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_calendar"
+                                    android:tint="@color/bright_blue"
+                                    tools:ignore="UseAppTint" />
+
+                                <TextView
+                                    android:id="@+id/edit_456_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:textColor="@color/bright_blue"
+                                    android:textColorHint="@color/bright_blue"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/btn_container_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="8dp">
+
+                            <Button
+                                android:id="@+id/save_expired_3rd"
+                                android:layout_width="154dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="20dp"
+                                android:backgroundTint="@color/bright_blue"
+                                android:gravity="center"
+                                android:text="Delete"
+                                android:textColor="@color/white" />
+
+                            <Button
+                                android:id="@+id/upload_new_3rd"
+                                android:layout_width="154dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="20dp"
+                                android:backgroundTint="@color/bright_blue"
+                                android:gravity="center"
+                                android:text="Upload New"
+                                android:textColor="@color/white" />
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <RelativeLayout
                             android:id="@+id/edit_expired_rl_3"
                             android:layout_width="150dp"
                             android:layout_height="220dp"
-                            android:layout_marginTop="32dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="32dp"
                             android:background="@color/white">
 
                             <TextView
@@ -735,13 +767,13 @@
                                 android:background="@drawable/stroke_bg_pale_blue" />
                         </RelativeLayout>
 
-                </LinearLayout>
+                    </LinearLayout>
 
-            </RelativeLayout>
+                </RelativeLayout>
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 

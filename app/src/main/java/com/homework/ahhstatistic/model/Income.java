@@ -1,7 +1,7 @@
 package com.homework.ahhstatistic.model;
 
 public class Income {
-    private String totalIncome, totalAmount, amount811, percent811, fullProfit811, paidProfit811, earning811,
+    private String totalIncome, totalAmount, totalDailyProfit, amount811, percent811, fullProfit811, paidProfit811, earning811,
             amount58, percent58, fullProfit58, paidProfit58, earning58,
             amount456, percent456, fullProfit456, paidProfit456, earning456,
             currentDate, millisTime, id;
@@ -10,7 +10,7 @@ public class Income {
 
     }
 
-    public Income(String totalIncome, String totalAmount,
+    public Income(String totalIncome, String totalAmount, String totalDailyProfit,
                   String amount811, String percent811, String fullProfit811, String paidProfit811, String earning811,
                   String amount58, String percent58, String fullProfit58, String paidProfit58, String earning58,
                   String amount456, String percent456, String fullProfit456, String paidProfit456, String earning456,
@@ -18,6 +18,7 @@ public class Income {
 
         this.totalIncome = totalIncome;
         this.totalAmount = totalAmount;
+        this.totalDailyProfit = totalDailyProfit;
         this.amount811 = amount811;
         this.percent811 = percent811;
         this.fullProfit811 = fullProfit811;
@@ -43,6 +44,10 @@ public class Income {
 
     public String getTotalAmount() {
         return totalAmount;
+    }
+
+    public String getTotalDailyProfit() {
+        return totalDailyProfit;
     }
 
     public String getAmount811() {

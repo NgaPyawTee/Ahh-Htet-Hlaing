@@ -113,13 +113,21 @@ public class ProfitDetailActivity extends AppCompatActivity {
                 collRef.document(ID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        intTotalProfit = intProfit1 + intProfit2 + intProfit3 +
-                                Integer.parseInt(documentSnapshot.getString("dailyProfit"));
-                        totalProfit.setText(nf.format(intTotalProfit) + " Ks");
-                        dailyProfit.setText(nf.format(Integer.parseInt(edtProfit.getText().toString())) + " Ks");
-                        dialog.dismiss();
+                        int preProfit = Integer.parseInt(documentSnapshot.getString("preProfit"));
+                        int newPProfit = preProfit + Integer.parseInt(edtProfit.getText().toString());
 
-                        tvTitle.setText("Enter Amount");
+                        collRef.document(ID).update("preProfit", String.valueOf(newPProfit)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                intTotalProfit = intProfit1 + intProfit2 + intProfit3 +
+                                        Integer.parseInt(documentSnapshot.getString("dailyProfit"));
+                                totalProfit.setText(nf.format(intTotalProfit) + " Ks");
+                                dailyProfit.setText(nf.format(Integer.parseInt(edtProfit.getText().toString())) + " Ks");
+                                dialog.dismiss();
+
+                                tvTitle.setText("Enter Amount");
+                            }
+                        });
                     }
                 });
             }

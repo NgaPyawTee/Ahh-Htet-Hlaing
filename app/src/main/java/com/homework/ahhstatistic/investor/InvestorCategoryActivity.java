@@ -63,7 +63,6 @@ public class InvestorCategoryActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.investor_category_toolbar);
         toolbar.setTitle("Investors");
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_normal_back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

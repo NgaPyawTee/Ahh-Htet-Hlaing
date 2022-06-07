@@ -46,8 +46,8 @@ public class AddInvestorActivity extends AppCompatActivity {
     private TextInputEditText name, companyID, phone, nrc, address, amount811, percent811,
             amount58, percent58, amount456, percent456;
     private TextView date811, date58, date456;
-    private Uri imgUri1, imgUri2, imgUri3;
-    private ImageView imgView1, imgView2, imgView3;
+    private Uri imgUri1, imgUri2, imgUri3, nrcImgUri;
+    private ImageView imgView1, imgView2, imgView3, nrcImgView;
     private Button btnAdd;
     private DatePickerDialog.OnDateSetListener listener1, listener2, listener3;
     private CollectionReference collRef = FirebaseFirestore.getInstance().collection("Investors");
@@ -64,6 +64,7 @@ public class AddInvestorActivity extends AppCompatActivity {
     private String strImgOne = "";
     private String strImgTwo = "";
     private String strImgThree = "";
+    private String strNRCImg = "";
 
     //Image dialog
     private Dialog dialog;
@@ -145,6 +146,7 @@ public class AddInvestorActivity extends AppCompatActivity {
         imgView1 = findViewById(R.id.add_img_1);
         imgView2 = findViewById(R.id.add_img_2);
         imgView3 = findViewById(R.id.add_img_3);
+        nrcImgView = findViewById(R.id.add_nrc_img);
         btnAdd = findViewById(R.id.btn_add_investor);
 
         date811.setOnClickListener(new View.OnClickListener() {
@@ -191,127 +193,155 @@ public class AddInvestorActivity extends AppCompatActivity {
             }
         };
 
-        imgView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgUri1 == null) {
-                    OpenFileChooser1();
-                } else {
-                    Glide.with(AddInvestorActivity.this).load(imgUri1).into(zoomPic);
-                    dialog.show();
+        imgView1.setOnClickListener(view -> {
+            if (imgUri1 == null) {
+                OpenFileChooser1();
+            } else {
+                Glide.with(AddInvestorActivity.this).load(imgUri1).into(zoomPic);
+                dialog.show();
 
-                    zoomPic.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (visible) {
-                                RLToolbar.setVisibility(View.VISIBLE);
-                                visible = false;
-                            } else {
-                                RLToolbar.setVisibility(View.GONE);
-                                visible = true;
+                zoomPic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (visible) {
+                            RLToolbar.setVisibility(View.VISIBLE);
+                            visible = false;
+                        } else {
+                            RLToolbar.setVisibility(View.GONE);
+                            visible = true;
+                        }
+                    }
+                });
+
+                clrImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(AddInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                imgUri1 = null;
+                                imgView1.setImageURI(null);
+                                imgView1.setBackgroundResource(R.drawable.stroke_bg_cyan);
+                                dialog.dismiss();
                             }
-                        }
-                    });
-
-                    clrImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(AddInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    imgUri1 = null;
-                                    imgView1.setImageURI(null);
-                                    imgView1.setBackgroundResource(R.drawable.stroke_bg_cyan);
-                                    dialog.dismiss();
-                                }
-                            }, 2000);
-                        }
-                    });
-                }
+                        }, 2000);
+                    }
+                });
             }
         });
-        imgView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgUri2 == null) {
-                    OpenFileChooser2();
-                } else {
-                    Glide.with(AddInvestorActivity.this).load(imgUri2).into(zoomPic);
-                    dialog.show();
+        imgView2.setOnClickListener(view -> {
+            if (imgUri2 == null) {
+                OpenFileChooser2();
+            } else {
+                Glide.with(AddInvestorActivity.this).load(imgUri2).into(zoomPic);
+                dialog.show();
 
-                    zoomPic.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (visible) {
-                                RLToolbar.setVisibility(View.VISIBLE);
-                                visible = false;
-                            } else {
-                                RLToolbar.setVisibility(View.GONE);
-                                visible = true;
+                zoomPic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (visible) {
+                            RLToolbar.setVisibility(View.VISIBLE);
+                            visible = false;
+                        } else {
+                            RLToolbar.setVisibility(View.GONE);
+                            visible = true;
+                        }
+                    }
+                });
+
+                clrImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(AddInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                imgUri2 = null;
+                                imgView2.setImageURI(null);
+                                imgView2.setBackgroundResource(R.drawable.stroke_bg_blue);
+                                dialog.dismiss();
                             }
-                        }
-                    });
-
-                    clrImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(AddInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    imgUri2 = null;
-                                    imgView2.setImageURI(null);
-                                    imgView2.setBackgroundResource(R.drawable.stroke_bg_blue);
-                                    dialog.dismiss();
-                                }
-                            }, 2000);
-                        }
-                    });
-                }
+                        }, 2000);
+                    }
+                });
             }
         });
-        imgView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (imgUri3 == null) {
-                    OpenFileChooser3();
-                } else {
-                    Glide.with(AddInvestorActivity.this).load(imgUri3).into(zoomPic);
-                    dialog.show();
+        imgView3.setOnClickListener(view -> {
+            if (imgUri3 == null) {
+                OpenFileChooser3();
+            } else {
+                Glide.with(AddInvestorActivity.this).load(imgUri3).into(zoomPic);
+                dialog.show();
 
-                    zoomPic.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (visible) {
-                                RLToolbar.setVisibility(View.VISIBLE);
-                                visible = false;
-                            } else {
-                                RLToolbar.setVisibility(View.GONE);
-                                visible = true;
+                zoomPic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (visible) {
+                            RLToolbar.setVisibility(View.VISIBLE);
+                            visible = false;
+                        } else {
+                            RLToolbar.setVisibility(View.GONE);
+                            visible = true;
+                        }
+                    }
+                });
+
+                clrImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(AddInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                imgUri3 = null;
+                                imgView3.setImageURI(null);
+                                imgView3.setBackgroundResource(R.drawable.stroke_bg_pale_blue);
+                                dialog.dismiss();
                             }
-                        }
-                    });
+                        }, 2000);
+                    }
+                });
+            }
+        });
+        nrcImgView.setOnClickListener(view -> {
+            if (nrcImgUri == null) {
+                OpenFileChooser4();
+            } else {
+                Glide.with(AddInvestorActivity.this).load(nrcImgUri).into(zoomPic);
+                dialog.show();
 
-                    clrImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(AddInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    imgUri3 = null;
-                                    imgView3.setImageURI(null);
-                                    imgView3.setBackgroundResource(R.drawable.stroke_bg_pale_blue);
-                                    dialog.dismiss();
-                                }
-                            }, 2000);
+                zoomPic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (visible) {
+                            RLToolbar.setVisibility(View.VISIBLE);
+                            visible = false;
+                        } else {
+                            RLToolbar.setVisibility(View.GONE);
+                            visible = true;
                         }
-                    });
-                }
+                    }
+                });
+
+                clrImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(AddInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                nrcImgUri = null;
+                                nrcImgView.setImageURI(null);
+                                dialog.dismiss();
+                            }
+                        }, 2000);
+                    }
+                });
             }
         });
 
@@ -344,6 +374,13 @@ public class AddInvestorActivity extends AppCompatActivity {
         startActivityForResult(intent, 3);
     }
 
+    private void OpenFileChooser4() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 4);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -360,6 +397,9 @@ public class AddInvestorActivity extends AppCompatActivity {
             imgView3.setBackgroundResource(android.R.color.transparent);
             imgUri3 = data.getData();
             imgView3.setImageURI(imgUri3);
+        } else if (requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            nrcImgUri = data.getData();
+            nrcImgView.setImageURI(nrcImgUri);
         }
     }
 
@@ -429,7 +469,7 @@ public class AddInvestorActivity extends AppCompatActivity {
                     str811amount, str811percent, str811date,
                     str58amount, str58percent, str58date,
                     str456amount, str456percent, str456date,
-                    cashBonus, dailyProfit, strImgOne, strImgTwo, strImgThree, preProfit))
+                    cashBonus, dailyProfit, strNRCImg, strImgOne, strImgTwo, strImgThree, preProfit))
                     .addOnSuccessListener(this, new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
@@ -484,6 +524,22 @@ public class AddInvestorActivity extends AppCompatActivity {
                                                 collRef.document(documentReference.getId()).update("amount456", amount456.getText().toString());
                                                 collRef.document(documentReference.getId()).update("percent456", percent456.getText().toString());
                                                 collRef.document(documentReference.getId()).update("date456", date456.getText().toString());
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+
+                            if (nrcImgUri != null) {
+                                StorageReference fileRef = storageReference.child(strName + "/NRC"
+                                        + "." + getFileExtension(nrcImgUri));
+                                fileRef.putFile(nrcImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                collRef.document(documentReference.getId()).update("nrcImgUrl", uri.toString());
                                             }
                                         });
                                     }

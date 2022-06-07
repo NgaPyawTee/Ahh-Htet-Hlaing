@@ -12,9 +12,9 @@
         android:id="@+id/add_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="Add New Investor"
-        app:titleTextColor="@color/white"
-        android:background="@color/blue" />
+        android:background="@color/blue"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Add New Investor" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -25,92 +25,98 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="Name"
+            android:textColorHint="@color/blue"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/blue"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/red">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:hint="Name"
-                android:textColorHint="@color/blue"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
+                android:inputType="text"
+                android:textColor="@color/black" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/add_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="Company ID"
+            android:textColorHint="@color/blue"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/blue"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/red">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_companyID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="Phone"
+            android:textColorHint="@color/blue"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/blue"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/red">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:hint="Company ID"
-                android:textColorHint="@color/blue"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/add_companyID"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:hint="Phone"
-                android:textColorHint="@color/blue"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@color/blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/red">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/add_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
                 android:hint="NRC"
                 android:textColorHint="@color/blue"
                 app:boxCornerRadiusBottomEnd="8dp"
@@ -129,6 +135,33 @@
                     android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="@dimen/medium_margin"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="6dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/stroke_round_cyan_img">
+
+                    <ImageView
+                        android:id="@+id/add_nrc_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -182,24 +215,24 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginBottom="20dp"
                         android:hint="Amount"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/dark_cyan"
                         android:theme="@style/AppTheme.Cyan"
                         app:boxCornerRadiusBottomEnd="8dp"
                         app:boxCornerRadiusBottomStart="8dp"
                         app:boxCornerRadiusTopEnd="8dp"
                         app:boxCornerRadiusTopStart="8dp"
-                        app:boxStrokeColor="@color/cyan"
+                        app:boxStrokeColor="@color/dark_cyan"
                         app:endIconMode="clear_text"
                         app:endIconTint="@color/red"
                         app:startIconDrawable="@drawable/ic_money"
-                        app:startIconTint="@color/cyan">
+                        app:startIconTint="@color/dark_cyan">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/add_811_amount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            android:textColor="@color/cyan" />
+                            android:textColor="@color/dark_cyan" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,53 +243,53 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginBottom="20dp"
                         android:hint="Percent"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/dark_cyan"
                         android:theme="@style/AppTheme.Cyan"
                         app:boxCornerRadiusBottomEnd="8dp"
                         app:boxCornerRadiusBottomStart="8dp"
                         app:boxCornerRadiusTopEnd="8dp"
                         app:boxCornerRadiusTopStart="8dp"
-                        app:boxStrokeColor="@color/cyan"
+                        app:boxStrokeColor="@color/dark_cyan"
                         app:endIconMode="clear_text"
                         app:endIconTint="@color/red"
                         app:startIconDrawable="@drawable/ic_level"
-                        app:startIconTint="@color/cyan">
+                        app:startIconTint="@color/dark_cyan">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/add_811_percent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            android:textColor="@color/cyan" />
+                            android:textColor="@color/dark_cyan" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
-                        android:layout_marginTop="@dimen/normal_margin"
                         android:layout_marginStart="20dp"
-                        android:gravity="center_vertical"
-                        android:paddingStart="12dp"
+                        android:layout_marginTop="@dimen/normal_margin"
                         android:background="@drawable/stroke_round_cyan"
-                        android:orientation="horizontal">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="12dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_calendar"
-                            android:tint="@color/cyan"
+                            android:tint="@color/dark_cyan"
                             tools:ignore="UseAppTint" />
 
                         <TextView
                             android:id="@+id/add_811_date"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
                             android:gravity="center_vertical"
                             android:hint="Date"
-                            android:textColorHint="@color/cyan"
-                            android:textColor="@color/cyan"
-                            android:layout_marginStart="20dp"
+                            android:textColor="@color/dark_cyan"
+                            android:textColorHint="@color/dark_cyan"
                             android:textSize="@dimen/normal_text" />
 
                     </LinearLayout>
@@ -342,12 +375,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
-                        android:layout_marginTop="@dimen/normal_margin"
                         android:layout_marginStart="20dp"
-                        android:gravity="center_vertical"
-                        android:paddingStart="12dp"
+                        android:layout_marginTop="@dimen/normal_margin"
                         android:background="@drawable/stroke_round_blue"
-                        android:orientation="horizontal">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="12dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -360,11 +393,11 @@
                             android:id="@+id/add_58_date"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
                             android:gravity="center_vertical"
                             android:hint="Date"
-                            android:textColorHint="@color/blue"
                             android:textColor="@color/blue"
-                            android:layout_marginStart="20dp"
+                            android:textColorHint="@color/blue"
                             android:textSize="@dimen/normal_text" />
 
                     </LinearLayout>
@@ -451,12 +484,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
-                        android:layout_marginTop="@dimen/normal_margin"
                         android:layout_marginStart="20dp"
-                        android:gravity="center_vertical"
-                        android:paddingStart="12dp"
+                        android:layout_marginTop="@dimen/normal_margin"
                         android:background="@drawable/stroke_round_pale_blue"
-                        android:orientation="horizontal">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="12dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -469,11 +502,11 @@
                             android:id="@+id/add_456_date"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
                             android:gravity="center_vertical"
                             android:hint="Date"
-                            android:textColorHint="@color/bright_blue"
                             android:textColor="@color/bright_blue"
-                            android:layout_marginStart="20dp"
+                            android:textColorHint="@color/bright_blue"
                             android:textSize="@dimen/normal_text" />
 
                     </LinearLayout>
@@ -485,9 +518,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:gravity="start"
-                android:layout_marginStart="20dp"
                 android:text="Make sure you added the contract photo or the inserted information about that contract will not be saved."
                 android:textColor="@color/blue" />
 
@@ -495,13 +528,13 @@
                 android:id="@+id/btn_add_investor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Investor"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/blue"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/blue"
+                android:text="Add Investor"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

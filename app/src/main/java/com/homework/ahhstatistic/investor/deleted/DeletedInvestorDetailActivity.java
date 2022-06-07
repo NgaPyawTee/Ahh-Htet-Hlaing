@@ -1,6 +1,7 @@
 package com.homework.ahhstatistic.investor.deleted;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 import androidx.core.widget.NestedScrollView;
 
 import android.app.Dialog;
@@ -29,7 +30,7 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
     public static final String ID_PASS = "ID_PASS";
     public static String id;
 
-    private RelativeLayout RLToolbar;
+    private RelativeLayout RLToolbar, rl;
     private NestedScrollView NSV;
 
     private TextView name, companyID, phone, nrc, address,
@@ -50,15 +51,17 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deleted_investor_detail);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.dark_blue));
+        WindowCompat.setDecorFitsSystemWindows(getWindow(),false);
+        getWindow().setStatusBarColor(getResources().getColor(android.R.color.transparent));
 
         Intent intent = getIntent();
         id = intent.getStringExtra(ID_PASS);
 
-
         collRef = FirebaseFirestore.getInstance().collection("Deleted Investors");
         progressBar = findViewById(R.id.deleted_detail_progress_bar);
         NSV = findViewById(R.id.deleted_detail_container);
+
+        rl = findViewById(R.id.deleted_detail_rl);
 
         //Image Dialog
         imageDialog = new Dialog(this);
@@ -235,6 +238,7 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
 
             progressBar.setVisibility(View.GONE);
             NSV.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
         });
     }
 }
