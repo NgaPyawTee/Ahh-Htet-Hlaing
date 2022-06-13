@@ -3,20 +3,16 @@ package com.homework.ahhstatistic.investor.detail;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -26,31 +22,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.homework.ahhstatistic.R;
-import com.homework.ahhstatistic.investor.UpdateInvestorActivity;
-import com.homework.ahhstatistic.model.ExpiredDate;
-import com.homework.ahhstatistic.model.Investor;
-
-import org.joda.time.Period;
-import org.joda.time.PeriodType;
 
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
     private String bundlePass;
@@ -59,10 +37,9 @@ public class HomeFragment extends Fragment {
 
     private LinearLayout showNRCImg;
     private TextView name, companyID, phone, nrc, address,
-            amount811, percent811, date811,
-            amount58, percent58, date58,
-            amount456, percent456, date456,
-            cashBonus;
+            amount811Cash, amount811Banking,  percent811, date811,
+            amount58Cash, amount58Banking, percent58, date58,
+            amount456Cash, amount456Banking, percent456, date456;
     private ImageView zoomPic, downImg, backImg, clrImg;
     private Uri imgUri1, imgUri2, imgUri3, nrcImgUri;
     private ProgressBar progressBar;
@@ -107,32 +84,33 @@ public class HomeFragment extends Fragment {
         imageView3 = view.findViewById(R.id.detail_img_three);
         showNRCImg = view.findViewById(R.id.show_detail_nrc);
 
-        amount811 = view.findViewById(R.id.detail_plan_811_amount);
+        amount811Cash = view.findViewById(R.id.detail_plan_811_amount_cash);
+        amount811Banking = view.findViewById(R.id.detail_plan_811_amount_banking);
         percent811 = view.findViewById(R.id.detail_plan_811_percent);
         date811 = view.findViewById(R.id.detail_date_811);
 
-        amount58 = view.findViewById(R.id.detail_plan_58_amount);
+        amount58Cash = view.findViewById(R.id.detail_plan_58_amount_cash);
+        amount58Banking = view.findViewById(R.id.detail_plan_58_amount_banking);
         percent58 = view.findViewById(R.id.detail_plan_58_percent);
         date58 = view.findViewById(R.id.detail_date_58);
 
-        amount456 = view.findViewById(R.id.detail_plan_456_amount);
+        amount456Cash = view.findViewById(R.id.detail_plan_456_amount_cash);
+        amount456Banking = view.findViewById(R.id.detail_plan_456_amount_banking);
         percent456 = view.findViewById(R.id.detail_plan_456_percent);
         date456 = view.findViewById(R.id.detail_date_456);
 
-        cashBonus = view.findViewById(R.id.cash_bonus);
-
         imageView1.setOnClickListener(view14 -> {
-            if (imgUri1 != null && !amount811.getText().toString().equals("Unavaliable")) {
+            if (imgUri1 != null && !amount811Cash.getText().toString().equals("Unavaliable")) {
                 OpenImageDialog1();
             }
         });
         imageView2.setOnClickListener(view15 -> {
-            if (imgUri2 != null && !amount58.getText().toString().equals("Unavaliable")) {
+            if (imgUri2 != null && !amount58Cash.getText().toString().equals("Unavaliable")) {
                 OpenImageDialog2();
             }
         });
         imageView3.setOnClickListener(view16 -> {
-            if (imgUri3 != null && !amount456.getText().toString().equals("Unavaliable")) {
+            if (imgUri3 != null && !amount456Cash.getText().toString().equals("Unavaliable")) {
                 OpenImageDialog3();
             }
         });
@@ -304,7 +282,7 @@ public class HomeFragment extends Fragment {
         DownloadManager.Request request = new DownloadManager.Request(nrcImgUri);
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
 
-        request.setTitle(name.getText().toString());
+        request.setTitle(name.getText().toString() + " NRC");
         request.setDescription("Download Completed");
         request.allowScanningByMediaScanner();
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION);
@@ -330,38 +308,46 @@ public class HomeFragment extends Fragment {
                 nrc.setText(documentSnapshot.getString("nrc"));
                 address.setText(documentSnapshot.getString("address"));
 
-                if (documentSnapshot.getString("amount811").equals("0") && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
-                    amount811.setText("Unavaliable");
+                if (documentSnapshot.getString("amount811Cash").equals("0") && documentSnapshot.getString("amount811Banking").equals("0")
+                        && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
+                    amount811Cash.setText("Unavaliable");
+                    amount811Banking.setText("Unavaliable");
                     percent811.setText("Unavaliable");
                     date811.setText("Unavaliable");
 
                 } else {
-                    amount811.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount811"))) + " Ks");
+                    amount811Cash.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount811Cash"))) + " Ks");
+                    amount811Banking.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount811Banking"))) + " Ks");
                     percent811.setText(documentSnapshot.getString("percent811") + "%");
                     date811.setText(documentSnapshot.getString("date811"));
                 }
 
-                if (documentSnapshot.getString("amount58").equals("0") && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
-                    amount58.setText("Unavaliable");
+                if (documentSnapshot.getString("amount58Cash").equals("0") && documentSnapshot.getString("amount58Banking").equals("0")
+                        && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
+                    amount58Cash.setText("Unavaliable");
+                    amount58Banking.setText("Unavaliable");
                     percent58.setText("Unavaliable");
                     date58.setText("Unavaliable");
                 } else {
-                    amount58.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount58"))) + " Ks");
+                    amount58Cash.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount58Cash"))) + " Ks");
+                    amount58Banking.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount58Banking"))) + " Ks");
                     percent58.setText(documentSnapshot.getString("percent58") + "%");
                     date58.setText(documentSnapshot.getString("date58"));
                 }
 
-                if (documentSnapshot.getString("amount456").equals("0") && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
-                    amount456.setText("Unavaliable");
+                if (documentSnapshot.getString("amount456Cash").equals("0") && documentSnapshot.getString("amount456Banking").equals("0")
+                        && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
+                    amount456Cash.setText("Unavaliable");
+                    amount456Banking.setText("Unavaliable");
                     percent456.setText("Unavaliable");
                     date456.setText("Unavaliable");
                 } else {
-                    amount456.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount456"))) + " Ks");
+                    amount456Cash.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount456Cash"))) + " Ks");
+                    amount456Banking.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount456Banking"))) + " Ks");
                     percent456.setText(documentSnapshot.getString("percent456") + "%");
                     date456.setText(documentSnapshot.getString("date456"));
                 }
 
-                cashBonus.setText(nf.format(Integer.parseInt(documentSnapshot.getString("cashBonus"))) + " Ks");
 
                 if (!documentSnapshot.getString("imgUrlOne").isEmpty()) {
                     imgUri1 = Uri.parse(documentSnapshot.getString("imgUrlOne"));

@@ -16,7 +16,6 @@ public class DeletedCategoryViewHolder extends RecyclerView.ViewHolder {
     TextView name, amount, companyID, count;
     int amount1, amount2, amount3;
 
-
     public DeletedCategoryViewHolder(@NonNull View itemView) {
         super(itemView);
 

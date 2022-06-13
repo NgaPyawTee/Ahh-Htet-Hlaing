@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.homework.ahhstatistic.Income.MyIncomeHomeActivity;
 import com.homework.ahhstatistic.calculator.DailyProfitCalculator;
 import com.homework.ahhstatistic.investor.InvestorCategoryActivity;
-import com.homework.ahhstatistic.profit.MonthlyProfitActivity;
+import com.homework.ahhstatistic.profit.MonthlyProfitCategoryActivity;
 
 public class MainActivity extends AppCompatActivity {
     CardView investor, income, payment, calculator, sign_out;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MonthlyProfitActivity.class));
+                startActivity(new Intent(MainActivity.this, MonthlyProfitCategoryActivity.class));
             }
         });
 

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.homework.ahhstatistic.R;
 import com.homework.ahhstatistic.model.ExpiredDate;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,9 +46,13 @@ public class FirstContractFragment extends Fragment {
 
     private Dialog imgDialog;
     private ImageView imgBack, imgDown, imgClear, pic;
-    private RelativeLayout RLToolbar;
-    private Uri UriDown;
+    private RelativeLayout RLToolbar, RLBottom;
+    private TextView imageDialogCash, imageDialogBanking;
+    private Uri imageUri;
     private boolean visible = true;
+
+    private NumberFormat nf = NumberFormat.getInstance();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,6 +72,9 @@ public class FirstContractFragment extends Fragment {
         imgClear.setVisibility(View.INVISIBLE);
         imgDown = imgDialog.findViewById(R.id.down_img);
         pic = imgDialog.findViewById(R.id.zoom_img);
+        RLBottom = imgDialog.findViewById(R.id.image_dialog_bottom_layout);
+        imageDialogCash = imgDialog.findViewById(R.id.image_dialog_amount_cash);
+        imageDialogBanking = imgDialog.findViewById(R.id.image_dialog_amount_banking);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,9 +89,14 @@ public class FirstContractFragment extends Fragment {
         adapter.setListener(new ContractAdapter.Listener() {
             @Override
             public void onClick(int position) {
-                UriDown = Uri.parse(imageUrlList.get(position));
-                if (UriDown != null) {
-                    Glide.with(getContext()).load(UriDown).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(pic);
+                String cash = list.get(position).getAmountCash();
+                String banking = list.get(position).getAmountBanking();
+                imageDialogCash.setText(nf.format(Integer.parseInt(cash)) + " Ks");
+                imageDialogBanking.setText(nf.format(Integer.parseInt(banking)) + " Ks");
+
+                imageUri = Uri.parse(imageUrlList.get(position));
+                if (imageUri != null) {
+                    Glide.with(getContext()).load(imageUri).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(pic);
                     imgDialog.show();
 
                     pic.setOnClickListener(new View.OnClickListener() {
@@ -90,9 +104,11 @@ public class FirstContractFragment extends Fragment {
                         public void onClick(View view) {
                             if (visible) {
                                 RLToolbar.setVisibility(View.VISIBLE);
+                                RLBottom.setVisibility(View.VISIBLE);
                                 visible = false;
                             } else {
                                 RLToolbar.setVisibility(View.GONE);
+                                RLBottom.setVisibility(View.GONE);
                                 visible = true;
                             }
                         }
@@ -119,7 +135,7 @@ public class FirstContractFragment extends Fragment {
 
     private void DownloadImage() {
         DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
-        DownloadManager.Request request = new DownloadManager.Request(UriDown);
+        DownloadManager.Request request = new DownloadManager.Request(imageUri);
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
 
         request.setTitle("Expired 1st Contract");

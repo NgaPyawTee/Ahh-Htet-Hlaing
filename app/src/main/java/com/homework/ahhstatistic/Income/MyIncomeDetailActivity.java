@@ -121,7 +121,12 @@ public class MyIncomeDetailActivity extends AppCompatActivity {
             fullProfit456.setText(nf.format(Integer.parseInt(item.getFullProfit456())) + " Ks");
             earning3.setText(nf.format(Integer.parseInt(item.getEarning456())) + " Ks");
 
-            checkMethod.setText("check method:\nall earnings - " + nf.format(Integer.parseInt(item.getTotalDailyProfit())) + " Ks (all daily profit)");
+            if (item.getTotalDailyProfit().equals("0")){
+                checkMethod.setText("Check method :\n all earnings (No daily profit in this month)");
+            }else{
+                checkMethod.setText("check method:\nall earnings - " + nf.format(Integer.parseInt(item.getTotalDailyProfit())) + " Ks (all daily profit)");
+            }
+
             detailDate.setText(item.getCurrentDate());
 
         });

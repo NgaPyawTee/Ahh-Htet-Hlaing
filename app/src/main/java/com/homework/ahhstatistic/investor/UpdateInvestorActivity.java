@@ -53,10 +53,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     public static final String ID_PASS = "IntentPass";
     String intentPass, id;
 
-    private TextInputEditText name, companyID, phone, nrc, address, cashBonus, preProfit;
+    private TextInputEditText name, companyID, phone, nrc, address, preProfit;
     private ImageView exImgView1, exImgView2, exImgView3, nrcImgView, zoomPic, downImg, backImg, clrImg;
     private TextView date811, date58, date456;
-    private EditText amount811, percent811, amount58, percent58, amount456, percent456;
+    private EditText amount811Cash, amount811Banking, percent811, amount58Cash, amount58Banking, percent58, amount456Cash, amount456Banking, percent456;
     private Button btnEx1st, btnOn1st, btnEx2nd, btnOn2nd, btnEx3rd, btnOn3rd, btnUpdate;
     private RelativeLayout exRL1, exRL2, exRL3;
     private ProgressBar progressBar;
@@ -68,7 +68,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private DatePickerDialog.OnDateSetListener listener1, listener2, listener3;
     private Uri exImgUri1, exImgUri2, exImgUri3, nrcImgUri;
-    int intAmount811, intPercent811, intCashBonus, intAmount58, intPercent58, intAmount456, intPercent456;
+    int intAmount811, intPercent811, intAmount58, intPercent58, intAmount456, intPercent456;
 
     //Alert Dialog
     private Dialog alertDialog;
@@ -114,15 +114,21 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         nrc = findViewById(R.id.edit_nrc);
         address = findViewById(R.id.edit_address);
 
-        amount811 = findViewById(R.id.edit_811_amount);
+        amount811Cash = findViewById(R.id.edit_811_amount_cash);
+        amount811Banking = findViewById(R.id.edit_811_amount_banking);
         percent811 = findViewById(R.id.edit_811_percent);
         date811 = findViewById(R.id.edit_811_date);
 
-        amount58 = findViewById(R.id.edit_58_amount);
+        amount58Cash = findViewById(R.id.edit_58_amount_cash);
+        amount58Banking = findViewById(R.id.edit_58_amount_banking);
         percent58 = findViewById(R.id.edit_58_percent);
         date58 = findViewById(R.id.edit_58_date);
 
-        cashBonus = findViewById(R.id.edit_cash_bonus);
+        amount456Cash = findViewById(R.id.edit_456_amount_cash);
+        amount456Banking = findViewById(R.id.edit_456_amount_banking);
+        percent456 = findViewById(R.id.edit_456_percent);
+        date456 = findViewById(R.id.edit_456_date);
+
         preProfit = findViewById(R.id.edit_pre_profit);
 
         btnUpdate = findViewById(R.id.btn_update_investor);
@@ -132,10 +138,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 UpdatePersonalInfo();
             }
         });
-
-        amount456 = findViewById(R.id.edit_456_amount);
-        percent456 = findViewById(R.id.edit_456_percent);
-        date456 = findViewById(R.id.edit_456_date);
 
         exImgView1 = findViewById(R.id.edit_expired_img_1);
         exImgView2 = findViewById(R.id.edit_expired_img_2);
@@ -496,14 +498,15 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void savedEx1st() {
-        String amount = amount811.getText().toString();
+        String amountCash = amount811Cash.getText().toString();
+        String amountBanking = amount811Banking.getText().toString();
         String percent = percent811.getText().toString();
         String date = date811.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
         String imageUrl = String.valueOf(exImgUri1);
         String color = "Cyan";
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
+        if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -518,11 +521,12 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         } else {
             CalculateProfit1();
 
-            collRef.document(id).collection("First Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl, color))
+            collRef.document(id).collection("First Date").add(new ExpiredDate(amountCash, amountBanking, percent, date, currentTime, imageUrl, color))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            collRef.document(id).update("amount811", "0");
+                            collRef.document(id).update("amount811Cash", "0");
+                            collRef.document(id).update("amount811Banking", "0");
                             collRef.document(id).update("percent811", "");
                             collRef.document(id).update("date811", "");
                             collRef.document(id).update("imgUrlOne", "");
@@ -536,8 +540,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     btnEx1st.setText("Deleted");
                                     btnEx1st.setClickable(false);
 
-                                    amount811.setText(null);
-                                    amount811.setHint("Unavaliable");
+                                    amount811Cash.setText(null);
+                                    amount811Cash.setHint("Unavaliable");
+                                    amount811Banking.setText(null);
+                                    amount811Banking.setHint("Unavaliable");
                                     percent811.setText(null);
                                     percent811.setHint("Unavaliable");
                                     date811.setText(null);
@@ -558,14 +564,15 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void savedEx2nd() {
-        String amount = amount58.getText().toString();
+        String amountCash = amount58Cash.getText().toString();
+        String amountBanking = amount58Banking.getText().toString();
         String percent = percent58.getText().toString();
         String date = date58.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
         String imageUrl =  String.valueOf(exImgUri2);
         String color = "Blue";
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
+        if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -580,11 +587,12 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         } else {
             CalculateProfit2();
 
-            collRef.document(id).collection("Second Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl, color))
+            collRef.document(id).collection("Second Date").add(new ExpiredDate(amountCash, amountBanking, percent, date, currentTime, imageUrl, color))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            collRef.document(id).update("amount58", "0");
+                            collRef.document(id).update("amount58Cash", "0");
+                            collRef.document(id).update("amount58Banking", "0");
                             collRef.document(id).update("percent58", "");
                             collRef.document(id).update("date58", "");
                             collRef.document(id).update("imgUrlTwo", "");
@@ -598,8 +606,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     btnEx2nd.setText("Deleted");
                                     btnEx2nd.setClickable(false);
 
-                                    amount58.setText(null);
-                                    amount58.setHint("Unavaliable");
+                                    amount58Cash.setText(null);
+                                    amount58Cash.setHint("Unavaliable");
+                                    amount58Banking.setText(null);
+                                    amount58Banking.setHint("Unavaliable");
                                     percent58.setText(null);
                                     percent58.setHint("Unavaliable");
                                     date58.setText(null);
@@ -620,14 +630,15 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void savedEx3rd() {
-        String amount = amount456.getText().toString();
+        String amountCash = amount456Cash.getText().toString();
+        String amountBanking = amount456Banking.getText().toString();
         String percent = percent456.getText().toString();
         String date = date456.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
         String imageUrl =  String.valueOf(exImgUri3);
         String color = "Pale Blue";
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
+        if (amountCash.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -642,11 +653,12 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         } else {
             CalculateProfit3();
 
-            collRef.document(id).collection("Third Date").add(new ExpiredDate(amount, percent, date, currentTime, imageUrl, color))
+            collRef.document(id).collection("Third Date").add(new ExpiredDate(amountCash, amountBanking, percent, date, currentTime, imageUrl, color))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            collRef.document(id).update("amount456", "0");
+                            collRef.document(id).update("amount456Cash", "0");
+                            collRef.document(id).update("amount456Banking", "0");
                             collRef.document(id).update("percent456", "");
                             collRef.document(id).update("date456", "");
                             collRef.document(id).update("imgUrlThree", "");
@@ -660,8 +672,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     btnEx3rd.setText("Deleted");
                                     btnEx3rd.setClickable(false);
 
-                                    amount456.setText(null);
-                                    amount456.setHint("Unavaliable");
+                                    amount456Cash.setText(null);
+                                    amount456Cash.setHint("Unavaliable");
+                                    amount456Banking.setText(null);
+                                    amount456Banking.setHint("Unavaliable");
                                     percent456.setText(null);
                                     percent456.setHint("Unavaliable");
                                     date456.setText(null);
@@ -682,7 +696,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void UploadNew1st() {
-        String amount = amount811.getText().toString();
+        String amount = amount811Cash.getText().toString();
         String percent = percent811.getText().toString();
         String date = date811.getText().toString();
 
@@ -714,7 +728,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            collRef.document(id).update("amount811", amount811.getText().toString());
+                            collRef.document(id).update("amount811", amount811Cash.getText().toString());
                             collRef.document(id).update("percent811", percent811.getText().toString());
                             collRef.document(id).update("date811", date811.getText().toString());
                             collRef.document(id).update("imgUrlOne", uri.toString());
@@ -731,7 +745,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void UploadNew2nd() {
-        String amount = amount58.getText().toString();
+        String amount = amount58Cash.getText().toString();
         String percent = percent58.getText().toString();
         String date = date58.getText().toString();
 
@@ -763,7 +777,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            collRef.document(id).update("amount58", amount58.getText().toString());
+                            collRef.document(id).update("amount58", amount58Cash.getText().toString());
                             collRef.document(id).update("percent58", percent58.getText().toString());
                             collRef.document(id).update("date58", date58.getText().toString());
                             collRef.document(id).update("imgUrlTwo", uri.toString());
@@ -780,7 +794,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void UploadNew3rd() {
-        String amount = amount456.getText().toString();
+        String amount = amount456Cash.getText().toString();
         String percent = percent456.getText().toString();
         String date = date456.getText().toString();
 
@@ -812,7 +826,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            collRef.document(id).update("amount456", amount456.getText().toString());
+                            collRef.document(id).update("amount456", amount456Cash.getText().toString());
                             collRef.document(id).update("percent456", percent456.getText().toString());
                             collRef.document(id).update("date456", date456.getText().toString());
                             collRef.document(id).update("imgUrlThree", uri.toString());
@@ -862,11 +876,11 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         }
 
         if (dateDiff >= 4) {
-            int monthly = (int) (intAmount811 * intPercent811 * 0.01 * 4) + (intCashBonus * 4);
+            int monthly = (int) (intAmount811 * intPercent811 * 0.01 * 4);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
         } else if (dateDiff < 4 && dateDiff > 0) {
-            int monthly = (int) (intAmount811 * intPercent811 * 0.01 * dateDiff) + (intCashBonus * dateDiff);
+            int monthly = (int) (intAmount811 * intPercent811 * 0.01 * dateDiff);
             int profit = Integer.parseInt(preProfit.getText().toString()) + monthly;
             preProfit.setText(String.valueOf(profit));
         } else {
@@ -983,10 +997,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String strPhone = phone.getText().toString();
         String strNRC = nrc.getText().toString();
         String strAddress = address.getText().toString();
-        String strCashBonus = cashBonus.getText().toString();
         String strPreprofit = preProfit.getText().toString();
 
-        if (strName.isEmpty() | strCompanyID.isEmpty() | strPhone.isEmpty() | strNRC.isEmpty() | strAddress.isEmpty() | strCashBonus.isEmpty() | strPreprofit.isEmpty()) {
+        if (strName.isEmpty() | strCompanyID.isEmpty() | strPhone.isEmpty() | strNRC.isEmpty() | strAddress.isEmpty() | strPreprofit.isEmpty()) {
             alertDialog.show();
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields again.");
@@ -1026,7 +1039,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             collRef.document(id).update("phone", phone.getText().toString());
             collRef.document(id).update("nrc", nrc.getText().toString());
             collRef.document(id).update("address", address.getText().toString());
-            collRef.document(id).update("cashBonus", cashBonus.getText().toString());
             collRef.document(id).update("preProfit", preProfit.getText().toString());
 
             Handler handler = new Handler();
@@ -1186,61 +1198,70 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     Glide.with(UpdateInvestorActivity.this).load(nrcImgUri).into(nrcImgView);
                 }
 
-                if (documentSnapshot.getString("amount811").equals("0") && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
-                    amount811.setHint("Unavaliable");
+                if (documentSnapshot.getString("amount811Cash").equals("0") && documentSnapshot.getString("amount811Banking").equals("0")
+                        && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
+                    amount811Cash.setHint("Unavaliable");
+                    amount811Banking.setHint("Unavaliable");
                     percent811.setHint("Unavaliable");
                     date811.setHint("Unavaliable");
 
                     intAmount811 = 0;
                     intPercent811 = 0;
                 } else {
-                    amount811.setText(documentSnapshot.getString("amount811"));
+                    amount811Cash.setText(documentSnapshot.getString("amount811Cash"));
+                    amount811Banking.setText(documentSnapshot.getString("amount811Banking"));
                     percent811.setText(documentSnapshot.getString("percent811"));
                     date811.setText(documentSnapshot.getString("date811"));
 
-                    intAmount811 = Integer.parseInt(documentSnapshot.getString("amount811"));
+                    intAmount811 = Integer.parseInt(documentSnapshot.getString("amount811Cash")) + Integer.parseInt(documentSnapshot.getString("amount811Banking"));
                     intPercent811 = Integer.parseInt(documentSnapshot.getString("percent811"));
 
-                    exImgView1.setBackgroundResource(android.R.color.transparent);
-                    exRL1.setBackgroundResource(android.R.color.transparent);
                     exImgUri1 = Uri.parse(documentSnapshot.getString("imgUrlOne"));
                     Glide.with(UpdateInvestorActivity.this).load(exImgUri1).into(exImgView1);
+                    exImgView1.setBackgroundResource(android.R.color.transparent);
+                    exRL1.setBackgroundResource(android.R.color.transparent);
                 }
 
-                if (documentSnapshot.getString("amount58").equals("0") && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
-                    amount58.setHint("Unavaliable");
+                if (documentSnapshot.getString("amount58Cash").equals("0") && documentSnapshot.getString("amount58Banking").equals("0")
+                        && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
+                    amount58Cash.setHint("Unavaliable");
+                    amount58Banking.setHint("Unavaliable");
                     percent58.setHint("Unavaliable");
                     date58.setHint("Unavaliable");
 
                     intAmount58 = 0;
                     intPercent58 = 0;
                 } else {
-                    amount58.setText(documentSnapshot.getString("amount58"));
+                    amount58Cash.setText(documentSnapshot.getString("amount58Cash"));
+                    amount58Banking.setText(documentSnapshot.getString("amount58Banking"));
                     percent58.setText(documentSnapshot.getString("percent58"));
                     date58.setText(documentSnapshot.getString("date58"));
 
-                    intAmount58 = Integer.parseInt(documentSnapshot.getString("amount58"));
+                    intAmount58 = Integer.parseInt(documentSnapshot.getString("amount58Cash")) + Integer.parseInt(documentSnapshot.getString("amount58Banking"));
                     intPercent58 = Integer.parseInt(documentSnapshot.getString("percent58"));
 
-                    exImgView2.setBackgroundResource(android.R.color.transparent);
-                    exRL2.setBackgroundResource(android.R.color.transparent);
                     exImgUri2 = Uri.parse(documentSnapshot.getString("imgUrlTwo"));
                     Glide.with(UpdateInvestorActivity.this).load(exImgUri2).into(exImgView2);
+                    exImgView2.setBackgroundResource(android.R.color.transparent);
+                    exRL2.setBackgroundResource(android.R.color.transparent);
                 }
 
-                if (documentSnapshot.getString("amount456").equals("0") && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
-                    amount456.setHint("Unavaliable");
+                if (documentSnapshot.getString("amount456Cash").equals("0") && documentSnapshot.getString("amount456Banking").equals("0")
+                        && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
+                    amount456Cash.setHint("Unavaliable");
+                    amount456Banking.setHint("Unavaliable");
                     percent456.setHint("Unavaliable");
                     date456.setHint("Unavaliable");
 
                     intAmount456 = 0;
                     intPercent456 = 0;
                 } else {
-                    amount456.setText(documentSnapshot.getString("amount456"));
+                    amount456Cash.setText(documentSnapshot.getString("amount456Cash"));
+                    amount456Banking.setText(documentSnapshot.getString("amount456Banking"));
                     percent456.setText(documentSnapshot.getString("percent456"));
                     date456.setText(documentSnapshot.getString("date456"));
 
-                    intAmount456 = Integer.parseInt(documentSnapshot.getString("amount456"));
+                    intAmount456 = Integer.parseInt(documentSnapshot.getString("amount456Cash")) + Integer.parseInt(documentSnapshot.getString("amount456Banking"));
                     intPercent456 = Integer.parseInt(documentSnapshot.getString("percent456"));
 
                     exImgUri3 = Uri.parse(documentSnapshot.getString("imgUrlThree"));
@@ -1249,8 +1270,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     exRL3.setBackgroundResource(android.R.color.transparent);
                 }
 
-                cashBonus.setText(documentSnapshot.getString("cashBonus"));
-                intCashBonus = Integer.parseInt(documentSnapshot.getString("cashBonus"));
                 preProfit.setText(documentSnapshot.getString("preProfit"));
 
                 progressBar.setVisibility(View.GONE);

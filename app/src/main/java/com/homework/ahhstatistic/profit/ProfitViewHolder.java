@@ -36,9 +36,9 @@ public class ProfitViewHolder extends RecyclerView.ViewHolder {
     public void bind(List<Investor> investorList, ProfitRecyclerAdapter.Listener listener, int position) {
         Investor item = investorList.get(position);
 
-        amount1 = Integer.parseInt(item.getAmount811());
-        amount2 = Integer.parseInt(item.getAmount58());
-        amount3 = Integer.parseInt(item.getAmount456());
+        amount1 = Integer.parseInt(item.getAmount811Cash()) + Integer.parseInt(item.getAmount811Banking());
+        amount2 = Integer.parseInt(item.getAmount58Cash()) + Integer.parseInt(item.getAmount58Banking());
+        amount3 = Integer.parseInt(item.getAmount456Cash()) + Integer.parseInt(item.getAmount456Banking());
         cashBonus = Integer.parseInt(item.getCashBonus());
         dailyProfit = Integer.parseInt(item.getDailyProfit());
 

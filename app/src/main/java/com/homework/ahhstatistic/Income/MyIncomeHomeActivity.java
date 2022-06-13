@@ -208,9 +208,9 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
             for (DocumentSnapshot ds : queryDocumentSnapshots) {
                 Investor item = ds.toObject(Investor.class);
 
-                amount1 = Integer.parseInt(item.getAmount811());
-                amount2 = Integer.parseInt(item.getAmount58());
-                amount3 = Integer.parseInt(item.getAmount456());
+                amount1 = Integer.parseInt(item.getAmount811Cash()) + Integer.parseInt(item.getAmount811Banking());
+                amount2 = Integer.parseInt(item.getAmount58Cash()) + Integer.parseInt(item.getAmount58Banking());
+                amount3 = Integer.parseInt(item.getAmount456Cash()) + Integer.parseInt(item.getAmount456Banking());
                 cashBonus = Integer.parseInt(item.getCashBonus());
                 dailyProfit = Integer.parseInt(item.getDailyProfit());
 
@@ -254,7 +254,11 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
 
             totalAmount.setText(nf.format(TotalAmount) + " Ks");
 
-            checkMethod.setText("Check method :\nall earnings - "+nf.format(ttdailyProfit)+" Ks (all daily profit)");
+            if (ttdailyProfit == 0){
+                checkMethod.setText("Check method :\n all earnings (No daily profit in this month)");
+            }else{
+                checkMethod.setText("Check method :\nall earnings - "+nf.format(ttdailyProfit)+" Ks (all daily profit)");
+            }
 
         });
     }

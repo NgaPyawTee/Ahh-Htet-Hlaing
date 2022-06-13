@@ -43,8 +43,8 @@ import java.util.Calendar;
 
 public class AddInvestorActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    private TextInputEditText name, companyID, phone, nrc, address, amount811, percent811,
-            amount58, percent58, amount456, percent456;
+    private TextInputEditText name, companyID, phone, nrc, address, amount811Cash, amount811Banking, percent811,
+            amount58Cash, amount58Banking, percent58, amount456Cash, amount456Banking, percent456;
     private TextView date811, date58, date456;
     private Uri imgUri1, imgUri2, imgUri3, nrcImgUri;
     private ImageView imgView1, imgView2, imgView3, nrcImgView;
@@ -134,13 +134,16 @@ public class AddInvestorActivity extends AppCompatActivity {
         phone = findViewById(R.id.add_phone);
         nrc = findViewById(R.id.add_nrc);
         address = findViewById(R.id.add_address);
-        amount811 = findViewById(R.id.add_811_amount);
+        amount811Cash = findViewById(R.id.add_811_amount_cash);
+        amount811Banking = findViewById(R.id.add_811_amount_banking);
         percent811 = findViewById(R.id.add_811_percent);
         date811 = findViewById(R.id.add_811_date);
-        amount58 = findViewById(R.id.add_58_amount);
+        amount58Cash = findViewById(R.id.add_58_amount_cash);
+        amount58Banking = findViewById(R.id.add_58_amount_banking);
         percent58 = findViewById(R.id.add_58_percent);
         date58 = findViewById(R.id.add_58_date);
-        amount456 = findViewById(R.id.add_456_amount);
+        amount456Cash = findViewById(R.id.add_456_amount_cash);
+        amount456Banking = findViewById(R.id.add_456_amount_banking);
         percent456 = findViewById(R.id.add_456_percent);
         date456 = findViewById(R.id.add_456_date);
         imgView1 = findViewById(R.id.add_img_1);
@@ -448,68 +451,85 @@ public class AddInvestorActivity extends AppCompatActivity {
         String strNRC = nrc.getText().toString();
         String strAddress = address.getText().toString();
 
-        String str811amount = "";
+        String str811amountCash = "";
+        String str811amountBanking = "";
         String str811percent = "";
         String str811date = "";
 
-        String str58amount = "";
+        String str58amountCash = "";
+        String str58amountBanking = "";
         String str58percent = "";
         String str58date = "";
 
-        String str456amount = "";
+        String str456amountCash = "";
+        String str456amountBanking = "";
         String str456percent = "";
         String str456date = "";
 
         if (strName.isEmpty() | strCompanyID.isEmpty() | strPhone.isEmpty() | strNRC.isEmpty() | strAddress.isEmpty()) {
             alertDialog.show();
-        } else {
+        } else if (imgUri1 != null && amount811Cash.getText().toString().trim().isEmpty() | amount811Banking.getText().toString().trim().isEmpty() |
+                percent811.getText().toString().trim().isEmpty() | date811.getText().toString().trim().isEmpty()) {
+            Toast.makeText(AddInvestorActivity.this, "Insufficient data for 1st contract", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (imgUri2 != null && amount58Cash.getText().toString().trim().isEmpty() | amount58Banking.getText().toString().trim().isEmpty() |
+                percent58.getText().toString().trim().isEmpty() | date58.getText().toString().trim().isEmpty()) {
+            Toast.makeText(AddInvestorActivity.this, "Insufficient data for 2nd contract", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (imgUri3 != null && amount456Cash.getText().toString().trim().isEmpty() | amount456Banking.getText().toString().trim().isEmpty() |
+                percent456.getText().toString().trim().isEmpty() | date456.getText().toString().trim().isEmpty()) {
+            Toast.makeText(AddInvestorActivity.this, "Insufficient data for 3rd contract", Toast.LENGTH_SHORT).show();
+            return;
+        }else{
             progressDialog.show();
             progressDialog.setCancelable(false);
             collRef.add(new Investor(strName, strCompanyID, strPhone, strNRC, strAddress,
-                    str811amount, str811percent, str811date,
-                    str58amount, str58percent, str58date,
-                    str456amount, str456percent, str456date,
+                    str811amountCash, str811amountBanking, str811percent, str811date,
+                    str58amountCash, str58amountBanking, str58percent, str58date,
+                    str456amountCash, str456amountBanking, str456percent, str456date,
                     cashBonus, dailyProfit, strNRCImg, strImgOne, strImgTwo, strImgThree, preProfit))
                     .addOnSuccessListener(this, new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             if (imgUri1 != null) {
-                                StorageReference fileRef = storageReference.child(strName + "/First Contract/" + System.currentTimeMillis()
-                                        + "." + getFileExtension(imgUri1));
-                                fileRef.putFile(imgUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                    @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                            @Override
-                                            public void onSuccess(Uri uri) {
-                                                collRef.document(documentReference.getId()).update("imgUrlOne", uri.toString());
-                                                collRef.document(documentReference.getId()).update("amount811", amount811.getText().toString());
-                                                collRef.document(documentReference.getId()).update("percent811", percent811.getText().toString());
-                                                collRef.document(documentReference.getId()).update("date811", date811.getText().toString());
-                                            }
-                                        });
-                                    }
-                                });
-                            }
+                                    StorageReference fileRef = storageReference.child(strName + "/First Contract/" + System.currentTimeMillis()
+                                            + "." + getFileExtension(imgUri1));
+                                    fileRef.putFile(imgUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    collRef.document(documentReference.getId()).update("imgUrlOne", uri.toString());
+                                                    collRef.document(documentReference.getId()).update("amount811Cash", amount811Cash.getText().toString());
+                                                    collRef.document(documentReference.getId()).update("amount811Banking", amount811Banking.getText().toString());
+                                                    collRef.document(documentReference.getId()).update("percent811", percent811.getText().toString());
+                                                    collRef.document(documentReference.getId()).update("date811", date811.getText().toString());
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
 
                             if (imgUri2 != null) {
-                                StorageReference fileRef = storageReference.child(strName + "/Second Contract/" + System.currentTimeMillis()
-                                        + "." + getFileExtension(imgUri2));
-                                fileRef.putFile(imgUri2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                    @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                            @Override
-                                            public void onSuccess(Uri uri) {
-                                                collRef.document(documentReference.getId()).update("imgUrlTwo", uri.toString());
-                                                collRef.document(documentReference.getId()).update("amount58", amount58.getText().toString());
-                                                collRef.document(documentReference.getId()).update("percent58", percent58.getText().toString());
-                                                collRef.document(documentReference.getId()).update("date58", date58.getText().toString());
-                                            }
-                                        });
-                                    }
-                                });
-                            }
+                                    StorageReference fileRef = storageReference.child(strName + "/Second Contract/" + System.currentTimeMillis()
+                                            + "." + getFileExtension(imgUri2));
+                                    fileRef.putFile(imgUri2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    collRef.document(documentReference.getId()).update("imgUrlTwo", uri.toString());
+                                                    collRef.document(documentReference.getId()).update("amount58Cash", amount58Cash.getText().toString());
+                                                    collRef.document(documentReference.getId()).update("amount58Banking", amount58Banking.getText().toString());
+                                                    collRef.document(documentReference.getId()).update("percent58", percent58.getText().toString());
+                                                    collRef.document(documentReference.getId()).update("date58", date58.getText().toString());
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
 
                             if (imgUri3 != null) {
                                 StorageReference fileRef = storageReference.child(strName + "/Third Contract/" + System.currentTimeMillis()
@@ -521,7 +541,8 @@ public class AddInvestorActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Uri uri) {
                                                 collRef.document(documentReference.getId()).update("imgUrlThree", uri.toString());
-                                                collRef.document(documentReference.getId()).update("amount456", amount456.getText().toString());
+                                                collRef.document(documentReference.getId()).update("amount456Cash", amount456Cash.getText().toString());
+                                                collRef.document(documentReference.getId()).update("amount456Banking", amount456Banking.getText().toString());
                                                 collRef.document(documentReference.getId()).update("percent456", percent456.getText().toString());
                                                 collRef.document(documentReference.getId()).update("date456", date456.getText().toString());
                                             }

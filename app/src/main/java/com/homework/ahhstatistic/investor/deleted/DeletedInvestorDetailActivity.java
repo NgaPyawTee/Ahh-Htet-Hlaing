@@ -1,6 +1,7 @@
 package com.homework.ahhstatistic.investor.deleted;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.WindowCompat;
 import androidx.core.widget.NestedScrollView;
 
@@ -10,17 +11,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.homework.ahhstatistic.R;
 
@@ -32,11 +29,12 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
 
     private RelativeLayout RLToolbar, rl;
     private NestedScrollView NSV;
+    private Toolbar toolbar;
 
     private TextView name, companyID, phone, nrc, address,
-            amount811, percent811, date811,
-            amount58, percent58, date58,
-            amount456, percent456, date456,
+            amount811Cash, amount811Banking, percent811, date811,
+            amount58Cash, amount58Banking, percent58, date58,
+            amount456Cash, amount456Banking,  percent456, date456,
             totalProfit;
     private ImageView imageView1, imageView2, imageView3, zoomPic, downImg, backImg, clrImg;
     private Uri imgUri1, imgUri2, imgUri3;
@@ -53,6 +51,12 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deleted_investor_detail);
         WindowCompat.setDecorFitsSystemWindows(getWindow(),false);
         getWindow().setStatusBarColor(getResources().getColor(android.R.color.transparent));
+
+        toolbar = findViewById(R.id.deleted_detail_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_normal_back);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         id = intent.getStringExtra(ID_PASS);
@@ -87,30 +91,33 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
         imageView2 = findViewById(R.id.deleted_detail_img_two);
         imageView3 = findViewById(R.id.deleted_detail_img_three);
 
-        amount811 = findViewById(R.id.deleted_detail_plan_811_amount);
+        amount811Cash = findViewById(R.id.deleted_investor_amount_811_cash);
+        amount811Banking = findViewById(R.id.deleted_investor_amount_811_banking);
         percent811 = findViewById(R.id.deleted_detail_plan_811_percent);
         date811 = findViewById(R.id.deleted_detail_date_811);
 
-        amount58 = findViewById(R.id.deleted_detail_plan_58_amount);
+        amount58Cash = findViewById(R.id.deleted_investor_amount_58_cash);
+        amount58Banking = findViewById(R.id.deleted_investor_amount_58_banking);
         percent58 = findViewById(R.id.deleted_detail_plan_58_percent);
         date58 = findViewById(R.id.deleted_detail_date_58);
 
-        amount456 = findViewById(R.id.deleted_detail_plan_456_amount);
+        amount456Cash = findViewById(R.id.deleted_investor_amount_456_cash);
+        amount456Banking = findViewById(R.id.deleted_investor_amount_456_banking);
         percent456 = findViewById(R.id.deleted_detail_plan_456_percent);
         date456 = findViewById(R.id.deleted_detail_date_456);
 
         imageView1.setOnClickListener(view14 -> {
-            if (imgUri1 != null && !amount811.getText().toString().equals("Unavaliable")) {
+            if (imgUri1 != null && !amount811Cash.getText().toString().equals("Unavaliable")) {
                 OpenImageDialog1();
             }
         });
         imageView2.setOnClickListener(view15 -> {
-            if (imgUri2 != null && !amount58.getText().toString().equals("Unavaliable")) {
+            if (imgUri2 != null && !amount58Cash.getText().toString().equals("Unavaliable")) {
                 OpenImageDialog2();
             }
         });
         imageView3.setOnClickListener(view16 -> {
-            if (imgUri3 != null && !amount456.getText().toString().equals("Unavaliable")) {
+            if (imgUri3 != null && !amount456Cash.getText().toString().equals("Unavaliable")) {
                 OpenImageDialog3();
             }
         });
@@ -186,32 +193,41 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
             nrc.setText(documentSnapshot.getString("nrc"));
             address.setText(documentSnapshot.getString("address"));
 
-            if (documentSnapshot.getString("amount811").equals("0") && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
-                amount811.setText("Unavaliable");
+            if (documentSnapshot.getString("amount811Cash").equals("0") && documentSnapshot.getString("amount811Banking").equals("0") &&
+                    documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
+                amount811Cash.setText("Unavaliable");
+                amount811Banking.setText("Unavaliable");
                 percent811.setText("Unavaliable");
                 date811.setText("Unavaliable");
             } else {
-                amount811.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount811"))) + " Ks");
+                amount811Cash.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount811Cash"))) + " Ks");
+                amount811Banking.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount811Banking"))) + " Ks");
                 percent811.setText(documentSnapshot.getString("percent811") + "%");
                 date811.setText(documentSnapshot.getString("date811"));
             }
 
-            if (documentSnapshot.getString("amount58").equals("0") && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
-                amount58.setText("Unavaliable");
+            if (documentSnapshot.getString("amount58Cash").equals("0") && documentSnapshot.getString("amount58Banking").equals("0") &&
+                    documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
+                amount58Cash.setText("Unavaliable");
+                amount58Banking.setText("Unavaliable");
                 percent58.setText("Unavaliable");
                 date58.setText("Unavaliable");
             } else {
-                amount58.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount58"))) + " Ks");
+                amount58Cash.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount58Cash"))) + " Ks");
+                amount58Banking.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount58Banking"))) + " Ks");
                 percent58.setText(documentSnapshot.getString("percent58") + "%");
                 date58.setText(documentSnapshot.getString("date58"));
             }
 
-            if (documentSnapshot.getString("amount456").equals("0") && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
-                amount456.setText("Unavaliable");
+            if (documentSnapshot.getString("amount456Cash").equals("0") && documentSnapshot.getString("amount456Banking").equals("0") &&
+                    documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
+                amount456Cash.setText("Unavaliable");
+                amount456Banking.setText("Unavaliable");
                 percent456.setText("Unavaliable");
                 date456.setText("Unavaliable");
             } else {
-                amount456.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount456"))) + " Ks");
+                amount456Cash.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount456Cash"))) + " Ks");
+                amount456Banking.setText(nf.format(Integer.parseInt(documentSnapshot.getString("amount456Banking"))) + " Ks");
                 percent456.setText(documentSnapshot.getString("percent456") + "%");
                 date456.setText(documentSnapshot.getString("date456"));
             }

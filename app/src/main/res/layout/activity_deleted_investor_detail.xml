@@ -9,9 +9,9 @@
     <RelativeLayout
         android:id="@+id/deleted_detail_rl"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="600dp"
         android:background="@drawable/card_bg_color_2"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/deleted_detail_container"
@@ -24,10 +24,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/deleted_detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+
             <LinearLayout
                 android:layout_width="400dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/large_margin"
+                android:layout_below="@+id/deleted_detail_toolbar"
+                android:layout_marginTop="24dp"
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingEnd="8dp">
@@ -179,8 +185,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/large_margin"
-                android:layout_marginTop="380dp"
-                android:background="@color/cyan">
+                android:layout_marginTop="414dp"
+                android:background="@drawable/card_bg_color_7"
+                android:backgroundTint="@color/cyan">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -194,35 +201,62 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/large_margin"
-                        android:gravity="center_vertical"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:gravity="center_vertical">
 
                         <ImageView
-                            android:id="@+id/icon_amount"
+                            android:id="@+id/deleted_investor_icon_amount_cash_1"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="@dimen/normal_margin"
-                            android:src="@drawable/ic_money" />
+                            android:padding="2dp"
+                            android:src="@drawable/ic_cash"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
                         <TextView
-                            android:id="@+id/deleted_detail_plan_811_amount"
+                            android:id="@+id/deleted_investor_amount_811_cash"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="@dimen/normal_margin"
                             android:layout_marginTop="@dimen/normal_margin"
-                            android:layout_toEndOf="@+id/icon_amount"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_1"
                             android:text="450000"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
 
                         <ImageView
-                            android:id="@+id/icon_percent"
+                            android:id="@+id/deleted_investor_icon_amount_banking_1"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_below="@id/icon_amount"
+                            android:layout_below="@id/deleted_investor_icon_amount_cash_1"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_banking"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
+
+                        <TextView
+                            android:id="@+id/deleted_investor_amount_811_banking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/deleted_investor_icon_amount_cash_1"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_1"
+                            android:text="110000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
+
+                        <ImageView
+                            android:id="@+id/icon_percent_1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/deleted_investor_icon_amount_banking_1"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="@dimen/large_margin"
                             android:src="@drawable/ic_level" />
@@ -231,21 +265,22 @@
                             android:id="@+id/deleted_detail_plan_811_percent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/icon_amount"
+                            android:layout_below="@+id/deleted_investor_icon_amount_banking_1"
                             android:layout_marginStart="@dimen/normal_margin"
                             android:layout_marginTop="@dimen/large_margin"
-                            android:layout_toEndOf="@+id/icon_amount"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_1"
                             android:text="11"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
 
                         <ImageView
-                            android:id="@+id/icon_date"
+                            android:id="@+id/icon_date_1"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_below="@id/icon_percent"
+                            android:layout_below="@id/icon_percent_1"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="@dimen/large_margin"
+                            android:layout_marginBottom="@dimen/normal_margin"
                             android:src="@drawable/ic_calendar"
                             android:tint="@color/white"
                             tools:ignore="UseAppTint" />
@@ -254,10 +289,11 @@
                             android:id="@+id/deleted_detail_date_811"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/icon_percent"
+                            android:layout_below="@id/icon_percent_1"
                             android:layout_marginStart="@dimen/normal_margin"
                             android:layout_marginTop="@dimen/large_margin"
-                            android:layout_toEndOf="@+id/icon_amount"
+                            android:layout_marginBottom="@dimen/normal_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_1"
                             android:text="27/2/2022"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
@@ -283,7 +319,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/large_margin"
                 android:layout_marginTop="@dimen/large_margin"
-                android:background="@color/blue">
+                android:background="@drawable/card_bg_color_7"
+                android:backgroundTint="@color/blue">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -297,76 +334,103 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/large_margin"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:gravity="center_vertical">
 
-                        <RelativeLayout
+                        <ImageView
+                            android:id="@+id/deleted_investor_icon_amount_cash_2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_cash"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
+
+                        <TextView
+                            android:id="@+id/deleted_investor_amount_58_cash"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true">
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_2"
+                            android:text="450000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <ImageView
-                                android:id="@+id/icon_amount2"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_money" />
+                        <ImageView
+                            android:id="@+id/deleted_investor_icon_amount_banking_2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/deleted_investor_icon_amount_cash_2"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_banking"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
-                            <TextView
-                                android:id="@+id/deleted_detail_plan_58_amount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_toEndOf="@+id/icon_amount2"
-                                android:text="100000"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
+                        <TextView
+                            android:id="@+id/deleted_investor_amount_58_banking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/deleted_investor_icon_amount_cash_2"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_2"
+                            android:text="110000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <ImageView
-                                android:id="@+id/icon_percent2"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_below="@id/icon_amount2"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:src="@drawable/ic_level" />
+                        <ImageView
+                            android:id="@+id/icon_percent_2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/deleted_investor_icon_amount_banking_2"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_level" />
 
-                            <TextView
-                                android:id="@+id/deleted_detail_plan_58_percent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/icon_amount2"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:layout_toEndOf="@+id/icon_amount2"
-                                android:text="8"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
+                        <TextView
+                            android:id="@+id/deleted_detail_plan_58_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/deleted_investor_icon_amount_banking_2"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_2"
+                            android:text="11"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <ImageView
-                                android:id="@+id/icon_date2"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_below="@id/icon_percent2"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:src="@drawable/ic_calendar"
-                                android:tint="@color/white"
-                                tools:ignore="UseAppTint" />
+                        <ImageView
+                            android:id="@+id/icon_date_2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/icon_percent_2"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_calendar"
+                            android:layout_marginBottom="@dimen/normal_margin"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
-                            <TextView
-                                android:id="@+id/deleted_detail_date_58"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/icon_percent2"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:layout_toEndOf="@+id/icon_amount2"
-                                android:text="27/2/2022"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
-                        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/deleted_detail_date_58"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_percent_2"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_marginBottom="@dimen/normal_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_2"
+                            android:text="27/2/2022"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
+
                     </RelativeLayout>
 
                     <ImageView
@@ -389,7 +453,8 @@
                 android:layout_marginStart="@dimen/large_margin"
                 android:layout_marginTop="@dimen/large_margin"
                 android:layout_marginBottom="@dimen/large_margin"
-                android:background="@color/bright_blue">
+                android:background="@drawable/card_bg_color_7"
+                android:backgroundTint="@color/bright_blue">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -403,77 +468,102 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/large_margin"
-                        android:layout_weight="2">
+                        android:layout_weight="2"
+                        android:gravity="center_vertical">
 
-                        <RelativeLayout
+                        <ImageView
+                            android:id="@+id/deleted_investor_icon_amount_cash_3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_cash"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
+
+                        <TextView
+                            android:id="@+id/deleted_investor_amount_456_cash"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true">
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_3"
+                            android:text="450000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <ImageView
-                                android:id="@+id/icon_amount3"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_money" />
+                        <ImageView
+                            android:id="@+id/deleted_investor_icon_amount_banking_3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/deleted_investor_icon_amount_cash_3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_banking"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
-                            <TextView
-                                android:id="@+id/deleted_detail_plan_456_amount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_toEndOf="@+id/icon_amount3"
-                                android:text="Unavaliable"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
+                        <TextView
+                            android:id="@+id/deleted_investor_amount_456_banking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/deleted_investor_icon_amount_cash_3"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_3"
+                            android:text="110000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <ImageView
-                                android:id="@+id/icon_percent3"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_below="@id/icon_amount3"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:src="@drawable/ic_level" />
+                        <ImageView
+                            android:id="@+id/icon_percent_3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/deleted_investor_icon_amount_banking_3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_level" />
 
-                            <TextView
-                                android:id="@+id/deleted_detail_plan_456_percent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/icon_amount3"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:layout_toEndOf="@+id/icon_amount3"
-                                android:text="Unavaliable"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
+                        <TextView
+                            android:id="@+id/deleted_detail_plan_456_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/deleted_investor_icon_amount_banking_3"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_3"
+                            android:text="11"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <ImageView
-                                android:id="@+id/icon_date3"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_below="@id/icon_percent3"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:src="@drawable/ic_calendar"
-                                android:tint="@color/white"
-                                tools:ignore="UseAppTint" />
+                        <ImageView
+                            android:id="@+id/icon_date_3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/icon_percent_3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_calendar"
+                            android:tint="@color/white"
+                            android:layout_marginBottom="@dimen/normal_margin"
+                            tools:ignore="UseAppTint" />
 
-                            <TextView
-                                android:id="@+id/deleted_detail_date_456"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/icon_percent3"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:layout_toEndOf="@+id/icon_amount3"
-                                android:text="Unavaliable"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
-
-                        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/deleted_detail_date_456"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_percent_3"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_3"
+                            android:text="27/2/2022"
+                            android:layout_marginBottom="@dimen/normal_margin"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
                     </RelativeLayout>
 
@@ -496,6 +586,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:theme="@style/AppTheme.progress" />
+        android:theme="@style/AppTheme.progress_2" />
 
 </RelativeLayout>

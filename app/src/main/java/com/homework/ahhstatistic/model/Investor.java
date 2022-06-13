@@ -6,13 +6,16 @@ public class Investor {
     private String phone;
     private String nrc;
     private String address;
-    private String amount811;
+    private String amount811Cash;
+    private String amount811Banking;
     private String percent811;
     private String date811;
-    private String amount58;
+    private String amount58Cash;
+    private String amount58Banking;
     private String percent58;
     private String date58;
-    private String amount456;
+    private String amount456Cash;
+    private String amount456Banking;
     private String percent456;
     private String date456;
     private String preProfit;
@@ -27,38 +30,44 @@ public class Investor {
     }
 
     public Investor(String name, String companyID, String phone, String nrc, String address,
-                    String amount811, String percent811, String date811,
-                    String amount58, String percent58, String date58,
-                    String amount456, String percent456, String date456,
+                    String amount811Cash, String amount811Banking, String percent811, String date811,
+                    String amount58Cash, String amount58Banking, String percent58, String date58,
+                    String amount456Cash, String amount456Banking, String percent456, String date456,
                     String cashBonus, String dailyProfit, String nrcImgUrl,
-                    String imgUrlOne, String imgUrlTwo, String imgUrlThree,String preProfit) {
+                    String imgUrlOne, String imgUrlTwo, String imgUrlThree, String preProfit) {
 
-        if (amount811.trim().equals("") | percent811.trim().equals("") | date811.trim().equals("")) {
-            this.amount811 = "0";
+        if (amount811Cash.trim().equals("") | amount811Banking.trim().equals("") | percent811.trim().equals("") | date811.trim().equals("")) {
+            this.amount811Cash = "0";
+            this.amount811Banking = "0";
             this.percent811 = "";
             this.date811 = "";
         }else{
-            this.amount811 = amount811;
+            this.amount811Cash = amount811Cash;
+            this.amount811Banking = amount811Banking;
             this.percent811 = percent811;
             this.date811 = date811;
         }
 
-        if (amount58.trim().equals("") | percent58.trim().equals("") | date58.trim().equals("")) {
-            this.amount58 = "0";
+        if (amount58Cash.trim().equals("") | amount58Banking.trim().equals("") | percent58.trim().equals("") | date58.trim().equals("")) {
+            this.amount58Cash = "0";
+            this.amount58Banking = "0";
             this.percent58 = "";
             this.date58 = "";
         }else{
-            this.amount58 = amount58;
+            this.amount58Cash = amount58Cash;
+            this.amount58Banking = amount58Banking;
             this.percent58 = percent58;
             this.date58 = date58;
         }
 
-        if (amount456.trim().equals("") | percent456.trim().equals("") | date456.trim().equals("")) {
-            this.amount456 = "0";
+        if (amount456Cash.trim().equals("") | amount456Banking.trim().equals("") | percent456.trim().equals("") | date456.trim().equals("")) {
+            this.amount456Cash = "0";
+            this.amount456Banking = "0";
             this.percent456 = "";
             this.date456 = "";
         }else{
-            this.amount456 = amount456;
+            this.amount456Cash = amount456Cash;
+            this.amount456Banking = amount456Banking;
             this.percent456 = percent456;
             this.date456 = date456;
         }
@@ -95,7 +104,6 @@ public class Investor {
         this.preProfit = preProfit;
         this.cashBonus = cashBonus;
         this.dailyProfit = dailyProfit;
-
     }
 
     public String getName() {
@@ -118,8 +126,12 @@ public class Investor {
         return address;
     }
 
-    public String getAmount811() {
-        return amount811;
+    public String getAmount811Cash() {
+        return amount811Cash;
+    }
+
+    public String getAmount811Banking() {
+        return amount811Banking;
     }
 
     public String getPercent811() {
@@ -130,8 +142,12 @@ public class Investor {
         return date811;
     }
 
-    public String getAmount58() {
-        return amount58;
+    public String getAmount58Cash() {
+        return amount58Cash;
+    }
+
+    public String getAmount58Banking() {
+        return amount58Banking;
     }
 
     public String getPercent58() {
@@ -142,8 +158,12 @@ public class Investor {
         return date58;
     }
 
-    public String getAmount456() {
-        return amount456;
+    public String getAmount456Cash() {
+        return amount456Cash;
+    }
+
+    public String getAmount456Banking() {
+        return amount456Banking;
     }
 
     public String getPercent456() {
@@ -152,6 +172,10 @@ public class Investor {
 
     public String getDate456() {
         return date456;
+    }
+
+    public String getPreProfit() {
+        return preProfit;
     }
 
     public String getCashBonus() {
@@ -174,19 +198,15 @@ public class Investor {
         return imgUrlThree;
     }
 
+    public String getNrcImgUrl() {
+        return nrcImgUrl;
+    }
+
     public String getId() {
         return id;
     }
 
-    public String getPreProfit() {
-        return preProfit;
-    }
-
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getNrcImgUrl() {
-        return nrcImgUrl;
     }
 }

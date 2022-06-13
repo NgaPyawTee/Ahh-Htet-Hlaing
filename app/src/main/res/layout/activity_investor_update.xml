@@ -188,28 +188,6 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="8dp"
-                    android:hint="Cash Bonus"
-                    android:textColorHint="@color/blue"
-                    app:boxStrokeColor="@color/blue"
-                    app:endIconMode="clear_text"
-                    app:endIconTint="@color/red">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_cash_bonus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:textColor="@color/black" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
                     android:hint="Pre-Profit"
                     android:textColorHint="@color/blue"
                     app:boxStrokeColor="@color/blue"
@@ -236,7 +214,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="450dp"
+                    android:layout_height="480dp"
                     android:layout_marginTop="@dimen/normal_margin"
                     android:layout_marginBottom="8dp"
                     android:paddingStart="20dp"
@@ -244,7 +222,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="350dp"
+                        android:layout_height="380dp"
                         android:layout_alignParentBottom="true"
                         android:background="@drawable/stroke_bg_cyan">
 
@@ -256,7 +234,39 @@
                             android:layout_centerHorizontal="true">
 
                             <LinearLayout
-                                android:id="@+id/amount_container_1"
+                                android:id="@+id/cash_amount_container_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/banking_amount_container_1"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_cash"
+                                    android:padding="2dp"
+                                    android:tint="@color/dark_cyan"
+                                    tools:ignore="UseAppTint" />
+
+                                <EditText
+                                    android:id="@+id/edit_811_amount_cash"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Cash"
+                                    android:inputType="number"
+                                    android:textColor="@color/dark_cyan"
+                                    android:textColorHint="@color/dark_cyan"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/banking_amount_container_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_above="@+id/percent_container_1"
@@ -268,18 +278,19 @@
                                     android:layout_height="30dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="8dp"
-                                    android:src="@drawable/ic_money"
+                                    android:src="@drawable/ic_banking"
+                                    android:padding="2dp"
                                     android:tint="@color/dark_cyan"
                                     tools:ignore="UseAppTint" />
 
                                 <EditText
-                                    android:id="@+id/edit_811_amount"
+                                    android:id="@+id/edit_811_amount_banking"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/normal_margin"
                                     android:background="@color/white"
-                                    android:hint="Amount"
+                                    android:hint="Banking"
                                     android:inputType="number"
                                     android:textColor="@color/dark_cyan"
                                     android:textColorHint="@color/dark_cyan"
@@ -416,7 +427,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="450dp"
+                    android:layout_height="480dp"
                     android:layout_marginTop="@dimen/normal_margin"
                     android:layout_marginBottom="8dp"
                     android:paddingStart="20dp"
@@ -424,7 +435,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="350dp"
+                        android:layout_height="380dp"
                         android:layout_alignParentBottom="true"
                         android:background="@drawable/stroke_bg_blue">
 
@@ -435,7 +446,39 @@
                             android:layout_centerHorizontal="true">
 
                             <LinearLayout
-                                android:id="@+id/amount_container_2"
+                                android:id="@+id/cash_amount_container_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/banking_amount_container_2"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_cash"
+                                    android:padding="2dp"
+                                    android:tint="@color/blue"
+                                    tools:ignore="UseAppTint" />
+
+                                <EditText
+                                    android:id="@+id/edit_58_amount_cash"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Cash"
+                                    android:inputType="number"
+                                    android:textColor="@color/blue"
+                                    android:textColorHint="@color/blue"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/banking_amount_container_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_above="@+id/percent_container_2"
@@ -447,18 +490,19 @@
                                     android:layout_height="30dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="8dp"
-                                    android:src="@drawable/ic_money"
+                                    android:src="@drawable/ic_banking"
+                                    android:padding="2dp"
                                     android:tint="@color/blue"
                                     tools:ignore="UseAppTint" />
 
                                 <EditText
-                                    android:id="@+id/edit_58_amount"
+                                    android:id="@+id/edit_58_amount_banking"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/normal_margin"
                                     android:background="@color/white"
-                                    android:hint="Amount"
+                                    android:hint="Banking"
                                     android:inputType="number"
                                     android:textColor="@color/blue"
                                     android:textColorHint="@color/blue"
@@ -595,7 +639,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="450dp"
+                    android:layout_height="480dp"
                     android:layout_marginTop="@dimen/normal_margin"
                     android:layout_marginBottom="@dimen/large_margin"
                     android:paddingStart="20dp"
@@ -603,7 +647,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="350dp"
+                        android:layout_height="380dp"
                         android:layout_alignParentBottom="true"
                         android:background="@drawable/stroke_bg_pale_blue">
 
@@ -614,7 +658,39 @@
                             android:layout_centerHorizontal="true">
 
                             <LinearLayout
-                                android:id="@+id/amount_container_3"
+                                android:id="@+id/cash_amount_container_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/banking_amount_container_3"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="8dp"
+                                    android:src="@drawable/ic_cash"
+                                    android:padding="2dp"
+                                    android:tint="@color/bright_blue"
+                                    tools:ignore="UseAppTint" />
+
+                                <EditText
+                                    android:id="@+id/edit_456_amount_cash"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/normal_margin"
+                                    android:background="@color/white"
+                                    android:hint="Amount"
+                                    android:inputType="number"
+                                    android:textColor="@color/bright_blue"
+                                    android:textColorHint="@color/bright_blue"
+                                    android:textSize="@dimen/large_text" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/banking_amount_container_3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_above="@+id/percent_container_3"
@@ -626,12 +702,13 @@
                                     android:layout_height="30dp"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginStart="8dp"
-                                    android:src="@drawable/ic_money"
+                                    android:src="@drawable/ic_banking"
+                                    android:padding="2dp"
                                     android:tint="@color/bright_blue"
                                     tools:ignore="UseAppTint" />
 
                                 <EditText
-                                    android:id="@+id/edit_456_amount"
+                                    android:id="@+id/edit_456_amount_banking"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"

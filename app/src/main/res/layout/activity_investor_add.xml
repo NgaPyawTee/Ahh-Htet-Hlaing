@@ -25,99 +25,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:hint="Name"
-            android:textColorHint="@color/blue"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/blue"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/red">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/add_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/black" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:hint="Company ID"
-            android:textColorHint="@color/blue"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/blue"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/red">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/add_companyID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textColor="@color/black" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:hint="Phone"
-            android:textColorHint="@color/blue"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/blue"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/red">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/add_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textColor="@color/black" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:hint="NRC"
+                android:layout_marginBottom="20dp"
+                android:hint="Name"
                 android:textColorHint="@color/blue"
                 app:boxCornerRadiusBottomEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
@@ -128,7 +44,7 @@
                 app:endIconTint="@color/red">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/add_nrc"
+                    android:id="@+id/add_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -136,32 +52,116 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="@dimen/medium_margin"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="6dp">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Company ID"
+                android:textColorHint="@color/blue"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/blue"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/red">
 
-                <RelativeLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_companyID"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/stroke_round_cyan_img">
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="@color/black" />
 
-                    <ImageView
-                        android:id="@+id/add_nrc_img"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Phone"
+                android:textColorHint="@color/blue"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/blue"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/red">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:hint="NRC"
+                    android:textColorHint="@color/blue"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@color/blue"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/red">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_nrc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="0dp"
+                    app:cardCornerRadius="6dp">
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop" />
+                        android:background="@drawable/stroke_round_cyan_img">
 
-                </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/add_nrc_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
 
-            </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
 
-        </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -191,7 +191,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="320dp"
                 android:orientation="horizontal"
                 android:padding="20dp">
 
@@ -200,6 +200,7 @@
                     android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/stroke_bg_cyan" />
 
                 <LinearLayout
@@ -213,8 +214,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:hint="Amount"
+                        android:layout_marginBottom="6dp"
+                        android:hint="Cash"
                         android:textColorHint="@color/dark_cyan"
                         android:theme="@style/AppTheme.Cyan"
                         app:boxCornerRadiusBottomEnd="8dp"
@@ -228,7 +229,7 @@
                         app:startIconTint="@color/dark_cyan">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/add_811_amount"
+                            android:id="@+id/add_811_amount_cash"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
@@ -241,7 +242,35 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="6dp"
+                        android:hint="Banking"
+                        android:textColorHint="@color/dark_cyan"
+                        android:theme="@style/AppTheme.Cyan"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@color/dark_cyan"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/red"
+                        app:startIconDrawable="@drawable/ic_money"
+                        app:startIconTint="@color/dark_cyan">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/add_811_amount_banking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textColor="@color/dark_cyan" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="8dp"
                         android:hint="Percent"
                         android:textColorHint="@color/dark_cyan"
                         android:theme="@style/AppTheme.Cyan"
@@ -268,7 +297,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginTop="4dp"
                         android:background="@drawable/stroke_round_cyan"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
@@ -294,14 +323,13 @@
 
                     </LinearLayout>
 
-
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="320dp"
                 android:orientation="horizontal"
                 android:padding="20dp">
 
@@ -310,6 +338,7 @@
                     android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/stroke_bg_blue" />
 
                 <LinearLayout
@@ -323,8 +352,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:hint="Amount"
+                        android:layout_marginBottom="6dp"
+                        android:hint="Cash"
                         android:textColorHint="@color/blue"
                         app:boxCornerRadiusBottomEnd="8dp"
                         app:boxCornerRadiusBottomStart="8dp"
@@ -337,7 +366,7 @@
                         app:startIconTint="@color/blue">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/add_58_amount"
+                            android:id="@+id/add_58_amount_cash"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
@@ -350,7 +379,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="6dp"
+                        android:hint="Banking"
+                        android:textColorHint="@color/blue"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@color/blue"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/red"
+                        app:startIconDrawable="@drawable/ic_money"
+                        app:startIconTint="@color/blue">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/add_58_amount_banking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textColor="@color/blue" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="8dp"
                         android:hint="Percent"
                         android:textColorHint="@color/blue"
                         app:boxCornerRadiusBottomEnd="8dp"
@@ -376,7 +432,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginTop="4dp"
                         android:background="@drawable/stroke_round_blue"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
@@ -408,7 +464,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="320dp"
                 android:orientation="horizontal"
                 android:padding="20dp">
 
@@ -417,6 +473,7 @@
                     android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/stroke_bg_pale_blue" />
 
                 <LinearLayout
@@ -430,8 +487,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:hint="Amount"
+                        android:layout_marginBottom="6dp"
+                        android:hint="Cash"
                         android:textColorHint="@color/bright_blue"
                         android:theme="@style/AppTheme.Pale_blue"
                         app:boxCornerRadiusBottomEnd="8dp"
@@ -445,7 +502,7 @@
                         app:startIconTint="@color/bright_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/add_456_amount"
+                            android:id="@+id/add_456_amount_cash"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
@@ -458,7 +515,35 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="6dp"
+                        android:hint="Banking"
+                        android:textColorHint="@color/bright_blue"
+                        android:theme="@style/AppTheme.Pale_blue"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@color/bright_blue"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/red"
+                        app:startIconDrawable="@drawable/ic_money"
+                        app:startIconTint="@color/bright_blue">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/add_456_amount_banking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textColor="@color/bright_blue" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="8dp"
                         android:hint="Percent"
                         android:textColorHint="@color/bright_blue"
                         android:theme="@style/AppTheme.Pale_blue"
@@ -485,7 +570,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="@dimen/normal_margin"
+                        android:layout_marginTop="4dp"
                         android:background="@drawable/stroke_round_pale_blue"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"

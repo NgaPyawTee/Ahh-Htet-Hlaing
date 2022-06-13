@@ -48,7 +48,7 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
         ExpiredDate item = list.get(position);
 
         NumberFormat numberFormat = NumberFormat.getInstance();
-        holder.amount.setText(numberFormat.format(Integer.parseInt(item.getAmount())));
+        holder.amount.setText(numberFormat.format(Integer.parseInt(item.getAmountCash()) + Integer.parseInt(item.getAmountBanking())));
         holder.percent.setText(item.getPercent());
         holder.date.setText(item.getDate());
 

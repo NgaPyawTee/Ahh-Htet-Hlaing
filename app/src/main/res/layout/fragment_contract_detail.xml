@@ -12,7 +12,7 @@
 
     <ProgressBar
         android:id="@+id/contract_progress_bar"
-        android:theme="@style/AppTheme.progress"
+        android:theme="@style/AppTheme.progress_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />

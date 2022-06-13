@@ -15,7 +15,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            app:contentScrim="@color/bright_blue"
+            app:contentScrim="@color/dark_cyan"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap">
 
             <ImageView
@@ -47,6 +47,7 @@
         android:id="@+id/income_category_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.progress_1"
         android:layout_gravity="center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

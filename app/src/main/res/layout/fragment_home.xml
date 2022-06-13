@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".investor.detail.HomeFragment">
 
@@ -15,148 +15,146 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:background="@drawable/company_logo">
+                android:layout_height="450dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_frg_home" />
 
-                <androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:id="@+id/show_detail_nrc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/normal_margin"
-                    android:layout_marginTop="@dimen/medium_margin"
-                    android:layout_marginEnd="@dimen/normal_margin"
-                    app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/white">
+                    android:orientation="vertical"
+                    android:paddingEnd="8dp">
+
+                    <TextView
+                        android:id="@+id/detail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="@dimen/normal_margin"
+                        android:text="Khun Kyaw Win Soe"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/title_text"
+                        android:textStyle="bold" />
 
                     <LinearLayout
-                        android:id="@+id/show_detail_nrc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingEnd="8dp">
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/detail_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="@dimen/normal_margin"
-                            android:text="Khun Kyaw Win Soe"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="ID - "
                             android:textColor="@color/blue"
-                            android:textSize="@dimen/title_text"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/normal_text" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/detail_company_id"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/large_margin"
-                            android:orientation="horizontal">
+                            android:text="00123"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/normal_text" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/detail_name"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:text="ID - "
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/normal_text" />
-
-                            <TextView
-                                android:id="@+id/detail_company_id"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="00123"
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/normal_text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/large_margin"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/detail_name"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:text="Phone - "
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/normal_text" />
-
-                            <TextView
-                                android:id="@+id/detail_phone"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="091234567"
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/normal_text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/large_margin"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/detail_name"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:text="NRC - "
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/normal_text" />
-
-                            <TextView
-                                android:id="@+id/detail_nrc"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="13/Takana (Nai) 123456"
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/normal_text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/large_margin"
-                            android:layout_marginBottom="@dimen/large_margin"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/detail_name"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:text="Address - "
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/normal_text" />
-
-
-                            <TextView
-                                android:id="@+id/detail_address"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="1/27 Malikha Street, Phayar Phyu Quarter, Taunggyi"
-                                android:textColor="@color/blue"
-                                android:textSize="@dimen/normal_text" />
-
-                        </LinearLayout>
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:orientation="horizontal">
 
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="Phone - "
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <TextView
+                            android:id="@+id/detail_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="091234567"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="NRC - "
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/normal_text" />
+
+                        <TextView
+                            android:id="@+id/detail_nrc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="13/Takana (Nai) 123456"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_margin"
+                        android:layout_marginBottom="@dimen/large_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_name"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="Address - "
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/normal_text" />
+
+
+                        <TextView
+                            android:id="@+id/detail_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1/27 Malikha Street, Phayar Phyu Quarter, Taunggyi"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/normal_text" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:id="@+id/card_one"
@@ -183,22 +181,50 @@
                         android:gravity="center_horizontal">
 
                         <ImageView
-                            android:id="@+id/icon_amount"
+                            android:id="@+id/deleted_investor_icon_amount_cash_1"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="@dimen/normal_margin"
-                            android:src="@drawable/ic_money" />
+                            android:padding="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_cash"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
                         <TextView
-                            android:id="@+id/detail_plan_811_amount"
+                            android:id="@+id/detail_plan_811_amount_cash"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="@dimen/normal_margin"
                             android:layout_marginTop="@dimen/normal_margin"
-                            android:layout_toEndOf="@+id/icon_amount"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_1"
+                            android:text="450000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
+
+                        <ImageView
+                            android:id="@+id/deleted_investor_icon_amount_banking_1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/deleted_investor_icon_amount_cash_1"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_banking"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
+
+                        <TextView
+                            android:id="@+id/detail_plan_811_amount_banking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/deleted_investor_icon_amount_cash_1"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_1"
                             android:text="450000"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
@@ -207,7 +233,7 @@
                             android:id="@+id/icon_percent"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_below="@id/icon_amount"
+                            android:layout_below="@id/deleted_investor_icon_amount_banking_1"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="@dimen/large_margin"
                             android:src="@drawable/ic_level" />
@@ -216,10 +242,10 @@
                             android:id="@+id/detail_plan_811_percent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/icon_amount"
+                            android:layout_below="@+id/deleted_investor_icon_amount_banking_1"
                             android:layout_marginStart="@dimen/normal_margin"
                             android:layout_marginTop="@dimen/large_margin"
-                            android:layout_toEndOf="@+id/icon_amount"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_1"
                             android:text="11"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
@@ -242,31 +268,8 @@
                             android:layout_below="@id/icon_percent"
                             android:layout_marginStart="@dimen/normal_margin"
                             android:layout_marginTop="@dimen/large_margin"
-                            android:layout_toEndOf="@+id/icon_amount"
+                            android:layout_toEndOf="@+id/deleted_investor_icon_amount_cash_1"
                             android:text="27/2/2022"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/large_text" />
-
-                        <ImageView
-                            android:id="@+id/text_bonus"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginBottom="@dimen/normal_margin"
-                            android:src="@drawable/bonus"
-                            android:tint="@color/white"
-                            tools:ignore="UseAppTint" />
-
-                        <TextView
-                            android:id="@+id/cash_bonus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginStart="@dimen/normal_margin"
-                            android:layout_marginBottom="@dimen/normal_margin"
-                            android:layout_toEndOf="@+id/text_bonus"
-                            android:text="3500"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
 
@@ -299,32 +302,62 @@
                         android:id="@+id/detail_img_two"
                         android:layout_width="match_parent"
                         android:layout_height="220dp"
-                        android:gravity="center">
+                        android:gravity="center_horizontal">
 
                         <ImageView
-                            android:id="@+id/icon_amount2"
+                            android:id="@+id/icon_amount_cash_2"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="8dp"
-                            android:src="@drawable/ic_money" />
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:padding="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_cash"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
                         <TextView
-                            android:id="@+id/detail_plan_58_amount"
+                            android:id="@+id/detail_plan_58_amount_cash"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="@dimen/normal_margin"
-                            android:layout_toEndOf="@+id/icon_amount2"
-                            android:text="100000"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:layout_toEndOf="@+id/icon_amount_cash_2"
+                            android:text="450000"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
 
                         <ImageView
-                            android:id="@+id/icon_percent2"
+                            android:id="@+id/icon_amount_banking_2"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_below="@id/icon_amount2"
+                            android:layout_below="@id/icon_amount_cash_2"
+                            android:layout_marginStart="8dp"
+                            android:padding="2dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_banking"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
+
+                        <TextView
+                            android:id="@+id/detail_plan_58_amount_banking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/icon_amount_cash_2"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/icon_amount_cash_2"
+                            android:text="450000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
+
+                        <ImageView
+                            android:id="@+id/icon_percent_two"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/icon_amount_banking_2"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="@dimen/large_margin"
                             android:src="@drawable/ic_level" />
@@ -333,19 +366,19 @@
                             android:id="@+id/detail_plan_58_percent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/icon_amount2"
+                            android:layout_below="@+id/icon_amount_banking_2"
                             android:layout_marginStart="@dimen/normal_margin"
                             android:layout_marginTop="@dimen/large_margin"
-                            android:layout_toEndOf="@+id/icon_amount2"
-                            android:text="8"
+                            android:layout_toEndOf="@+id/icon_amount_cash_2"
+                            android:text="11"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
 
                         <ImageView
-                            android:id="@+id/icon_date2"
+                            android:id="@+id/icon_date_two"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_below="@id/icon_percent2"
+                            android:layout_below="@id/icon_percent_two"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="@dimen/large_margin"
                             android:src="@drawable/ic_calendar"
@@ -356,13 +389,14 @@
                             android:id="@+id/detail_date_58"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/icon_percent2"
+                            android:layout_below="@id/icon_percent_two"
                             android:layout_marginStart="@dimen/normal_margin"
                             android:layout_marginTop="@dimen/large_margin"
-                            android:layout_toEndOf="@+id/icon_amount2"
+                            android:layout_toEndOf="@+id/icon_amount_cash_2"
                             android:text="27/2/2022"
                             android:textColor="@color/white"
                             android:textSize="@dimen/large_text" />
+
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -390,79 +424,103 @@
                     android:paddingBottom="4dp">
 
                     <RelativeLayout
+                        android:id="@+id/detail_img_three"
                         android:layout_width="match_parent"
-                        android:layout_height="220dp">
+                        android:layout_height="220dp"
+                        android:gravity="center_horizontal">
 
-                        <RelativeLayout
-                            android:id="@+id/detail_img_three"
-                            android:layout_width="match_parent"
-                            android:layout_height="220dp"
-                            android:gravity="center">
+                        <ImageView
+                            android:id="@+id/icon_amount_cash_3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:padding="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_cash"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
-                            <ImageView
-                                android:id="@+id/icon_amount3"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginStart="8dp"
-                                android:src="@drawable/ic_money" />
+                        <TextView
+                            android:id="@+id/detail_plan_456_amount_cash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:layout_toEndOf="@+id/icon_amount_cash_3"
+                            android:text="450000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <TextView
-                                android:id="@+id/detail_plan_456_amount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_toEndOf="@+id/icon_amount3"
-                                android:text="Unavaliable"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
+                        <ImageView
+                            android:id="@+id/icon_amount_banking_3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/icon_amount_cash_3"
+                            android:layout_marginStart="8dp"
+                            android:padding="2dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_banking"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
-                            <ImageView
-                                android:id="@+id/icon_percent3"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_below="@id/icon_amount3"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:src="@drawable/ic_level" />
+                        <TextView
+                            android:id="@+id/detail_plan_456_amount_banking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/icon_amount_cash_3"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/icon_amount_cash_3"
+                            android:text="450000"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <TextView
-                                android:id="@+id/detail_plan_456_percent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/icon_amount3"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:layout_toEndOf="@+id/icon_amount3"
-                                android:text="Unavaliable"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
+                        <ImageView
+                            android:id="@+id/icon_percent_three"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/icon_amount_banking_3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_level" />
 
-                            <ImageView
-                                android:id="@+id/icon_date3"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_below="@id/icon_percent3"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:src="@drawable/ic_calendar"
-                                android:tint="@color/white"
-                                tools:ignore="UseAppTint" />
+                        <TextView
+                            android:id="@+id/detail_plan_456_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/icon_amount_banking_3"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/icon_amount_cash_3"
+                            android:text="11"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
-                            <TextView
-                                android:id="@+id/detail_date_456"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/icon_percent3"
-                                android:layout_marginStart="@dimen/normal_margin"
-                                android:layout_marginTop="@dimen/large_margin"
-                                android:layout_toEndOf="@+id/icon_amount3"
-                                android:text="Unavaliable"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/large_text" />
+                        <ImageView
+                            android:id="@+id/icon_date_three"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@id/icon_percent_three"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:src="@drawable/ic_calendar"
+                            android:tint="@color/white"
+                            tools:ignore="UseAppTint" />
 
-                        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/detail_date_456"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_percent_three"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/large_margin"
+                            android:layout_toEndOf="@+id/icon_amount_cash_3"
+                            android:text="27/2/2022"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/large_text" />
 
                     </RelativeLayout>
 
@@ -478,6 +536,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:theme="@style/AppTheme.progress" />
+        android:theme="@style/AppTheme.progress_1" />
 
 </RelativeLayout>

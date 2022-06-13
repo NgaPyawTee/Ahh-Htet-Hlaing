@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -44,5 +45,82 @@
             android:src="@drawable/ic_large_clear" />
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/image_dialog_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:id="@+id/image_dialog_linear_cash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/large_margin">
+
+            <ImageView
+                android:id="@+id/image_dialog_ic_cash"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_cash"
+                android:tint="@color/white"
+                tools:ignore="UseAppTint"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/image_dialog_amount_cash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_gravity="center_vertical"
+                android:text="50,000 Ks"
+                android:textColor="@color/white"
+                android:textSize="@dimen/large_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/image_dialog_linear_banking"
+            android:layout_below="@+id/image_dialog_linear_cash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/large_margin">
+
+            <ImageView
+                android:id="@+id/image_dialog_ic_banking"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_banking"
+                android:tint="@color/white"
+                tools:ignore="UseAppTint"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/image_dialog_amount_banking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_gravity="center_vertical"
+                android:text="50,000 Ks"
+
+                android:textColor="@color/white"
+                android:textSize="@dimen/large_text"/>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

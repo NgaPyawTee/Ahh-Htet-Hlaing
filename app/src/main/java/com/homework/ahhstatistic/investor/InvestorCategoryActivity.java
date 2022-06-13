@@ -102,7 +102,7 @@ public class InvestorCategoryActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
 
         searchAutoComplete = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        searchAutoComplete.setDropDownBackgroundResource(R.color.black);
+        searchAutoComplete.setDropDownBackgroundResource(R.color.cyan);
         searchAutoComplete.setTextColor(Color.WHITE);
         searchAutoComplete.setThreshold(1);
 

@@ -42,13 +42,9 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         name.setText(item.getName());
         companyID.setText(item.getCompanyID());
 
-        String stramount1 = item.getAmount811();
-        String stramount2 = item.getAmount58();
-        String stramount3 = item.getAmount456();
-
-        amount1 = Integer.parseInt(stramount1);
-        amount2 = Integer.parseInt(stramount2);
-        amount3 = Integer.parseInt(stramount3);
+        amount1 = Integer.parseInt(item.getAmount811Cash()) + Integer.parseInt(item.getAmount811Banking());
+        amount2 = Integer.parseInt(item.getAmount58Cash()) + Integer.parseInt(item.getAmount58Banking());
+        amount3 = Integer.parseInt(item.getAmount456Cash()) + Integer.parseInt(item.getAmount456Banking());
 
         CalculateTotalAmount(amount1, amount2, amount3);
     }

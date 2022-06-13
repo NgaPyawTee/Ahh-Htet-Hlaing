@@ -39,12 +39,12 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".profit.ProfitDetailActivity"
+            android:name=".profit.MonthlyProfitDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.ProfitDialog" />
         <activity
-            android:name=".profit.MonthlyProfitActivity"
+            android:name=".profit.MonthlyProfitCategoryActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />

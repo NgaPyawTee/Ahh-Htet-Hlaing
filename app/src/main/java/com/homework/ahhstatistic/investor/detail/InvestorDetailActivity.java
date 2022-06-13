@@ -6,13 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -30,7 +26,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,8 +34,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.homework.ahhstatistic.R;
 import com.homework.ahhstatistic.investor.UpdateInvestorActivity;
+import com.homework.ahhstatistic.model.DeletedInvestor;
 import com.homework.ahhstatistic.model.ExpiredDate;
-import com.homework.ahhstatistic.model.Investor;
 
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
@@ -73,8 +68,9 @@ public class InvestorDetailActivity extends AppCompatActivity {
 
     //Deleted Investors
     private String name, companyID, phone, nrc, address, date811, date58, date456;
-    private String strAmount811, strPercent811, strDate811, strAmount58, strPercent58, strDate58,
-            strAmount456, strPercent456, strDate456, strNRCImgUrl;
+    private String strAmount811Cash, strAmount811Banking, strPercent811, strDate811,
+            strAmount58Cash, strAmount58Banking, strPercent58, strDate58,
+            strAmount456Cash, strAmount456Banking, strPercent456, strDate456, strNRCImgUrl;
     private String ImgOne, ImgTwo, ImgThree, TotalProfit;
     private List<ExpiredDate> firstData = new ArrayList<>();
     private List<ExpiredDate> secondData = new ArrayList<>();
@@ -88,6 +84,7 @@ public class InvestorDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_investor_detail);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.blue));
 
         Intent intent = getIntent();
         ID = intent.getStringExtra(ID_PASS);
@@ -118,15 +115,12 @@ public class InvestorDetailActivity extends AppCompatActivity {
                 alert_tv_1.setText("");
                 alert_tv_2.setText("");
 
-                String cashBonus = "0";
-                String dailyProfit = "0";
-
                 FirebaseFirestore.getInstance().collection("Deleted Investors")
-                        .add(new Investor(name, companyID, phone, nrc, address,
-                                strAmount811, strPercent811, strDate811,
-                                strAmount58, strPercent58, strDate58,
-                                strAmount456, strPercent456, strDate456,
-                                cashBonus, dailyProfit, strNRCImgUrl, ImgOne, ImgTwo, ImgThree, TotalProfit))
+                        .add(new DeletedInvestor (name, companyID, phone, nrc, address,
+                                strAmount811Cash, strAmount811Banking, strPercent811, strDate811,
+                                strAmount58Cash, strAmount58Banking, strPercent58, strDate58,
+                                strAmount456Cash, strAmount456Banking, strPercent456, strDate456,
+                                TotalProfit, ImgOne, ImgTwo, ImgThree,  strNRCImgUrl))
                         .addOnSuccessListener(InvestorDetailActivity.this, documentReference -> {
                             DeleteSubCollection();
                             DeleteCollection();
@@ -145,7 +139,6 @@ public class InvestorDetailActivity extends AppCompatActivity {
                 Toast.makeText(InvestorDetailActivity.this, "You need to delete all contracts", Toast.LENGTH_SHORT).show();
                 alertDialog.dismiss();
             }
-
         });
 
         //Total Profit Dialog
@@ -284,9 +277,9 @@ public class InvestorDetailActivity extends AppCompatActivity {
                 }
 
                 if (dateDiff1 >= 4) {
-                    monthly1 = (int) (intAmount811 * intPercent811 * 0.01 * 4) + (intCashBonus * 4);
+                    monthly1 = (int) (intAmount811 * intPercent811 * 0.01 * 4);
                 } else if (dateDiff1 < 4 && dateDiff1 > 0) {
-                    monthly1 = (int) (intAmount811 * intPercent811 * 0.01 * dateDiff1) + (intCashBonus * dateDiff1);
+                    monthly1 = (int) (intAmount811 * intPercent811 * 0.01 * dateDiff1);
                 } else {
                     monthly1 = 0;
                 }
@@ -411,12 +404,14 @@ public class InvestorDetailActivity extends AppCompatActivity {
                         }
 
                         if (firstData.size() > 0){
-                            strAmount811 = firstData.get(0).getAmount();
+                            strAmount811Cash = firstData.get(0).getAmountCash();
+                            strAmount811Banking = firstData.get(0).getAmountBanking();
                             strPercent811 = firstData.get(0).getPercent();
                             strDate811 = firstData.get(0).getDate();
                             ImgOne = firstData.get(0).getImageUrl();
                         }else{
-                            strAmount811 = "";
+                            strAmount811Cash = "";
+                            strAmount811Banking = "";
                             strPercent811 = "";
                             strDate811 = "";
                             ImgOne = "";
@@ -435,12 +430,14 @@ public class InvestorDetailActivity extends AppCompatActivity {
                         }
 
                         if (secondData.size() > 0){
-                            strAmount58 = secondData.get(0).getAmount();
+                            strAmount58Cash = secondData.get(0).getAmountCash();
+                            strAmount58Banking = secondData.get(0).getAmountBanking();
                             strPercent58 = secondData.get(0).getPercent();
                             strDate58 = secondData.get(0).getDate();
                             ImgTwo = secondData.get(0).getImageUrl();
                         }else{
-                            strAmount58 = "";
+                            strAmount58Cash = "";
+                            strAmount58Banking = "";
                             strPercent58 = "";
                             strDate58 = "";
                             ImgTwo = "";
@@ -459,12 +456,14 @@ public class InvestorDetailActivity extends AppCompatActivity {
                         }
 
                         if (thirdData.size() > 0){
-                            strAmount456 = thirdData.get(0).getAmount();
+                            strAmount456Cash = thirdData.get(0).getAmountCash();
+                            strAmount456Banking = thirdData.get(0).getAmountBanking();
                             strPercent456 = thirdData.get(0).getPercent();
                             strDate456 = thirdData.get(0).getDate();
                             ImgThree = thirdData.get(0).getImageUrl();
                         }else{
-                            strAmount456 = "";
+                            strAmount456Cash = "";
+                            strAmount456Banking = "";
                             strPercent456 = "";
                             strDate456 = "";
                             ImgThree = "";
@@ -486,7 +485,8 @@ public class InvestorDetailActivity extends AppCompatActivity {
                 TotalProfit = documentSnapshot.getString("preProfit");
                 strNRCImgUrl = documentSnapshot.getString("nrcImgUrl");
 
-                if (documentSnapshot.getString("amount811").equals("0") && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
+                if (documentSnapshot.getString("amount811Cash").equals("0") && documentSnapshot.getString("amount811Banking").equals("0")
+                        && documentSnapshot.getString("percent811").equals("") && documentSnapshot.getString("date811").equals("")) {
                     date811 = "Unavaliable";
 
                     intAmount811 = 0;
@@ -494,11 +494,12 @@ public class InvestorDetailActivity extends AppCompatActivity {
                 } else {
                     date811 = documentSnapshot.getString("date811");
 
-                    intAmount811 = Integer.parseInt(documentSnapshot.getString("amount811"));
+                    intAmount811 = Integer.parseInt(documentSnapshot.getString("amount811Cash")) + Integer.parseInt(documentSnapshot.getString("amount811Banking"));
                     intPercent811 = Integer.parseInt(documentSnapshot.getString("percent811"));
                 }
 
-                if (documentSnapshot.getString("amount58").equals("0") && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
+                if (documentSnapshot.getString("amount58Cash").equals("0") && documentSnapshot.getString("amount58Banking").equals("0")
+                        && documentSnapshot.getString("percent58").equals("") && documentSnapshot.getString("date58").equals("")) {
                     date58 = "Unavaliable";
 
                     intAmount58 = 0;
@@ -506,11 +507,12 @@ public class InvestorDetailActivity extends AppCompatActivity {
                 } else {
                     date58 = documentSnapshot.getString("date58");
 
-                    intAmount58 = Integer.parseInt(documentSnapshot.getString("amount58"));
+                    intAmount58 = Integer.parseInt(documentSnapshot.getString("amount58Cash")) + Integer.parseInt(documentSnapshot.getString("amount58Banking"));
                     intPercent58 = Integer.parseInt(documentSnapshot.getString("percent58"));
                 }
 
-                if (documentSnapshot.getString("amount456").equals("0") && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
+                if (documentSnapshot.getString("amount456Cash").equals("0") && documentSnapshot.getString("amount456Banking").equals("0")
+                        && documentSnapshot.getString("percent456").equals("") && documentSnapshot.getString("date456").equals("")) {
                     date456 = "Unavaliable";
 
                     intAmount456 = 0;
@@ -518,7 +520,7 @@ public class InvestorDetailActivity extends AppCompatActivity {
                 } else {
                     date456 = documentSnapshot.getString("date456");
 
-                    intAmount456 = Integer.parseInt(documentSnapshot.getString("amount456"));
+                    intAmount456 = Integer.parseInt(documentSnapshot.getString("amount456Cash")) + Integer.parseInt(documentSnapshot.getString("amount456Banking"));
                     intPercent456 = Integer.parseInt(documentSnapshot.getString("percent456"));
                 }
 
