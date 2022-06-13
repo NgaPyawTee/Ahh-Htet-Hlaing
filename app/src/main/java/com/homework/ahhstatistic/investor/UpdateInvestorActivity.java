@@ -2,6 +2,7 @@ package com.homework.ahhstatistic.investor;
 
 import static com.homework.ahhstatistic.R.layout.layout_alert_dialog;
 import static com.homework.ahhstatistic.R.layout.layout_progress_dialog;
+import static com.homework.ahhstatistic.R.layout.layout_recycle_bin_dialog;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,9 +76,13 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     private TextView alert_title, alert_description, alert_tv_1, alert_tv_2;
 
     //Image Dialog & alertDialog & ProgressDialog
-    public Dialog imageDialog, progressDialog;
+    private Dialog imageDialog, progressDialog;
     private TextView tv;
     private boolean visible = true;
+
+    //Recycle bin Dialog
+    private Dialog recycleBinDialog;
+    private TextView rbTv1, rbTv2, rbYes, rbNo, rbCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +108,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
         ImageDialog();
         AlertDialog();
+        RecycleBinDialog();
         progressDialog = new Dialog(this);
 
         db = FirebaseFirestore.getInstance();
@@ -312,7 +318,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                             collRef.document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    if (!documentSnapshot.getString("nrcImgUrl").equals("")){
+                                    if (!documentSnapshot.getString("nrcImgUrl").equals("")) {
                                         Toast.makeText(UpdateInvestorActivity.this, "Deleting image...", Toast.LENGTH_SHORT).show();
                                         StorageReference stoRef = FirebaseStorage.getInstance().getReferenceFromUrl(documentSnapshot.getString("nrcImgUrl"));
                                         stoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -329,10 +335,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                                         Glide.with(UpdateInvestorActivity.this).clear(nrcImgView);
                                                         imageDialog.dismiss();
                                                     }
-                                                },2000);
+                                                }, 2000);
                                             }
                                         });
-                                    }else{
+                                    } else {
                                         Toast.makeText(UpdateInvestorActivity.this, "Removing image...", Toast.LENGTH_SHORT).show();
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
@@ -343,7 +349,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                                 Glide.with(UpdateInvestorActivity.this).clear(nrcImgView);
                                                 imageDialog.dismiss();
                                             }
-                                        },2000);
+                                        }, 2000);
                                     }
                                 }
                             });
@@ -408,7 +414,30 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (intAmount811 != 0) {
-                    savedEx1st();
+                    rbTv1.setText("Move to recycle bin ?");
+                    rbTv2.setText("If this contract is a mistake, click NO to delete permanently.");
+                    recycleBinDialog.show();
+
+                    rbCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            recycleBinDialog.dismiss();
+                        }
+                    });
+
+                    rbNo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DeletePermanently1();
+                        }
+                    });
+
+                    rbYes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            savedEx1st();
+                        }
+                    });
                 } else {
                     Toast.makeText(UpdateInvestorActivity.this, "No contract exists", Toast.LENGTH_SHORT).show();
                 }
@@ -418,7 +447,30 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (intAmount58 != 0) {
-                    savedEx2nd();
+                    rbTv1.setText("Move to recycle bin ?");
+                    rbTv2.setText("If this contract is a mistake, click NO to delete permanently (It won't calculate profits).");
+                    recycleBinDialog.show();
+
+                    rbCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            recycleBinDialog.dismiss();
+                        }
+                    });
+
+                    rbNo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DeletePermanently2();
+                        }
+                    });
+
+                    rbYes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            savedEx2nd();
+                        }
+                    });
                 } else {
                     Toast.makeText(UpdateInvestorActivity.this, "No contract exists", Toast.LENGTH_SHORT).show();
                 }
@@ -428,7 +480,30 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (intAmount456 != 0) {
-                    savedEx3rd();
+                    rbTv1.setText("Move to recycle bin ?");
+                    rbTv2.setText("If this contract is a mistake, click NO to delete permanently (It won't calculate profits).");
+                    recycleBinDialog.show();
+
+                    rbCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            recycleBinDialog.dismiss();
+                        }
+                    });
+
+                    rbNo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DeletePermanently3();
+                        }
+                    });
+
+                    rbYes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            savedEx3rd();
+                        }
+                    });
                 } else {
                     Toast.makeText(UpdateInvestorActivity.this, "No contract exists", Toast.LENGTH_SHORT).show();
                 }
@@ -497,6 +572,222 @@ public class UpdateInvestorActivity extends AppCompatActivity {
 
     }
 
+    private void DeletePermanently1() {
+        String amountCash = amount811Cash.getText().toString();
+        String amountBanking = amount811Banking.getText().toString();
+        String percent = percent811.getText().toString();
+        String date = date811.getText().toString();
+
+        if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
+            alert_title.setText("Insufficient Data");
+            alert_description.setText("Please check the fields and a contract photo.");
+            alert_tv_1.setVisibility(View.INVISIBLE);
+            alert_tv_2.setText("OK");
+            alert_tv_2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.dismiss();
+                }
+            });
+            recycleBinDialog.dismiss();
+            alertDialog.show();
+        } else {
+            recycleBinDialog.dismiss();
+            progressDialog.setContentView(R.layout.layout_progress_dialog_2);
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
+            tv.setText("Deleting...");
+            progressDialog.show();
+            collRef.document(id).get().addOnSuccessListener(UpdateInvestorActivity.this, new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    StorageReference deleRef = FirebaseStorage.getInstance().getReferenceFromUrl(documentSnapshot.getString("imgUrlOne"));
+                    deleRef.delete().addOnSuccessListener(UpdateInvestorActivity.this, new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            collRef.document(id).update("amount811Cash", "0");
+                            collRef.document(id).update("amount811Banking", "0");
+                            collRef.document(id).update("percent811", "");
+                            collRef.document(id).update("date811", "");
+                            collRef.document(id).update("imgUrlOne", "");
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                                    btnEx1st.setText("Deleted");
+                                    btnEx1st.setClickable(false);
+
+                                    amount811Cash.setText(null);
+                                    amount811Cash.setHint("Unavaliable");
+                                    amount811Banking.setText(null);
+                                    amount811Banking.setHint("Unavaliable");
+                                    percent811.setText(null);
+                                    percent811.setHint("Unavaliable");
+                                    date811.setText(null);
+                                    date811.setHint("Unavaliable");
+
+                                    exImgUri1 = null;
+                                    exImgView1.setBackgroundResource(R.drawable.stroke_bg_cyan);
+                                    exRL1.setBackgroundResource(R.color.white);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView1);
+
+                                    intAmount811 = 0;
+                                    progressDialog.dismiss();
+                                }
+                            }, 3000);
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    private void DeletePermanently2() {
+        String amountCash = amount58Cash.getText().toString();
+        String amountBanking = amount58Banking.getText().toString();
+        String percent = percent58.getText().toString();
+        String date = date58.getText().toString();
+
+        if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
+            alert_title.setText("Insufficient Data");
+            alert_description.setText("Please check the fields and a contract photo.");
+            alert_tv_1.setVisibility(View.INVISIBLE);
+            alert_tv_2.setText("OK");
+            alert_tv_2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.dismiss();
+                }
+            });
+            recycleBinDialog.dismiss();
+            alertDialog.show();
+        } else {
+            recycleBinDialog.dismiss();
+            progressDialog.setContentView(R.layout.layout_progress_dialog_2);
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
+            tv.setText("Deleting...");
+            progressDialog.show();
+            collRef.document(id).get().addOnSuccessListener(UpdateInvestorActivity.this, new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    StorageReference deleRef = FirebaseStorage.getInstance().getReferenceFromUrl(documentSnapshot.getString("imgUrlTwo"));
+                    deleRef.delete().addOnSuccessListener(UpdateInvestorActivity.this, new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            collRef.document(id).update("amount58Cash", "0");
+                            collRef.document(id).update("amount58Banking", "0");
+                            collRef.document(id).update("percent58", "");
+                            collRef.document(id).update("date58", "");
+                            collRef.document(id).update("imgUrlTwo", "");
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                                    btnEx2nd.setText("Deleted");
+                                    btnEx2nd.setClickable(false);
+
+                                    amount58Cash.setText(null);
+                                    amount58Cash.setHint("Unavaliable");
+                                    amount58Banking.setText(null);
+                                    amount58Banking.setHint("Unavaliable");
+                                    percent58.setText(null);
+                                    percent58.setHint("Unavaliable");
+                                    date58.setText(null);
+                                    date58.setHint("Unavaliable");
+
+                                    exImgUri2 = null;
+                                    exImgView2.setBackgroundResource(R.drawable.stroke_bg_blue);
+                                    exRL2.setBackgroundResource(R.color.white);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView2);
+
+                                    intAmount58 = 0;
+                                    progressDialog.dismiss();
+                                }
+                            }, 3000);
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    private void DeletePermanently3() {
+        String amountCash = amount456Cash.getText().toString();
+        String amountBanking = amount456Banking.getText().toString();
+        String percent = percent456.getText().toString();
+        String date = date456.getText().toString();
+
+        if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
+            alert_title.setText("Insufficient Data");
+            alert_description.setText("Please check the fields and a contract photo.");
+            alert_tv_1.setVisibility(View.INVISIBLE);
+            alert_tv_2.setText("OK");
+            alert_tv_2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.dismiss();
+                }
+            });
+            recycleBinDialog.dismiss();
+            alertDialog.show();
+        } else {
+            recycleBinDialog.dismiss();
+            progressDialog.setContentView(R.layout.layout_progress_dialog_2);
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
+            tv.setText("Deleting...");
+            progressDialog.show();
+            collRef.document(id).get().addOnSuccessListener(UpdateInvestorActivity.this, new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    StorageReference deleRef = FirebaseStorage.getInstance().getReferenceFromUrl(documentSnapshot.getString("imgUrlOne"));
+                    deleRef.delete().addOnSuccessListener(UpdateInvestorActivity.this, new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            collRef.document(id).update("amount456Cash", "0");
+                            collRef.document(id).update("amount456Banking", "0");
+                            collRef.document(id).update("percent456", "");
+                            collRef.document(id).update("date456", "");
+                            collRef.document(id).update("imgUrlThree", "");
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                                    btnEx3rd.setText("Deleted");
+                                    btnEx3rd.setClickable(false);
+
+                                    amount456Cash.setText(null);
+                                    amount456Cash.setHint("Unavaliable");
+                                    amount456Banking.setText(null);
+                                    amount456Banking.setHint("Unavaliable");
+                                    percent456.setText(null);
+                                    percent456.setHint("Unavaliable");
+                                    date456.setText(null);
+                                    date456.setHint("Unavaliable");
+
+                                    exImgUri3 = null;
+                                    exImgView3.setBackgroundResource(R.drawable.stroke_bg_pale_blue);
+                                    exRL3.setBackgroundResource(R.color.white);
+                                    Glide.with(UpdateInvestorActivity.this).clear(exImgView3);
+
+                                    intAmount456 = 0;
+                                    progressDialog.dismiss();
+                                }
+                            }, 3000);
+                        }
+                    });
+                }
+            });
+        }
+    }
+
     private void savedEx1st() {
         String amountCash = amount811Cash.getText().toString();
         String amountBanking = amount811Banking.getText().toString();
@@ -517,8 +808,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     alertDialog.dismiss();
                 }
             });
+            recycleBinDialog.dismiss();
             alertDialog.show();
         } else {
+            recycleBinDialog.dismiss();
             CalculateProfit1();
 
             collRef.document(id).collection("First Date").add(new ExpiredDate(amountCash, amountBanking, percent, date, currentTime, imageUrl, color))
@@ -536,8 +829,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted successfully", Toast.LENGTH_SHORT).show();
-                                    btnEx1st.setText("Deleted");
+                                    Toast.makeText(UpdateInvestorActivity.this, "Moved to recycle bin", Toast.LENGTH_SHORT).show();
+                                    btnEx1st.setText("Moved");
                                     btnEx1st.setClickable(false);
 
                                     amount811Cash.setText(null);
@@ -548,7 +841,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     percent811.setHint("Unavaliable");
                                     date811.setText(null);
                                     date811.setHint("Unavaliable");
-                                    progressDialog.dismiss();
 
                                     exImgUri1 = null;
                                     exImgView1.setBackgroundResource(R.drawable.stroke_bg_cyan);
@@ -556,6 +848,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     Glide.with(UpdateInvestorActivity.this).clear(exImgView1);
 
                                     intAmount811 = 0;
+                                    progressDialog.dismiss();
                                 }
                             }, 3000);
                         }
@@ -569,7 +862,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String percent = percent58.getText().toString();
         String date = date58.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
-        String imageUrl =  String.valueOf(exImgUri2);
+        String imageUrl = String.valueOf(exImgUri2);
         String color = "Blue";
 
         if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
@@ -583,8 +876,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     alertDialog.dismiss();
                 }
             });
+            recycleBinDialog.dismiss();
             alertDialog.show();
         } else {
+            recycleBinDialog.dismiss();
             CalculateProfit2();
 
             collRef.document(id).collection("Second Date").add(new ExpiredDate(amountCash, amountBanking, percent, date, currentTime, imageUrl, color))
@@ -602,8 +897,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted successfully", Toast.LENGTH_SHORT).show();
-                                    btnEx2nd.setText("Deleted");
+                                    Toast.makeText(UpdateInvestorActivity.this, "Moved to recycle bin", Toast.LENGTH_SHORT).show();
+                                    btnEx2nd.setText("Moved");
                                     btnEx2nd.setClickable(false);
 
                                     amount58Cash.setText(null);
@@ -614,7 +909,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     percent58.setHint("Unavaliable");
                                     date58.setText(null);
                                     date58.setHint("Unavaliable");
-                                    progressDialog.dismiss();
 
                                     exImgUri2 = null;
                                     exImgView2.setBackgroundResource(R.drawable.stroke_bg_blue);
@@ -622,6 +916,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     Glide.with(UpdateInvestorActivity.this).clear(exImgView2);
 
                                     intAmount58 = 0;
+                                    progressDialog.dismiss();
                                 }
                             }, 3000);
                         }
@@ -635,7 +930,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         String percent = percent456.getText().toString();
         String date = date456.getText().toString();
         String currentTime = String.valueOf(System.currentTimeMillis());
-        String imageUrl =  String.valueOf(exImgUri3);
+        String imageUrl = String.valueOf(exImgUri3);
         String color = "Pale Blue";
 
         if (amountCash.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
@@ -649,8 +944,10 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     alertDialog.dismiss();
                 }
             });
+            recycleBinDialog.dismiss();
             alertDialog.show();
         } else {
+            recycleBinDialog.dismiss();
             CalculateProfit3();
 
             collRef.document(id).collection("Third Date").add(new ExpiredDate(amountCash, amountBanking, percent, date, currentTime, imageUrl, color))
@@ -668,8 +965,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(UpdateInvestorActivity.this, "Deleted successfully", Toast.LENGTH_SHORT).show();
-                                    btnEx3rd.setText("Deleted");
+                                    Toast.makeText(UpdateInvestorActivity.this, "Moved to recycle bin", Toast.LENGTH_SHORT).show();
+                                    btnEx3rd.setText("Moved");
                                     btnEx3rd.setClickable(false);
 
                                     amount456Cash.setText(null);
@@ -680,7 +977,6 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     percent456.setHint("Unavaliable");
                                     date456.setText(null);
                                     date456.setHint("Unavaliable");
-                                    progressDialog.dismiss();
 
                                     exImgUri3 = null;
                                     exImgView3.setBackgroundResource(R.drawable.stroke_bg_pale_blue);
@@ -688,19 +984,21 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     Glide.with(UpdateInvestorActivity.this).clear(exImgView3);
 
                                     intAmount456 = 0;
+                                    progressDialog.dismiss();
                                 }
-                            },3000);
+                            }, 3000);
                         }
                     });
         }
     }
 
     private void UploadNew1st() {
-        String amount = amount811Cash.getText().toString();
+        String amountCash = amount811Cash.getText().toString();
+        String amountBanking = amount811Banking.getText().toString();
         String percent = percent811.getText().toString();
         String date = date811.getText().toString();
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
+        if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri1 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and add a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -728,7 +1026,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            collRef.document(id).update("amount811", amount811Cash.getText().toString());
+                            collRef.document(id).update("amount811Cash", amount811Cash.getText().toString());
+                            collRef.document(id).update("amount811Banking", amount811Banking.getText().toString());
                             collRef.document(id).update("percent811", percent811.getText().toString());
                             collRef.document(id).update("date811", date811.getText().toString());
                             collRef.document(id).update("imgUrlOne", uri.toString());
@@ -745,11 +1044,12 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void UploadNew2nd() {
-        String amount = amount58Cash.getText().toString();
+        String amountCash = amount58Cash.getText().toString();
+        String amountBanking = amount58Banking.getText().toString();
         String percent = percent58.getText().toString();
         String date = date58.getText().toString();
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
+        if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri2 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and add a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -777,7 +1077,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            collRef.document(id).update("amount58", amount58Cash.getText().toString());
+                            collRef.document(id).update("amount58Cash", amount58Cash.getText().toString());
+                            collRef.document(id).update("amount58Banking", amount58Banking.getText().toString());
                             collRef.document(id).update("percent58", percent58.getText().toString());
                             collRef.document(id).update("date58", date58.getText().toString());
                             collRef.document(id).update("imgUrlTwo", uri.toString());
@@ -794,11 +1095,12 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void UploadNew3rd() {
-        String amount = amount456Cash.getText().toString();
+        String amountCash = amount456Cash.getText().toString();
+        String amountBanking = amount456Banking.getText().toString();
         String percent = percent456.getText().toString();
         String date = date456.getText().toString();
 
-        if (amount.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
+        if (amountCash.isEmpty() | amountBanking.isEmpty() | percent.isEmpty() | date.isEmpty() | exImgUri3 == null) {
             alert_title.setText("Insufficient Data");
             alert_description.setText("Please check the fields and add a contract photo.");
             alert_tv_1.setVisibility(View.INVISIBLE);
@@ -826,7 +1128,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            collRef.document(id).update("amount456", amount456Cash.getText().toString());
+                            collRef.document(id).update("amount456Cash", amount456Cash.getText().toString());
+                            collRef.document(id).update("amount456Banking", amount456Banking.getText().toString());
                             collRef.document(id).update("percent456", percent456.getText().toString());
                             collRef.document(id).update("date456", date456.getText().toString());
                             collRef.document(id).update("imgUrlThree", uri.toString());
@@ -846,7 +1149,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         progressDialog.setContentView(R.layout.layout_progress_dialog_2);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
-        tv.setText("Deleting...");
+        tv.setText("Moving...");
         progressDialog.show();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -896,7 +1199,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         progressDialog.setContentView(R.layout.layout_progress_dialog_2);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
-        tv.setText("Deleting...");
+        tv.setText("Moving...");
         progressDialog.show();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -945,7 +1248,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         progressDialog.setContentView(R.layout.layout_progress_dialog_2);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         tv = progressDialog.findViewById(R.id.progress_dialog_tv_2);
-        tv.setText("Deleting...");
+        tv.setText("Moving...");
         progressDialog.show();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -1018,7 +1321,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             tv.setText("Updating...");
             progressDialog.show();
 
-            if (nrcImgUri != null){
+            if (nrcImgUri != null) {
                 StorageReference fileRef = storageReference.child(strName + "/NRC"
                         + "." + getFileExtension(nrcImgUri));
                 fileRef.putFile(nrcImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -1061,6 +1364,18 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         alert_description = alertDialog.findViewById(R.id.alert_dialog_description);
         alert_tv_1 = alertDialog.findViewById(R.id.alert_dialog_tv_1);
         alert_tv_2 = alertDialog.findViewById(R.id.alert_dialog_tv_2);
+    }
+
+    private void RecycleBinDialog() {
+        recycleBinDialog = new Dialog(this);
+        recycleBinDialog.setContentView(layout_recycle_bin_dialog);
+        recycleBinDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        recycleBinDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        rbTv1 = recycleBinDialog.findViewById(R.id.rb_dialog_title);
+        rbTv2 = recycleBinDialog.findViewById(R.id.rb_dialog_description);
+        rbYes = recycleBinDialog.findViewById(R.id.rb_dialog_yes);
+        rbNo = recycleBinDialog.findViewById(R.id.rb_dialog_no);
+        rbCancel = recycleBinDialog.findViewById(R.id.rb_dialog_cancel);
     }
 
     private void ImageDialog() {
@@ -1167,7 +1482,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             exImgView3.setBackgroundResource(android.R.color.transparent);
             exImgView3.setImageURI(exImgUri3);
             exRL3.setBackgroundResource(android.R.color.transparent);
-        }else if (requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        } else if (requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             nrcImgUri = data.getData();
             nrcImgView.setBackgroundResource(android.R.color.transparent);
             nrcImgView.setImageURI(nrcImgUri);
@@ -1193,7 +1508,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                 nrc.setText(documentSnapshot.getString("nrc"));
                 address.setText(documentSnapshot.getString("address"));
 
-                if (!documentSnapshot.getString("nrcImgUrl").equals("")){
+                if (!documentSnapshot.getString("nrcImgUrl").equals("")) {
                     nrcImgUri = Uri.parse(documentSnapshot.getString("nrcImgUrl"));
                     Glide.with(UpdateInvestorActivity.this).load(nrcImgUri).into(nrcImgView);
                 }
@@ -1277,5 +1592,4 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             }
         });
     }
-
 }

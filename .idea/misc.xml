@@ -46,6 +46,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/round_corner.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/round_corner_2.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/round_dialog_default_color.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/round_dialog_default_color_2.xml" value="0.25462962962962965" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/round_white.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stoke_bg.xml" value="0.2564814814814815" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/drawable/stroke_bg.xml" value="0.2677083333333333" />
@@ -123,7 +124,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/income_cardview_layout.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/investor_cardview_layout.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/investor_relative_layout.xml" value="0.2515625" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_alert_dialog.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_alert_dialog.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_daily_profit_dialog.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_image_dialog.xml" value="0.2324074074074074" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/layout_progress_dialog.xml" value="0.2515625" />
@@ -134,6 +135,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/pale_blue_contract_card_view_layout.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/profit_card_view_layout.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/profit_cardview_layout.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/layout/recycle_bin_dialog.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/menu/add_menu_item.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/menu/deleted_investor_category_menu.xml" value="0.2515625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/menu/income_home_menu_item.xml" value="0.2515625" />

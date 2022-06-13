@@ -149,7 +149,7 @@ public class MonthlyProfitCategoryActivity extends AppCompatActivity {
     }
 
     private void RetrieveData() {
-        collRef.orderBy("companyID", Query.Direction.ASCENDING).get().addOnSuccessListener(this, new OnSuccessListener<QuerySnapshot>() {
+        collRef.orderBy("name", Query.Direction.ASCENDING).get().addOnSuccessListener(this, new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 progressBar.setVisibility(View.GONE);

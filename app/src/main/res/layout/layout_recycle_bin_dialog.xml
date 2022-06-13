@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@drawable/round_dialog_default_color_2"
+        android:orientation="vertical"
+        android:padding="@dimen/normal_padding">
+
+        <TextView
+            android:id="@+id/rb_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Move to recycle bin ?"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/title_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/rb_dialog_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="If this contract is a mistake, click NO to delete permanently (It won't calculate profits)."
+            android:textColor="@color/blue"
+            android:textSize="@dimen/normal_text" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_gravity="end">
+
+            <TextView
+                android:id="@+id/rb_dialog_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:text="CANCEL"
+                android:textColor="@color/cyan"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rb_dialog_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:text="NO"
+                android:textColor="@color/cyan"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rb_dialog_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textColor="@color/cyan"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -30,6 +30,7 @@
                 android:layout_marginTop="@dimen/medium_margin"
                 android:layout_marginEnd="@dimen/normal_margin"
                 app:cardBackgroundColor="@color/white"
+                app:cardElevation="8dp"
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout

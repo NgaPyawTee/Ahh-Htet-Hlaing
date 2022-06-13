@@ -27,7 +27,8 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
     public static final String ID_PASS = "ID_PASS";
     public static String id;
 
-    private RelativeLayout RLToolbar, rl;
+    private RelativeLayout RLToolbar;
+    private ImageView rl;
     private NestedScrollView NSV;
     private Toolbar toolbar;
 
