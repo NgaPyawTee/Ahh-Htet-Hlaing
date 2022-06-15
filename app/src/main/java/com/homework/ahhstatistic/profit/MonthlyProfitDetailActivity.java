@@ -45,11 +45,19 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
     private RelativeLayout rl;
     private int intProfit1, intProfit2, intProfit3, intTotalProfit;
 
-    //Dialog
-    private Dialog dialog;
+    //Profit Dialog
+    private Dialog ProfitDialog;
     private TextView tvTitle;
     private EditText edtProfit;
     private Button btnProfit;
+
+    private RelativeLayout rl1, rl2, rl3;
+
+    //Contract Dialog
+    private Dialog ContractDialog;
+    private TextView contractTitle, contractCash, contractBanking;
+
+    private String strCash811, strBanking811, strCash58, strBanking58, strCash456, strBanking456;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,19 +70,12 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
         ID = intent.getStringExtra(ID_PASS);
         position = intent.getStringExtra(POS_PASS);
 
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.layout_daily_profit_dialog);
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        tvTitle = dialog.findViewById(R.id.profit_detail_dialog_title);
-        edtProfit = dialog.findViewById(R.id.profit_detail_dialog_edt);
-        btnProfit = dialog.findViewById(R.id.profit_detail_dialog_btn);
-        btnProfit.setOnClickListener(view -> {
-            if (edtProfit.getText().toString().trim().equals("")) {
-                dialog.dismiss();
-            } else {
-                UpdateDailyProfit();
-            }
-        });
+        ProfitDialog = new Dialog(this);
+        ProfitDialog.setContentView(R.layout.layout_daily_profit_dialog);
+        ProfitDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        tvTitle = ProfitDialog.findViewById(R.id.profit_detail_dialog_title);
+        edtProfit = ProfitDialog.findViewById(R.id.profit_detail_dialog_edt);
+        btnProfit = ProfitDialog.findViewById(R.id.profit_detail_dialog_btn);
 
         count = findViewById(R.id.profit_detail_count);
         count.setText(position);
@@ -96,13 +97,108 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.profit_detail_progress_bar);
         rl = findViewById(R.id.profit_detail_rl);
 
+        cashBonus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtProfit.setText(null);
+                ProfitDialog.show();
+                btnProfit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (edtProfit.getText().toString().trim().equals("")) {
+                            ProfitDialog.dismiss();
+                        } else {
+                            UpdateCashBonus();
+                        }
+                    }
+                });
+            }
+        });
         dailyProfit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show();
+                edtProfit.setText(null);
+                ProfitDialog.show();
+                btnProfit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (edtProfit.getText().toString().trim().equals("")) {
+                            ProfitDialog.dismiss();
+                        } else {
+                            UpdateDailyProfit();
+                        }
+                    }
+                });
             }
         });
 
+        ContractDialog = new Dialog(this);
+        ContractDialog.setContentView(R.layout.layout_contract_dialog);
+        ContractDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        contractTitle = ContractDialog.findViewById(R.id.PD_dialog_title);
+        contractCash = ContractDialog.findViewById(R.id.PD_dialog_tv_cash);
+        contractBanking = ContractDialog.findViewById(R.id.PD_dialog_tv_banking);
+
+        rl1 = findViewById(R.id.profit_detail_1st_contract);
+        rl2 = findViewById(R.id.profit_detail_2nd_contract);
+        rl3 = findViewById(R.id.profit_detail_3rd_contract);
+
+        rl1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!profit1.getText().toString().equals("Unavaliable")) {
+                    contractTitle.setText("1st Contract");
+                    contractCash.setText(nf.format(Integer.parseInt(strCash811)) + " Ks");
+                    contractBanking.setText(nf.format(Integer.parseInt(strBanking811)) + " Ks");
+                    ContractDialog.show();
+                }
+            }
+        });
+
+        rl2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!profit2.getText().toString().equals("Unavaliable")) {
+                    contractTitle.setText("2nd Contract");
+                    contractCash.setText(nf.format(Integer.parseInt(strCash58)) + " Ks");
+                    contractBanking.setText(nf.format(Integer.parseInt(strBanking58)) + " Ks");
+                    ContractDialog.show();
+                }
+            }
+        });
+
+        rl3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!profit3.getText().toString().equals("Unavaliable")) {
+                    contractTitle.setText("3rd Contract");
+                    contractCash.setText(nf.format(Integer.parseInt(strCash456)) + " Ks");
+                    contractBanking.setText(nf.format(Integer.parseInt(strBanking456)) + " Ks");
+                    ContractDialog.show();
+                }
+            }
+        });
+    }
+
+    private void UpdateCashBonus() {
+        tvTitle.setText("Updating...");
+        collRef.document(ID).update("cashBonus", edtProfit.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                collRef.document(ID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        intTotalProfit = intProfit1 + intProfit2 + intProfit3 +
+                                Integer.parseInt(documentSnapshot.getString("cashBonus")) + Integer.parseInt(documentSnapshot.getString("dailyProfit"));
+                        totalProfit.setText(nf.format(intTotalProfit) + " Ks");
+                        cashBonus.setText(nf.format(Integer.parseInt(edtProfit.getText().toString())) + " Ks");
+                        ProfitDialog.dismiss();
+
+                        tvTitle.setText("Enter Amount");
+                    }
+                });
+            }
+        });
     }
 
     private void UpdateDailyProfit() {
@@ -114,16 +210,16 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         int preProfit = Integer.parseInt(documentSnapshot.getString("preProfit"));
-                        int newPProfit = preProfit + Integer.parseInt(edtProfit.getText().toString());
+                        int newProfit = preProfit + Integer.parseInt(edtProfit.getText().toString());
 
-                        collRef.document(ID).update("preProfit", String.valueOf(newPProfit)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        collRef.document(ID).update("preProfit", String.valueOf(newProfit)).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
                                 intTotalProfit = intProfit1 + intProfit2 + intProfit3 +
-                                        Integer.parseInt(documentSnapshot.getString("dailyProfit"));
+                                        Integer.parseInt(documentSnapshot.getString("dailyProfit")) + Integer.parseInt(documentSnapshot.getString("cashBonus"));
                                 totalProfit.setText(nf.format(intTotalProfit) + " Ks");
                                 dailyProfit.setText(nf.format(Integer.parseInt(edtProfit.getText().toString())) + " Ks");
-                                dialog.dismiss();
+                                ProfitDialog.dismiss();
 
                                 tvTitle.setText("Enter Amount");
                             }
@@ -155,10 +251,13 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
                     percent1.setText("Unavaliable");
                     profit1.setText("Unavaliable");
                 } else {
+                    strCash811 = item.getAmount811Cash();
+                    strBanking811 = item.getAmount811Banking();
+
                     int amount811 = Integer.parseInt(item.getAmount811Cash()) + Integer.parseInt(item.getAmount811Banking());
                     amount1.setText(nf.format(amount811) + " Ks");
                     percent1.setText(item.getPercent811() + "%");
-                    CalculateFirstProfit(amount811, item.getPercent811(), item.getDate811(), item.getCashBonus());
+                    CalculateFirstProfit(amount811, item.getPercent811(), item.getDate811());
                 }
 
                 if (item.getAmount58Cash().equals("0") && item.getAmount58Banking().equals("0") && item.getPercent58().equals("") && item.getDate58().equals("")) {
@@ -166,6 +265,9 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
                     percent2.setText("Unavaliable");
                     profit2.setText("Unavaliable");
                 } else {
+                    strCash58 = item.getAmount58Cash();
+                    strBanking58 = item.getAmount58Banking();
+
                     int amount58 = Integer.parseInt(item.getAmount58Cash()) + Integer.parseInt(item.getAmount58Banking());
                     amount2.setText(nf.format(amount58) + " Ks");
                     percent2.setText(item.getPercent58() + "%");
@@ -177,6 +279,9 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
                     percent3.setText("Unavaliable");
                     profit3.setText("Unavaliable");
                 } else {
+                    strCash456 = item.getAmount456Cash();
+                    strBanking456 = item.getAmount456Banking();
+
                     int amount456 = Integer.parseInt(item.getAmount456Cash()) + Integer.parseInt(item.getAmount456Banking());
                     amount3.setText(nf.format(amount456) + " Ks");
                     percent3.setText(item.getPercent456() + "%");
@@ -186,13 +291,13 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 rl.setVisibility(View.VISIBLE);
 
-                intTotalProfit = intProfit1 + intProfit2 + intProfit3 + Integer.parseInt(item.getDailyProfit());
+                intTotalProfit = intProfit1 + intProfit2 + intProfit3 + Integer.parseInt(item.getCashBonus()) + Integer.parseInt(item.getDailyProfit());
                 totalProfit.setText(nf.format(intTotalProfit) + " Ks");
             }
         });
     }
 
-    private void CalculateFirstProfit(int amount, String percent, String date, String strCashBonus) {
+    private void CalculateFirstProfit(int amount, String percent, String date) {
         int amount811 = amount;
         int percent811 = Integer.parseInt(percent);
 
@@ -230,7 +335,7 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
             } else if (dateDiff1 >= 0 && dateDiff1 < 4) {
                 monthly1 = (int) (amount811 * percent811 * 0.01);
                 profit1.setText(nf.format(monthly1) + " Ks");
-                intProfit1 = monthly1 + Integer.parseInt(strCashBonus);
+                intProfit1 = monthly1;
 
                 amount1.setTextColor(this.getResources().getColor(R.color.dark_cyan));
                 percent1.setTextColor(this.getResources().getColor(R.color.dark_cyan));
@@ -241,7 +346,6 @@ public class MonthlyProfitDetailActivity extends AppCompatActivity {
                 amount1.setTextColor(this.getResources().getColor(R.color.red));
                 percent1.setTextColor(this.getResources().getColor(R.color.red));
                 profit1.setTextColor(this.getResources().getColor(R.color.red));
-                cashBonus.setTextColor(this.getResources().getColor(R.color.red));
             }
 
         } catch (ParseException e) {

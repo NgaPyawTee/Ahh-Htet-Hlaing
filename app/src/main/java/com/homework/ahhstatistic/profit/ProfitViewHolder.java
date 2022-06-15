@@ -112,7 +112,7 @@ public class ProfitViewHolder extends RecyclerView.ViewHolder {
                 }
 
                 if (dateDiff1 >= 0 && dateDiff1 < 4) {
-                    monthly1 = (int) (amount1 * percent1 * 0.01) + cashBonus;
+                    monthly1 = (int) (amount1 * percent1 * 0.01);
                 } else {
                     monthly1 = 0;
                 }
@@ -162,7 +162,7 @@ public class ProfitViewHolder extends RecyclerView.ViewHolder {
                 }
             }
 
-            int monthlyProfit = monthly1 + monthly2 + monthly3 + dailyProfit;
+            int monthlyProfit = monthly1 + monthly2 + monthly3 + cashBonus + dailyProfit;
             amount.setText(nf.format(monthlyProfit) + " Ks");
 
         } catch (ParseException e) {

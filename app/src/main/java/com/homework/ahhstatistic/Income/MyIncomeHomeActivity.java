@@ -52,8 +52,8 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private int TotalIncome , TotalAmount, TotalpaidProfit, TotalfullProfit, intFullProfit1, intIncome1, intFullProfit2, intIncome2, intFullProfit3, intIncome3;
-    private int ttamount1, ttamount2, ttamount3, paidProfit1, paidProfit2, paidProfit3, ttdailyProfit,
-            amount1, amount2, amount3, percent1, percent2, percent3, cashBonus, dailyProfit;
+    private int ttamount1, ttamount2, ttamount3, paidProfit1, paidProfit2, paidProfit3, ttDailyProfit, ttCashBonus,
+            amount1, amount2, amount3, percent1, percent2, percent3, cashBonus, dailyProfit, CashPlusDaily;
     private String date1, date2, date3;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -148,7 +148,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
         String currentDate = sdf.format(Calendar.getInstance().getTime());
         String millisTime = String.valueOf(System.currentTimeMillis());
 
-        collRef2.add(new Income(String.valueOf(TotalIncome), String.valueOf(TotalAmount), String.valueOf(ttdailyProfit),
+        collRef2.add(new Income(String.valueOf(TotalIncome), String.valueOf(TotalAmount), String.valueOf(CashPlusDaily),
                 String.valueOf(ttamount1), percent811.getText().toString(), String.valueOf(intFullProfit1), String.valueOf(paidProfit1), String.valueOf(intIncome1),
                 String.valueOf(ttamount2),  percent58.getText().toString(), String.valueOf(intFullProfit2), String.valueOf(paidProfit2), String.valueOf(intIncome2),
                 String.valueOf(ttamount3), percent456.getText().toString(), String.valueOf(intFullProfit3), String.valueOf(paidProfit3), String.valueOf(intIncome3),
@@ -241,7 +241,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
             }
 
             TotalAmount += ttamount1 + ttamount2 + ttamount3;
-            TotalpaidProfit += paidProfit1 + paidProfit2 + paidProfit3 + ttdailyProfit;
+            TotalpaidProfit += paidProfit1 + paidProfit2 + paidProfit3 + ttDailyProfit + ttCashBonus;
 
             amount811.setText(nf.format(ttamount1) + " Ks");
             paidProfit811.setText(nf.format(paidProfit1) + " Ks");
@@ -254,12 +254,12 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
 
             totalAmount.setText(nf.format(TotalAmount) + " Ks");
 
-            if (ttdailyProfit == 0){
-                checkMethod.setText("Check method :\n all earnings (No daily profit in this month)");
+            if (ttDailyProfit == 0 && ttCashBonus == 0){
+                checkMethod.setText("Check method :\n all earnings");
             }else{
-                checkMethod.setText("Check method :\nall earnings - "+nf.format(ttdailyProfit)+" Ks (all daily profit)");
+                CashPlusDaily = ttDailyProfit + ttCashBonus;
+                checkMethod.setText("Check method :\nall earnings - "+nf.format(CashPlusDaily)+" Ks");
             }
-
         });
     }
 
@@ -285,7 +285,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
         paidProfit2 = 0;
         paidProfit3 = 0;
 
-        ttdailyProfit = 0;
+        ttDailyProfit = 0;
 
         amount1 = 0;
         amount3 = 0;
@@ -420,7 +420,7 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
                 }
 
                 if (dateDiff1 >= 0 && dateDiff1 < 4) {
-                    monthly1 = (int) (amount1 * percent1 * 0.01) + cashBonus;
+                    monthly1 = (int) (amount1 * percent1 * 0.01);
                 } else {
                     monthly1 = 0;
                 }
@@ -473,13 +473,11 @@ public class MyIncomeHomeActivity extends AppCompatActivity {
             paidProfit1 += monthly1;
             paidProfit2 += monthly2;
             paidProfit3 += monthly3;
-            ttdailyProfit += dailyProfit;
+            ttDailyProfit += dailyProfit;
+            ttCashBonus += cashBonus;
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }

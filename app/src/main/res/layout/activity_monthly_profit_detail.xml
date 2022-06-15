@@ -150,7 +150,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/normal_margin"
-                    android:text="Cash Bonus"
+                    android:text="Banking Bonus"
                     android:textColor="@color/black"
                     android:textSize="@dimen/normal_text" />
 
@@ -220,6 +220,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/profit_detail_1st_contract"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -318,6 +319,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/profit_detail_2nd_contract"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -416,6 +418,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/profit_detail_3rd_contract"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"

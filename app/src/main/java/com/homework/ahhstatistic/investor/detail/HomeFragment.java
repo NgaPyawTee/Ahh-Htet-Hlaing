@@ -115,14 +115,9 @@ public class HomeFragment extends Fragment {
             }
         });
         showNRCImg.setOnClickListener(view1 -> {
-            collRef.document(bundlePass).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (!documentSnapshot.getString("nrcImgUrl").equals("")){
-                        OpenImageDialog4();
-                    }
-                }
-            });
+           if (nrcImgUri != null){
+               OpenImageDialog4();
+           }
         });
 
         Bundle data = getArguments();

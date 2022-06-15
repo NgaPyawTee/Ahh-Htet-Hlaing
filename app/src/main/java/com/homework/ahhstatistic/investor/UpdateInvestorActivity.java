@@ -414,8 +414,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (intAmount811 != 0) {
-                    rbTv1.setText("Move to recycle bin ?");
-                    rbTv2.setText("If this contract is a mistake, click NO to delete permanently.");
+                    rbTv1.setText("Delete 1st Contract");
+                    rbTv2.setText("Do you want to move this contract to the recycle bin?");
                     recycleBinDialog.show();
 
                     rbCancel.setOnClickListener(new View.OnClickListener() {
@@ -447,8 +447,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (intAmount58 != 0) {
-                    rbTv1.setText("Move to recycle bin ?");
-                    rbTv2.setText("If this contract is a mistake, click NO to delete permanently (It won't calculate profits).");
+                    rbTv1.setText("Delete 2nd Contract");
+                    rbTv2.setText("Do you want to move this contract to the recycle bin?");
                     recycleBinDialog.show();
 
                     rbCancel.setOnClickListener(new View.OnClickListener() {
@@ -480,8 +480,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (intAmount456 != 0) {
-                    rbTv1.setText("Move to recycle bin ?");
-                    rbTv2.setText("If this contract is a mistake, click NO to delete permanently (It won't calculate profits).");
+                    rbTv1.setText("Delete 3rd Contract");
+                    rbTv2.setText("Do you want to move this contract to the recycle bin?");
                     recycleBinDialog.show();
 
                     rbCancel.setOnClickListener(new View.OnClickListener() {

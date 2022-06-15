@@ -12,12 +12,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.homework.ahhstatistic.R;
 
@@ -28,6 +31,7 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
     public static String id;
 
     private RelativeLayout RLToolbar;
+    private LinearLayout ll;
     private ImageView rl;
     private NestedScrollView NSV;
     private Toolbar toolbar;
@@ -38,7 +42,7 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
             amount456Cash, amount456Banking,  percent456, date456,
             totalProfit;
     private ImageView imageView1, imageView2, imageView3, zoomPic, downImg, backImg, clrImg;
-    private Uri imgUri1, imgUri2, imgUri3;
+    private Uri imgUri1, imgUri2, imgUri3, nrcImgUri;
     private ProgressBar progressBar;
     private CollectionReference collRef;
     public Dialog imageDialog;
@@ -124,6 +128,21 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
         });
 
         totalProfit = findViewById(R.id.deleted_detail_total_profit);
+
+        ll = findViewById(R.id.show_deleted_nrc);
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collRef.document(id).get().addOnSuccessListener(DeletedInvestorDetailActivity.this, new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (nrcImgUri != null){
+                            OpenImageDialog4();
+                        }
+                    }
+                });
+            }
+        });
     }
 
     private void OpenImageDialog1() {
@@ -164,6 +183,24 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
 
     private void OpenImageDialog3() {
         Glide.with(this).load(imgUri3).into(zoomPic);
+        imageDialog.show();
+        zoomPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (visible) {
+                    RLToolbar.setVisibility(View.VISIBLE);
+                    visible = false;
+                } else {
+                    RLToolbar.setVisibility(View.GONE);
+                    visible = true;
+                }
+            }
+        });
+
+    }
+
+    private void OpenImageDialog4() {
+        Glide.with(this).load(nrcImgUri).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,6 +286,10 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
                 imgUri3 = Uri.parse(documentSnapshot.getString("imgUrlThree"));
                 imageView3.setBackgroundResource(android.R.color.transparent);
                 Glide.with(this).load(imgUri3).into(imageView3);
+            }
+
+            if (!documentSnapshot.getString("nrcImgUrl").isEmpty()){
+                nrcImgUri = Uri.parse(documentSnapshot.getString("nrcImgUrl"));
             }
 
             totalProfit.setText(nf.format(Integer.parseInt(documentSnapshot.getString("preProfit"))) + " Ks");

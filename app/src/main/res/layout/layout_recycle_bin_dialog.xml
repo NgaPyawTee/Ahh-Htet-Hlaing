@@ -17,7 +17,6 @@
             android:id="@+id/rb_dialog_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Move to recycle bin ?"
             android:textColor="@color/blue"
             android:textSize="@dimen/title_text"
             android:textStyle="bold" />
@@ -27,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="If this contract is a mistake, click NO to delete permanently (It won't calculate profits)."
             android:textColor="@color/blue"
             android:textSize="@dimen/normal_text" />
 
