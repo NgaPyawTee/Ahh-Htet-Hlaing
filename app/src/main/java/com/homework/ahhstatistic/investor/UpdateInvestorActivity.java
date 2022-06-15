@@ -1403,7 +1403,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dialog = new DatePickerDialog(this, listener1, year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(this, R.style.DialogTheme, listener1, year, month, day);
         dialog.show();
     }
 
@@ -1413,7 +1413,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dialog = new DatePickerDialog(this, listener2, year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(this, R.style.DialogTheme, listener2, year, month, day);
         dialog.show();
     }
 
@@ -1423,7 +1423,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dialog = new DatePickerDialog(this, listener3, year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(this, R.style.DialogTheme, listener3, year, month, day);
         dialog.show();
     }
 
