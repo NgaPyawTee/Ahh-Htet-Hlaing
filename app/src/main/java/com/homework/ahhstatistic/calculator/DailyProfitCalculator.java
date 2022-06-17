@@ -249,7 +249,7 @@ public class DailyProfitCalculator extends AppCompatActivity {
         int startMonth = calendar.get(Calendar.MONTH);
         int startDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dialog = new DatePickerDialog(DailyProfitCalculator.this, listener, startYear, startMonth, startDay);
+        DatePickerDialog dialog = new DatePickerDialog(DailyProfitCalculator.this, R.style.DialogTheme2, listener, startYear, startMonth, startDay);
         dialog.show();
     }
 }

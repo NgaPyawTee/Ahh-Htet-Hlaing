@@ -57,6 +57,12 @@
         <item name="android:buttonBarPositiveButtonStyle">@style/NegativeButtonStyle</item>
     </style>
 
+    <style name="DialogTheme2" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/bright_blue</item>
+        <item name="android:buttonBarNegativeButtonStyle" >@style/NegativeButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
     <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/dark_cyan</item>
     </style>
