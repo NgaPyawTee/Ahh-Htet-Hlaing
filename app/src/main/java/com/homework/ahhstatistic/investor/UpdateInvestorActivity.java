@@ -1,6 +1,7 @@
 package com.homework.ahhstatistic.investor;
 
 import static com.homework.ahhstatistic.R.layout.layout_alert_dialog;
+import static com.homework.ahhstatistic.R.layout.layout_image_dialog;
 import static com.homework.ahhstatistic.R.layout.layout_progress_dialog;
 import static com.homework.ahhstatistic.R.layout.layout_recycle_bin_dialog;
 
@@ -164,6 +165,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         exImgView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RLToolbar.setVisibility(View.INVISIBLE);
+                visible = true;
                 if (exImgUri1 == null) {
                     OpenFileChooser1();
                 } else {
@@ -198,7 +201,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     exRL1.setBackgroundResource(R.color.white);
                                     imageDialog.dismiss();
                                 }
-                            }, 2000);
+                            }, 2500);
                         }
                     });
                 }
@@ -207,6 +210,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         exImgView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RLToolbar.setVisibility(View.INVISIBLE);
+                visible = true;
                 if (exImgUri2 == null) {
                     OpenFileChooser2();
                 } else {
@@ -241,7 +246,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     exRL2.setBackgroundResource(R.color.white);
                                     imageDialog.dismiss();
                                 }
-                            }, 2000);
+                            }, 2500);
                         }
                     });
                 }
@@ -250,6 +255,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         exImgView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RLToolbar.setVisibility(View.INVISIBLE);
+                visible = true;
                 if (exImgUri3 == null) {
                     OpenFileChooser3();
                 } else {
@@ -284,7 +291,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                     exRL3.setBackgroundResource(R.color.white);
                                     imageDialog.dismiss();
                                 }
-                            }, 2000);
+                            }, 2500);
                         }
                     });
                 }
@@ -293,6 +300,8 @@ public class UpdateInvestorActivity extends AppCompatActivity {
         nrcImgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                RLToolbar.setVisibility(View.INVISIBLE);
+                visible = true;
                 if (nrcImgUri == null) {
                     OpenFileChooser4();
                 } else {
@@ -324,18 +333,21 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                         stoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                collRef.document(id).update("nrcImgUrl", "");
-
-                                                Handler handler = new Handler();
-                                                handler.postDelayed(new Runnable() {
+                                                collRef.document(id).update("nrcImgUrl", "").addOnSuccessListener(UpdateInvestorActivity.this, new OnSuccessListener<Void>() {
                                                     @Override
-                                                    public void run() {
-                                                        nrcImgUri = null;
-                                                        nrcImgView.setImageURI(null);
-                                                        Glide.with(UpdateInvestorActivity.this).clear(nrcImgView);
-                                                        imageDialog.dismiss();
+                                                    public void onSuccess(Void unused) {
+                                                        Handler handler = new Handler();
+                                                        handler.postDelayed(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                nrcImgUri = null;
+                                                                nrcImgView.setImageURI(null);
+                                                                Glide.with(UpdateInvestorActivity.this).clear(nrcImgView);
+                                                                imageDialog.dismiss();
+                                                            }
+                                                        }, 1000);
                                                     }
-                                                }, 2000);
+                                                });
                                             }
                                         });
                                     } else {
@@ -349,7 +361,7 @@ public class UpdateInvestorActivity extends AppCompatActivity {
                                                 Glide.with(UpdateInvestorActivity.this).clear(nrcImgView);
                                                 imageDialog.dismiss();
                                             }
-                                        }, 2000);
+                                        }, 2500);
                                     }
                                 }
                             });
@@ -1379,10 +1391,9 @@ public class UpdateInvestorActivity extends AppCompatActivity {
     }
 
     private void ImageDialog() {
-        imageDialog = new Dialog(this);
-        imageDialog.setContentView(R.layout.layout_image_dialog);
-        imageDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        imageDialog.getWindow().setBackgroundDrawableResource(android.R.color.black);
+        imageDialog = new Dialog(this, R.style.FullScreenDialog);
+        View v = getLayoutInflater().inflate(layout_image_dialog,null);
+        imageDialog.setContentView(v);
         zoomPic = imageDialog.findViewById(R.id.zoom_img);
         RLToolbar = imageDialog.findViewById(R.id.dialog_toolbar);
         clrImg = imageDialog.findViewById(R.id.clear_img);

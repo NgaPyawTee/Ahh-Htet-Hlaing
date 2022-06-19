@@ -1,5 +1,7 @@
 package com.homework.ahhstatistic.investor.deleted;
 
+import static com.homework.ahhstatistic.R.layout.layout_image_dialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.WindowCompat;
@@ -18,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -73,10 +76,9 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
         rl = findViewById(R.id.deleted_detail_rl);
 
         //Image Dialog
-        imageDialog = new Dialog(this);
-        imageDialog.setContentView(R.layout.layout_image_dialog);
-        imageDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        imageDialog.getWindow().setBackgroundDrawableResource(android.R.color.black);
+        imageDialog = new Dialog(this, R.style.FullScreenDialog);
+        View v = getLayoutInflater().inflate(layout_image_dialog,null);
+        imageDialog.setContentView(v);
         zoomPic = imageDialog.findViewById(R.id.zoom_img);
         RLToolbar = imageDialog.findViewById(R.id.dialog_toolbar);
         clrImg = imageDialog.findViewById(R.id.clear_img);
@@ -146,7 +148,9 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
     }
 
     private void OpenImageDialog1() {
-        Glide.with(this).load(imgUri1).into(zoomPic);
+        RLToolbar.setVisibility(View.INVISIBLE);
+        visible = true;
+        Glide.with(this).load(imgUri1).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +168,9 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
     }
 
     private void OpenImageDialog2() {
-        Glide.with(this).load(imgUri2).into(zoomPic);
+        RLToolbar.setVisibility(View.INVISIBLE);
+        visible = true;
+        Glide.with(this).load(imgUri2).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +188,9 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
     }
 
     private void OpenImageDialog3() {
-        Glide.with(this).load(imgUri3).into(zoomPic);
+        RLToolbar.setVisibility(View.INVISIBLE);
+        visible = true;
+        Glide.with(this).load(imgUri3).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +208,9 @@ public class DeletedInvestorDetailActivity extends AppCompatActivity {
     }
 
     private void OpenImageDialog4() {
-        Glide.with(this).load(nrcImgUri).into(zoomPic);
+        RLToolbar.setVisibility(View.INVISIBLE);
+        visible = true;
+        Glide.with(this).load(nrcImgUri).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -67,7 +67,7 @@ public class AddInvestorActivity extends AppCompatActivity {
     private String strNRCImg = "";
 
     //Image dialog
-    private Dialog dialog;
+    private Dialog imageDialog;
     private RelativeLayout RLToolbar;
     private ImageView backImg, downImg, clrImg;
     private PhotoView zoomPic;
@@ -112,20 +112,19 @@ public class AddInvestorActivity extends AppCompatActivity {
         tv.setText("Adding...");
 
         //Image Dialog
-        dialog = new Dialog(this);
-        dialog.setContentView(layout_image_dialog);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.black);
-        zoomPic = dialog.findViewById(R.id.zoom_img);
-        RLToolbar = dialog.findViewById(R.id.dialog_toolbar);
-        clrImg = dialog.findViewById(R.id.clear_img);
-        downImg = dialog.findViewById(R.id.down_img);
+        imageDialog = new Dialog(this, R.style.FullScreenDialog);
+        View v = getLayoutInflater().inflate(layout_image_dialog,null);
+        imageDialog.setContentView(v);
+        zoomPic = imageDialog.findViewById(R.id.zoom_img);
+        RLToolbar = imageDialog.findViewById(R.id.dialog_toolbar);
+        clrImg = imageDialog.findViewById(R.id.clear_img);
+        downImg = imageDialog.findViewById(R.id.down_img);
         downImg.setVisibility(View.INVISIBLE);
-        backImg = dialog.findViewById(R.id.back_img);
+        backImg = imageDialog.findViewById(R.id.back_img);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
+                imageDialog.dismiss();
             }
         });
 
@@ -197,11 +196,13 @@ public class AddInvestorActivity extends AppCompatActivity {
         };
 
         imgView1.setOnClickListener(view -> {
+            RLToolbar.setVisibility(View.INVISIBLE);
+            visible = true;
             if (imgUri1 == null) {
                 OpenFileChooser1();
             } else {
                 Glide.with(AddInvestorActivity.this).load(imgUri1).into(zoomPic);
-                dialog.show();
+                imageDialog.show();
 
                 zoomPic.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -227,19 +228,21 @@ public class AddInvestorActivity extends AppCompatActivity {
                                 imgUri1 = null;
                                 imgView1.setImageURI(null);
                                 imgView1.setBackgroundResource(R.drawable.stroke_bg_cyan);
-                                dialog.dismiss();
+                                imageDialog.dismiss();
                             }
-                        }, 2000);
+                        }, 2500);
                     }
                 });
             }
         });
         imgView2.setOnClickListener(view -> {
+            RLToolbar.setVisibility(View.INVISIBLE);
+            visible = true;
             if (imgUri2 == null) {
                 OpenFileChooser2();
             } else {
                 Glide.with(AddInvestorActivity.this).load(imgUri2).into(zoomPic);
-                dialog.show();
+                imageDialog.show();
 
                 zoomPic.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -265,19 +268,20 @@ public class AddInvestorActivity extends AppCompatActivity {
                                 imgUri2 = null;
                                 imgView2.setImageURI(null);
                                 imgView2.setBackgroundResource(R.drawable.stroke_bg_blue);
-                                dialog.dismiss();
+                                imageDialog.dismiss();
                             }
-                        }, 2000);
+                        }, 2500);
                     }
                 });
             }
         });
         imgView3.setOnClickListener(view -> {
+            RLToolbar.setVisibility(View.INVISIBLE);
             if (imgUri3 == null) {
                 OpenFileChooser3();
             } else {
                 Glide.with(AddInvestorActivity.this).load(imgUri3).into(zoomPic);
-                dialog.show();
+                imageDialog.show();
 
                 zoomPic.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -303,19 +307,21 @@ public class AddInvestorActivity extends AppCompatActivity {
                                 imgUri3 = null;
                                 imgView3.setImageURI(null);
                                 imgView3.setBackgroundResource(R.drawable.stroke_bg_pale_blue);
-                                dialog.dismiss();
+                                imageDialog.dismiss();
                             }
-                        }, 2000);
+                        }, 2500);
                     }
                 });
             }
         });
         nrcImgView.setOnClickListener(view -> {
+            RLToolbar.setVisibility(View.INVISIBLE);
+            visible = true;
             if (nrcImgUri == null) {
                 OpenFileChooser4();
             } else {
                 Glide.with(AddInvestorActivity.this).load(nrcImgUri).into(zoomPic);
-                dialog.show();
+                imageDialog.show();
 
                 zoomPic.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -340,9 +346,9 @@ public class AddInvestorActivity extends AppCompatActivity {
                             public void run() {
                                 nrcImgUri = null;
                                 nrcImgView.setImageURI(null);
-                                dialog.dismiss();
+                                imageDialog.dismiss();
                             }
-                        }, 2000);
+                        }, 2500);
                     }
                 });
             }

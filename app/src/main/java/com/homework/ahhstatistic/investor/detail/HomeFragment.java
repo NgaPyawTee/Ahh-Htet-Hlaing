@@ -1,5 +1,7 @@
 package com.homework.ahhstatistic.investor.detail;
 
+import static com.homework.ahhstatistic.R.layout.layout_image_dialog;
+
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -61,10 +63,9 @@ public class HomeFragment extends Fragment {
         NSV = view.findViewById(R.id.detail_container);
 
         //Image Dialog
-        imageDialog = new Dialog(getContext());
-        imageDialog.setContentView(R.layout.layout_image_dialog);
-        imageDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        imageDialog.getWindow().setBackgroundDrawableResource(android.R.color.black);
+        imageDialog = new Dialog(getContext(), R.style.FullScreenDialog);
+        View v = getLayoutInflater().inflate(layout_image_dialog,null);
+        imageDialog.setContentView(v);
         zoomPic = imageDialog.findViewById(R.id.zoom_img);
         RLToolbar = imageDialog.findViewById(R.id.dialog_toolbar);
         clrImg = imageDialog.findViewById(R.id.clear_img);
@@ -127,6 +128,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void OpenImageDialog1() {
+        RLToolbar.setVisibility(View.INVISIBLE);
+        visible = true;
         Glide.with(getContext()).load(imgUri1).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +156,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void OpenImageDialog2() {
+        RLToolbar.setVisibility(View.INVISIBLE);
+        visible = true;
         Glide.with(getContext()).load(imgUri2).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
@@ -179,6 +184,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void OpenImageDialog3() {
+        RLToolbar.setVisibility(View.INVISIBLE);
+        visible = true;
         Glide.with(getContext()).load(imgUri3).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +212,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void OpenImageDialog4() {
+        RLToolbar.setVisibility(View.INVISIBLE);
+        visible = true;
         Glide.with(getContext()).load(nrcImgUri).placeholder(R.drawable.rotate_progress).diskCacheStrategy(DiskCacheStrategy.NONE).into(zoomPic);
         imageDialog.show();
         zoomPic.setOnClickListener(new View.OnClickListener() {
