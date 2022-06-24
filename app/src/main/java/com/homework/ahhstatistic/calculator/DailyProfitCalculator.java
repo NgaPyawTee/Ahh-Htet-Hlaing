@@ -191,7 +191,9 @@ public class DailyProfitCalculator extends AppCompatActivity {
         String s = dayleftNumber.getText().toString();
 
         if (toggle.equals("calculate")) {
-            if (s.equals("You picked the last day of this month") | s.equals("You picked the last day of the month") | s.equals("Today is the last day of this month")) {
+            if (s.equals("You picked the last day of this month")
+                    | s.equals("You picked the last day of the month")
+                    | s.equals("Today is the last day of this month")) {
                 Toast.makeText(DailyProfitCalculator.this, "No day left to calculate", Toast.LENGTH_SHORT).show();
                 return;
             } else if (edtAmount.length() == 0) {
@@ -200,7 +202,10 @@ public class DailyProfitCalculator extends AppCompatActivity {
             } else if (edtPercent.length() == 0) {
                 Toast.makeText(DailyProfitCalculator.this, "Insert percentage", Toast.LENGTH_SHORT).show();
                 return;
-            } else {
+            } else if (Integer.parseInt(edtPercent.getText().toString()) > 15) {
+                Toast.makeText(DailyProfitCalculator.this, "Reduce inserted percentage", Toast.LENGTH_SHORT).show();
+                return;
+            }else {
                 btnCalculate.setText("hide");
                 resultLayout.setVisibility(View.VISIBLE);
 
@@ -219,28 +224,26 @@ public class DailyProfitCalculator extends AppCompatActivity {
 
         int dayLeftMultiplier = Integer.parseInt(dayleftNumber.getText().toString());
 
-        //get only day from end date
-        String s = endDate.getText().toString();
-        try {
-            Date date = dateFormat.parse(s);
-            int lastDayMultiplier = date.getDate();
+            //get only day from end date
+            String s = endDate.getText().toString();
+            try {
+                Date date = dateFormat.parse(s);
+                int lastDayMultiplier = date.getDate();
 
-            //calculate daily profit
-            int oneMonthProfit = (int) (amount * getMultiplier * 0.01);
-            int dailyProfit = ((oneMonthProfit * dayLeftMultiplier) / lastDayMultiplier);
+                //calculate daily profit
+                int oneMonthProfit = (int) (amount * getMultiplier * 0.01);
+                int dailyProfit = ((oneMonthProfit * dayLeftMultiplier) / lastDayMultiplier);
 
-            resultAmount.setText(nf.format(dailyProfit) + " Ks");
+                resultAmount.setText(nf.format(dailyProfit) + " Ks");
 
-            if (dayLeftMultiplier == 1) {
-                resultDay.setText(dayLeftMultiplier + " Day");
-            } else {
-                resultDay.setText(dayLeftMultiplier + " Days");
+                if (dayLeftMultiplier == 1) {
+                    resultDay.setText(dayLeftMultiplier + " Day");
+                } else {
+                    resultDay.setText(dayLeftMultiplier + " Days");
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     private void StartDateDialog() {

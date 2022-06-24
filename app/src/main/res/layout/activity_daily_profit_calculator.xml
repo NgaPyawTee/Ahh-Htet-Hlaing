@@ -162,7 +162,7 @@
                     android:layout_centerInParent="true"
                     android:background="@color/white"
                     android:inputType="number"
-                    android:maxLength="9"
+                    android:maxLength="8"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/bright_blue"
                     android:textSize="@dimen/title_text"

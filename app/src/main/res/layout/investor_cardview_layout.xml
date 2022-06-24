@@ -64,6 +64,16 @@
                 android:textSize="@dimen/large_text" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/investor_name"
+                android:layout_marginTop="14dp"
+                android:layout_toStartOf="@+id/investor_company_id"
+                android:text="IM - "
+                android:textColor="@color/blue"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
                 android:id="@+id/investor_company_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -49,7 +49,7 @@
                         android:layout_marginTop="@dimen/normal_margin"
                         android:text="Khun Kyaw Win Soe"
                         android:textColor="@color/blue"
-                        android:textSize="@dimen/title_text"
+                        android:textSize="@dimen/large_text"
                         android:textStyle="bold" />
 
                     <LinearLayout

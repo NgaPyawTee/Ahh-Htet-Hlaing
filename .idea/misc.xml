@@ -150,7 +150,13 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14427083333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/AHHStatistic/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.23981481481481481" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Ahh-Htet-Hlaing/app/src/main/res/layout/activity_daily_profit_calculator.xml" value="0.2074074074074074" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Ahh-Htet-Hlaing/app/src/main/res/layout/activity_monthly_profit_detail.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Ahh-Htet-Hlaing/app/src/main/res/layout/activity_my_income_detail.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Ahh-Htet-Hlaing/app/src/main/res/layout/fragment_home.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Ahh-Htet-Hlaing/app/src/main/res/layout/investor_cardview_layout.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Ahh-Htet-Hlaing/app/src/main/res/layout/layout_image_dialog.xml" value="0.2515625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Ahh-Htet-Hlaing/app/src/main/res/layout/profit_cardview_layout.xml" value="0.536" />
       </map>
     </option>
   </component>
